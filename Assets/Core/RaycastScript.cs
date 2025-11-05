@@ -21,42 +21,21 @@ public class RaycastScript : MonoBehaviour
         Vector2 pointerPos;
 
         if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
-        {
-
             pointerPos = Touchscreen.current.primaryTouch.position.ReadValue();
-
-        }
-        else
-        {
-
+        else if (Mouse.current != null && Mouse.current.leftButton.isPressed)
             pointerPos = Mouse.current.position.ReadValue();
-
-        }
-
+        else
+            return;
 
         Vector3 sceenPosition = new Vector3(pointerPos.x, pointerPos.y, 100f);
         Vector3 worldPosition = cam.ScreenToWorldPoint(sceenPosition);
 
         bool pressed;
 
-        if (Mouse.current != null && Mouse.current.leftButton.isPressed)
-        {
-
+        if ((Mouse.current != null && Mouse.current.leftButton.isPressed) || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed))
             pressed = true;
-
-        }
-        else if (Touchscreen.current != null && Touchscreen.current.primaryTouch.tapCount.ReadValue() > 0)
-        {
-
-            pressed = true;
-
-        }
         else
-        {
-
             pressed = false;
-
-        }
 
         if (pressed)
         {
@@ -67,6 +46,7 @@ public class RaycastScript : MonoBehaviour
             {
 
                 IClickable clickable = hit.transform.GetComponent<IClickable>();
+
                 if (clickable != null)
                     clickable.OnClick();
 
@@ -75,6 +55,7 @@ public class RaycastScript : MonoBehaviour
         }
 
     }
+
 }
 
 

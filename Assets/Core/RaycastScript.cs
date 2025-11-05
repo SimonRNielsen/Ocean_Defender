@@ -20,9 +20,9 @@ public class RaycastScript : MonoBehaviour
 
         Vector2 pointerPos;
 
-        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
+        if (Touchscreen.current != null && (Touchscreen.current.primaryTouch.press.isPressed || Touchscreen.current.primaryTouch.press.wasReleasedThisFrame))
             pointerPos = Touchscreen.current.primaryTouch.position.ReadValue();
-        else if (Mouse.current != null && Mouse.current.leftButton.isPressed)
+        else if (Mouse.current != null && (Mouse.current.leftButton.isPressed || Mouse.current.leftButton.wasReleasedThisFrame))
             pointerPos = Mouse.current.position.ReadValue();
         else
             return;
@@ -30,14 +30,14 @@ public class RaycastScript : MonoBehaviour
         Vector3 sceenPosition = new Vector3(pointerPos.x, pointerPos.y, 100f);
         Vector3 worldPosition = cam.ScreenToWorldPoint(sceenPosition);
 
-        bool pressed;
+        bool pressed = false, released = false;
 
-        if ((Mouse.current != null && Mouse.current.leftButton.isPressed) || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed))
+        if ((Mouse.current != null && Mouse.current.leftButton.wasReleasedThisFrame) || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasReleasedThisFrame))
+            released = true;
+        else if ((Mouse.current != null && Mouse.current.leftButton.isPressed) || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed))
             pressed = true;
-        else
-            pressed = false;
 
-        if (pressed)
+        if (released)
         {
 
             RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
@@ -53,6 +53,22 @@ public class RaycastScript : MonoBehaviour
             }
 
         }
+        else if (pressed)
+        {
+
+            //RaycastHit2D hit = Physics2D.Raycast(worldPosition, Vector2.zero);
+
+            //if (hit.collider != null)
+            //{
+
+            //    IClickable clickable = hit.transform.GetComponent<IClickable>();
+
+            //    if (clickable != null)
+            //        clickable.OnPress();
+
+            //}
+
+        }
 
     }
 
@@ -63,5 +79,7 @@ public interface IClickable
 {
 
     void OnClick();
+
+    //void OnPress();
 
 }

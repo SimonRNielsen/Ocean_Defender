@@ -11,16 +11,23 @@ public class ClearableScript : MonoBehaviour, IClickable
 
     public void OnClick()
     {
-        if (visibel == true)
+        //When click it will be unvisibel
+        if (render.isVisible == true)
         {
             render.enabled = false;
-            visibel = false;
         }
-        else if (visibel == false)
-        {
-            render.enabled = true;
-            visibel = true;
-        }
+
+        //When clicked will it be visibel/unvisibel 
+        //if (visibel == true)
+        //{
+        //    render.enabled = false;
+        //    visibel = false;
+        //}
+        //else if (visibel == false)
+        //{
+        //    render.enabled = true;
+        //    visibel = true;
+        //}
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -5,7 +5,8 @@ public class RaycastScript : MonoBehaviour
 {
 
     private Camera cam;
-    private Vector3 oldMouseWorldPosition, newMouseWorldPosition;
+    private Vector3 oldMouseWorldPosition, newMouseWorldPosition, movement;
+    private Vector2 pointerPos;
     private IClickable dragThis;
     private bool primaryReleased, primaryPressed;
 
@@ -30,9 +31,9 @@ public class RaycastScript : MonoBehaviour
         DeterminePrimaryInput();
 
         if (primaryReleased)
-            OnReleaseAction();
+            OnReleasePrimaryAction();
         else if (primaryPressed)
-            OnPressAction();
+            OnPressingPrimaryAction();
 
     }
 
@@ -42,7 +43,6 @@ public class RaycastScript : MonoBehaviour
 
         primaryPressed = false;
         primaryReleased = false;
-        Vector2 pointerPos;
 
         if (Mouse.current != null && (Mouse.current.leftButton.isPressed || Mouse.current.leftButton.wasReleasedThisFrame))
             pointerPos = Mouse.current.position.ReadValue();
@@ -73,7 +73,7 @@ public class RaycastScript : MonoBehaviour
 
         }
 
-        Vector3 movement = newMouseWorldPosition - oldMouseWorldPosition;
+        movement = newMouseWorldPosition - oldMouseWorldPosition;
 
         oldMouseWorldPosition = newMouseWorldPosition;
 
@@ -82,7 +82,7 @@ public class RaycastScript : MonoBehaviour
     }
 
 
-    private void OnPressAction()
+    private void OnPressingPrimaryAction()
     {
 
         if (dragThis != null)
@@ -98,12 +98,13 @@ public class RaycastScript : MonoBehaviour
         if (hit.collider != null)
         {
 
-            dragThis = hit.transform.GetComponent<IClickable>();
+            IClickable clickable = hit.transform.GetComponent<IClickable>();
 
-            if (dragThis != null)
+            if (clickable != null)
             {
 
-                dragThis.OnPress(Movement());
+                clickable.OnPress(Movement());
+                dragThis = clickable;
 
             }
 
@@ -112,7 +113,7 @@ public class RaycastScript : MonoBehaviour
     }
 
 
-    private void OnReleaseAction()
+    private void OnReleasePrimaryAction()
     {
 
         if (dragThis != null)

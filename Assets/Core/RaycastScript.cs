@@ -5,9 +5,9 @@ public class RaycastScript : MonoBehaviour
 {
 
     private Camera cam;
-    private Vector3 oldMouseWorldPosition;
-    private Vector3 newMouseWorldPosition;
+    private Vector3 oldMouseWorldPosition, newMouseWorldPosition;
     private IClickable dragThis;
+    private bool primaryReleased, primaryPressed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,21 +27,21 @@ public class RaycastScript : MonoBehaviour
     void Update()
     {
 
-        DeterminePrimaryInput(out bool released, out bool pressed);
+        DeterminePrimaryInput();
 
-        if (released)
+        if (primaryReleased)
             OnReleaseAction();
-        else if (pressed)
+        else if (primaryPressed)
             OnPressAction();
 
     }
 
 
-    private void DeterminePrimaryInput(out bool released, out bool pressed)
+    private void DeterminePrimaryInput()
     {
 
-        pressed = false;
-        released = false;
+        primaryPressed = false;
+        primaryReleased = false;
         Vector2 pointerPos;
 
         if (Mouse.current != null && (Mouse.current.leftButton.isPressed || Mouse.current.leftButton.wasReleasedThisFrame))
@@ -55,9 +55,9 @@ public class RaycastScript : MonoBehaviour
         newMouseWorldPosition = cam.ScreenToWorldPoint(screenPosition);
 
         if ((Mouse.current != null && Mouse.current.leftButton.wasReleasedThisFrame) || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasReleasedThisFrame))
-            released = true;
+            primaryReleased = true;
         else if ((Mouse.current != null && Mouse.current.leftButton.isPressed) || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed))
-            pressed = true;
+            primaryPressed = true;
 
     }
 
@@ -98,13 +98,12 @@ public class RaycastScript : MonoBehaviour
         if (hit.collider != null)
         {
 
-            IClickable clickable = hit.transform.GetComponent<IClickable>();
+            dragThis = hit.transform.GetComponent<IClickable>();
 
-            if (clickable != null)
+            if (dragThis != null)
             {
 
-                clickable.OnPress(Movement());
-                dragThis = clickable;
+                dragThis.OnPress(Movement());
 
             }
 

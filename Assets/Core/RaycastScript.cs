@@ -278,7 +278,7 @@ public class RaycastScript : MonoBehaviour
     /// Checks if any of the primary input was detected this frame
     /// </summary>
     /// <returns>True, if any</returns>
-    private bool PrimaryActionDetected() => primaryIsReleased || primaryIsHeld || primaryIsPressed;
+    private bool PrimaryActionDetected() => primaryIsHeld || primaryIsPressed || primaryIsReleased;
 
     #endregion
 
@@ -296,7 +296,7 @@ public interface IClickable
     void OnPrimaryRelease();
 
     /// <summary>
-    /// Triggered on object when primary input is held
+    /// Triggered on object when primary input is held, takes a Vector3 
     /// </summary>
     /// <param name="movement">Vector3 direct difference in value from mouses last recorded frame "transform.position += movement;" moves object along with mouse</param>
     void OnPrimaryHold(Vector3 movement);

@@ -30,6 +30,12 @@ public class ClearableScript : MonoBehaviour, IClickable
         //}
     }
 
+    public void OnPress(Vector3 movement)
+    {
+        throw new System.NotImplementedException();
+    }
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

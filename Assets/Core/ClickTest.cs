@@ -2,12 +2,20 @@ using UnityEngine;
 
 public class ClickTest : MonoBehaviour, IClickable
 {
+
     public void OnClick()
     {
 
         Renderer rend = GetComponent<Renderer>();
         if (rend != null)
             rend.material.color = Color.red;
+
+    }
+
+    public void OnPress(Vector3 movement)
+    {
+
+        transform.position += movement;
 
     }
 

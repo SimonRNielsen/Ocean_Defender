@@ -5,7 +5,7 @@ public class RaycastScript : MonoBehaviour
 {
 
     private Camera cam;
-    private Vector3 oldMouseWorldPosition, newMouseWorldPosition, movement;
+    private Vector3 oldPointerWorldPosition, newPointerWorldPosition, movement;
     private Vector2 pointerPos;
     private IClickable dragThis;
     private bool primaryReleased, primaryPressed;
@@ -28,7 +28,8 @@ public class RaycastScript : MonoBehaviour
     void Update()
     {
 
-        DeterminePrimaryInput();
+        if (DeterminePrimaryInput())
+            UpdateMouseWorldPosition();
 
         if (primaryReleased)
             OnReleasePrimaryAction();
@@ -38,26 +39,50 @@ public class RaycastScript : MonoBehaviour
     }
 
 
-    private void DeterminePrimaryInput()
+    private bool DeterminePrimaryInput()
     {
 
         primaryPressed = false;
         primaryReleased = false;
 
-        if (Mouse.current != null && (Mouse.current.leftButton.isPressed || Mouse.current.leftButton.wasReleasedThisFrame))
-            pointerPos = Mouse.current.position.ReadValue();
-        else if (Touchscreen.current != null && (Touchscreen.current.primaryTouch.press.isPressed || Touchscreen.current.primaryTouch.press.wasReleasedThisFrame))
-            pointerPos = Touchscreen.current.primaryTouch.position.ReadValue();
-        else
-            return;
+        return CheckLeftMouse() || CheckPrimaryTouch();
+
+    }
+
+
+    private void UpdateMouseWorldPosition()
+    {
 
         Vector3 screenPosition = new Vector3(pointerPos.x, pointerPos.y, -cam.transform.position.z);
-        newMouseWorldPosition = cam.ScreenToWorldPoint(screenPosition);
+        newPointerWorldPosition = cam.ScreenToWorldPoint(screenPosition);
 
-        if ((Mouse.current != null && Mouse.current.leftButton.wasReleasedThisFrame) || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasReleasedThisFrame))
-            primaryReleased = true;
-        else if ((Mouse.current != null && Mouse.current.leftButton.isPressed) || (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed))
-            primaryPressed = true;
+    }
+
+
+    private bool CheckLeftMouse()
+    {
+
+        if (Mouse.current == null) return false;
+
+        primaryPressed = Mouse.current.leftButton.isPressed;
+        primaryReleased = Mouse.current.leftButton.wasReleasedThisFrame;
+        pointerPos = Mouse.current.position.ReadValue();
+
+        return primaryReleased || primaryPressed;
+
+    }
+
+
+    private bool CheckPrimaryTouch()
+    {
+
+        if (Touchscreen.current == null) return false;
+
+        primaryPressed = Touchscreen.current.primaryTouch.press.isPressed;
+        primaryReleased = Touchscreen.current.primaryTouch.press.wasReleasedThisFrame;
+        pointerPos = Touchscreen.current.primaryTouch.position.ReadValue();
+
+        return primaryReleased || primaryPressed;
 
     }
 
@@ -68,14 +93,14 @@ public class RaycastScript : MonoBehaviour
         if (dragThis == null)
         {
 
-            oldMouseWorldPosition = newMouseWorldPosition;
+            oldPointerWorldPosition = newPointerWorldPosition;
             return Vector3.zero;
 
         }
 
-        movement = newMouseWorldPosition - oldMouseWorldPosition;
+        movement = newPointerWorldPosition - oldPointerWorldPosition;
 
-        oldMouseWorldPosition = newMouseWorldPosition;
+        oldPointerWorldPosition = newPointerWorldPosition;
 
         return movement;
 
@@ -93,7 +118,7 @@ public class RaycastScript : MonoBehaviour
 
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(newMouseWorldPosition, Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(newPointerWorldPosition, Vector2.zero);
 
         if (hit.collider != null)
         {
@@ -126,7 +151,7 @@ public class RaycastScript : MonoBehaviour
         else
         {
 
-            RaycastHit2D hit = Physics2D.Raycast(newMouseWorldPosition, Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(newPointerWorldPosition, Vector2.zero);
 
             if (hit.collider != null)
             {

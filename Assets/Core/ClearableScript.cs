@@ -9,7 +9,7 @@ public class ClearableScript : MonoBehaviour, IClickable
     #endregion
 
 
-    public void OnClick()
+    public void OnPrimaryRelease()
     {
         //When click it will be unvisibel
         if (render.isVisible == true)
@@ -30,11 +30,15 @@ public class ClearableScript : MonoBehaviour, IClickable
         //}
     }
 
-    public void OnPress(Vector3 movement)
+    public void OnPrimaryHold(Vector3 movement)
     {
         throw new System.NotImplementedException();
     }
 
+    public void OnPrimaryClick()
+    {
+        throw new System.NotImplementedException();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,4 +51,5 @@ public class ClearableScript : MonoBehaviour, IClickable
     {
 
     }
+
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class ClickTest : MonoBehaviour, IClickable
 {
 
-    public void OnClick()
+    public void OnPrimaryRelease()
     {
 
         Renderer rend = GetComponent<Renderer>();
@@ -12,10 +12,19 @@ public class ClickTest : MonoBehaviour, IClickable
 
     }
 
-    public void OnPress(Vector3 movement)
+    public void OnPrimaryHold(Vector3 movement)
     {
 
         transform.position += movement;
+
+    }
+
+    public void OnPrimaryClick()
+    {
+
+        Renderer rend = GetComponent<Renderer>();
+        if (rend != null)
+            rend.material.color = Color.green;
 
     }
 
@@ -30,4 +39,5 @@ public class ClickTest : MonoBehaviour, IClickable
     {
         
     }
+
 }

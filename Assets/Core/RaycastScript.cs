@@ -4,11 +4,55 @@ using UnityEngine.InputSystem;
 public class RaycastScript : MonoBehaviour
 {
 
+    #region Fields
+
+    [Header("Input settings"), Space]
+    [Tooltip("Make object only interactable if input was initiated on it"), SerializeField] private bool primaryInitialPressIsSelector = false;
+    [Tooltip("Disable action when input is just pressed"), SerializeField] private bool disableOnPress = false;
+    [Tooltip("Disable action when input is held"), SerializeField] private bool disableOnHold = false;
+    [Tooltip("Disable action when input is released"), SerializeField] private bool disableOnRelease = false;
+
     private Camera cam;
-    private Vector3 oldPointerWorldPosition, newPointerWorldPosition, movement;
+    private Vector3 oldPointerWorldPosition, newPointerWorldPosition;
     private Vector2 pointerPos;
-    private IClickable dragThis;
-    private bool primaryReleased, primaryPressed;
+    private IClickable selectedObject;
+    private bool primaryIsReleased, primaryIsHeld, primaryIsPressed, actionDetectedThisFrame, touchEnabled, mouseEnabled;
+
+    #endregion
+    #region Properties
+
+    /// <summary>
+    /// Calculates difference between previous frames recorded position and current frame and stores this as a movement value in the Vector3 "movement"
+    /// </summary>
+    private Vector3 Movement
+    {
+        get
+        {
+
+            if (selectedObject == null) //Ensures no movement if object-dragging was initiated this frame
+            {
+
+                oldPointerWorldPosition = newPointerWorldPosition;
+                return Vector3.zero;
+
+            }
+
+            Vector3 move = newPointerWorldPosition - oldPointerWorldPosition;
+
+            oldPointerWorldPosition = newPointerWorldPosition;
+
+            return move;
+
+        }
+    }
+
+    #endregion
+    #region Constructor
+
+
+
+    #endregion
+    #region Methods
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +66,8 @@ public class RaycastScript : MonoBehaviour
         if (cam == null)
             throw new System.Exception("No camera found for RaycastScript, either no camera was detected as \"MainCamera\" or on object the script was attached to");
 
+        CheckForPeripherals();
+
     }
 
     // Update is called once per frame
@@ -31,14 +77,23 @@ public class RaycastScript : MonoBehaviour
         if (DeterminePrimaryInput())
             UpdateMouseWorldPosition();
 
-        if (primaryReleased)
+        if (primaryIsPressed)
+        {
+
+            OnPrimaryPress();
+            oldPointerWorldPosition = newPointerWorldPosition;
+
+        }
+        else if (primaryIsReleased)
             OnReleasePrimaryAction();
-        else if (primaryPressed)
-            OnPressingPrimaryAction();
+        else if (primaryIsHeld)
+            OnHoldingPrimaryAction();
 
     }
 
-
+    /// <summary>
+    /// Updates pointers world position
+    /// </summary>
     private void UpdateMouseWorldPosition()
     {
 
@@ -47,140 +102,208 @@ public class RaycastScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Detects if either touch or mouse press was input
+    /// </summary>
+    /// <returns>True if any detected</returns>
     private bool DeterminePrimaryInput()
     {
 
-        primaryPressed = false;
-        primaryReleased = false;
+        primaryIsHeld = false;
+        primaryIsReleased = false;
+        primaryIsPressed = false;
+        actionDetectedThisFrame = false;
 
         return CheckLeftMouse() || CheckPrimaryTouch();
 
     }
 
-
+    /// <summary>
+    /// Checks for input from mouse leftbutton and records position thereof if so
+    /// </summary>
+    /// <returns>True if actuated</returns>
     private bool CheckLeftMouse()
     {
 
-        if (Mouse.current == null) return false;
+        if (!mouseEnabled && Mouse.current == null) return false;
 
-        primaryPressed = Mouse.current.leftButton.isPressed;
-        primaryReleased = Mouse.current.leftButton.wasReleasedThisFrame;
+        primaryIsHeld = Mouse.current.leftButton.isPressed;
+        primaryIsReleased = Mouse.current.leftButton.wasReleasedThisFrame;
+        primaryIsPressed = Mouse.current.leftButton.wasPressedThisFrame;
 
-        bool temp = primaryReleased || primaryPressed;
-        if (temp)
-            pointerPos = Mouse.current.position.ReadValue();
-
-        return temp;
-
-    }
-
-
-    private bool CheckPrimaryTouch()
-    {
-
-        if (Touchscreen.current == null) return false;
-
-        primaryPressed = Touchscreen.current.primaryTouch.press.isPressed;
-        primaryReleased = Touchscreen.current.primaryTouch.press.wasReleasedThisFrame;
-
-        bool temp = primaryReleased || primaryPressed;
-        if (temp)
-            pointerPos = Touchscreen.current.primaryTouch.position.ReadValue();
-
-        return temp;
-
-    }
-
-
-    private Vector3 Movement()
-    {
-
-        if (dragThis == null)
+        bool actionDetected = PrimaryActionDetected();
+        if (actionDetected && !actionDetectedThisFrame)
         {
 
-            oldPointerWorldPosition = newPointerWorldPosition;
-            return Vector3.zero;
+            pointerPos = Mouse.current.position.ReadValue();
+            actionDetectedThisFrame = true;
 
         }
 
-        movement = newPointerWorldPosition - oldPointerWorldPosition;
-
-        oldPointerWorldPosition = newPointerWorldPosition;
-
-        return movement;
+        return actionDetected;
 
     }
 
-
-    private void OnPressingPrimaryAction()
+    /// <summary>
+    /// Checks for input from touchscreen with single-finger input and records position thereof if so
+    /// </summary>
+    /// <returns>True if actuated</returns>
+    private bool CheckPrimaryTouch()
     {
 
-        if (dragThis != null)
+        if (!touchEnabled && Touchscreen.current == null) return false;
+
+        primaryIsHeld = Touchscreen.current.primaryTouch.press.isPressed;
+        primaryIsReleased = Touchscreen.current.primaryTouch.press.wasReleasedThisFrame;
+        primaryIsPressed = Touchscreen.current.primaryTouch.press.wasPressedThisFrame;
+
+        bool actionDetected = PrimaryActionDetected();
+        if (actionDetected && !actionDetectedThisFrame)
         {
 
-            dragThis.OnPress(Movement());
+            pointerPos = Touchscreen.current.primaryTouch.position.ReadValue();
+            actionDetectedThisFrame = true;
+
+        }
+
+        return actionDetected;
+
+    }
+
+    /// <summary>
+    /// Logic for a drag-effect (or hold effect if initial press isn't set as only way of selecting)
+    /// </summary>
+    private void OnHoldingPrimaryAction()
+    {
+
+        if (disableOnHold) return;
+
+        if (selectedObject != null)
+        {
+
+            selectedObject.OnPrimaryHold(Movement);
             return;
 
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(newPointerWorldPosition, Vector2.zero);
+        if (primaryInitialPressIsSelector) return;
 
-        if (hit.collider != null)
+        IClickable target = CastRay();
+
+        if (target != null)
         {
 
-            IClickable clickable = hit.transform.GetComponent<IClickable>();
-
-            if (clickable != null)
-            {
-
-                clickable.OnPress(Movement());
-                dragThis = clickable;
-
-            }
+            target.OnPrimaryHold(Movement);
+            selectedObject = target;
 
         }
 
     }
 
-
+    /// <summary>
+    /// Logic for when primary input is released
+    /// </summary>
     private void OnReleasePrimaryAction()
     {
 
-        if (dragThis != null)
+        if (disableOnRelease) return;
+
+        if (selectedObject != null)
         {
 
-            dragThis.OnClick();
-            dragThis = null;
+            selectedObject.OnPrimaryRelease();
+            selectedObject = null;
 
         }
-        else
+        else if (!primaryInitialPressIsSelector)
         {
 
-            RaycastHit2D hit = Physics2D.Raycast(newPointerWorldPosition, Vector2.zero);
+            IClickable target = CastRay();
 
-            if (hit.collider != null)
-            {
-
-                IClickable clickable = hit.transform.GetComponent<IClickable>();
-
-                if (clickable != null)
-                    clickable.OnClick();
-
-            }
+            if (target != null)
+                target.OnPrimaryRelease();
 
         }
 
     }
 
+    /// <summary>
+    /// Logic for when primary input is initially actuated
+    /// </summary>
+    private void OnPrimaryPress()
+    {
+
+        if (disableOnPress) return;
+
+        IClickable target = CastRay();
+
+        if (target != null)
+        {
+
+            target.OnPrimaryClick();
+            selectedObject = target;
+
+        }
+
+    }
+
+    /// <summary>
+    /// Tries to determine which kind of input is present
+    /// </summary>
+    private void CheckForPeripherals()
+    {
+
+        touchEnabled = Touchscreen.current != null;
+        mouseEnabled = Mouse.current != null;
+
+    }
+
+    /// <summary>
+    /// Scans for an objects collisionbox on the point where the pointer is located in world-space
+    /// </summary>
+    /// <returns>Objects IClickable-inheriting class - if any, otherwise null</returns>
+    private IClickable CastRay()
+    {
+
+        RaycastHit2D hit = Physics2D.Raycast(newPointerWorldPosition, Vector2.zero);
+
+        if (hit.collider != null)
+            return hit.transform.GetComponent<IClickable>();
+        else
+            return null;
+
+    }
+
+    /// <summary>
+    /// Checks if any of the primary input was detected this frame
+    /// </summary>
+    /// <returns>True, if any</returns>
+    private bool PrimaryActionDetected() => primaryIsReleased || primaryIsHeld || primaryIsPressed;
+
+    #endregion
+
 }
 
-
+/// <summary>
+/// Interface to interpert input
+/// </summary>
 public interface IClickable
 {
 
-    void OnClick();
+    /// <summary>
+    /// Triggered on object when primary input is released
+    /// </summary>
+    void OnPrimaryRelease();
 
-    void OnPress(Vector3 movement);
+    /// <summary>
+    /// Triggered on object when primary input is held
+    /// </summary>
+    /// <param name="movement">Vector3 direct difference in value from mouses last recorded frame "transform.position += movement;" moves object along with mouse</param>
+    void OnPrimaryHold(Vector3 movement);
+
+    /// <summary>
+    /// Triggered on object when primary input is initially actuated
+    /// </summary>
+    void OnPrimaryClick();
 
 }

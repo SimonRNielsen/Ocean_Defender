@@ -39,6 +39,15 @@ public class RaycastScript : MonoBehaviour
     }
 
 
+    private void UpdateMouseWorldPosition()
+    {
+
+        Vector3 screenPosition = new Vector3(pointerPos.x, pointerPos.y, -cam.transform.position.z);
+        newPointerWorldPosition = cam.ScreenToWorldPoint(screenPosition);
+
+    }
+
+
     private bool DeterminePrimaryInput()
     {
 
@@ -46,15 +55,6 @@ public class RaycastScript : MonoBehaviour
         primaryReleased = false;
 
         return CheckLeftMouse() || CheckPrimaryTouch();
-
-    }
-
-
-    private void UpdateMouseWorldPosition()
-    {
-
-        Vector3 screenPosition = new Vector3(pointerPos.x, pointerPos.y, -cam.transform.position.z);
-        newPointerWorldPosition = cam.ScreenToWorldPoint(screenPosition);
 
     }
 

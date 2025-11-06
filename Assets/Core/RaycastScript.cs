@@ -66,9 +66,12 @@ public class RaycastScript : MonoBehaviour
 
         primaryPressed = Mouse.current.leftButton.isPressed;
         primaryReleased = Mouse.current.leftButton.wasReleasedThisFrame;
-        pointerPos = Mouse.current.position.ReadValue();
 
-        return primaryReleased || primaryPressed;
+        bool temp = primaryReleased || primaryPressed;
+        if (temp)
+            pointerPos = Mouse.current.position.ReadValue();
+
+        return temp;
 
     }
 
@@ -80,9 +83,12 @@ public class RaycastScript : MonoBehaviour
 
         primaryPressed = Touchscreen.current.primaryTouch.press.isPressed;
         primaryReleased = Touchscreen.current.primaryTouch.press.wasReleasedThisFrame;
-        pointerPos = Touchscreen.current.primaryTouch.position.ReadValue();
 
-        return primaryReleased || primaryPressed;
+        bool temp = primaryReleased || primaryPressed;
+        if (temp)
+            pointerPos = Touchscreen.current.primaryTouch.position.ReadValue();
+
+        return temp;
 
     }
 
@@ -155,7 +161,7 @@ public class RaycastScript : MonoBehaviour
 
             if (hit.collider != null)
             {
-                
+
                 IClickable clickable = hit.transform.GetComponent<IClickable>();
 
                 if (clickable != null)

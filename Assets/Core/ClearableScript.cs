@@ -32,12 +32,12 @@ public class ClearableScript : MonoBehaviour, IClickable
 
     public void OnPrimaryHold(Vector3 movement)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public void OnPrimaryClick()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

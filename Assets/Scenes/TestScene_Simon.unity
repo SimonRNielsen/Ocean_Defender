@@ -225,7 +225,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99dd2a6cfd4d85947a9b8404589e6d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RaycastScript
-  primaryIsSelector: 0
+  primaryInitialPressIsSelector: 0
+  disableOnPress: 0
+  disableOnHold: 0
+  disableOnRelease: 0
 --- !u!114 &126687640
 MonoBehaviour:
   m_ObjectHideFlags: 0

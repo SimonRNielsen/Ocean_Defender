@@ -3,10 +3,11 @@ using UnityEngine;
 public class ClickTest : MonoBehaviour, IClickable
 {
 
+    private Renderer rend;
+
     public void OnPrimaryRelease()
     {
 
-        Renderer rend = GetComponent<Renderer>();
         if (rend != null)
             rend.material.color = Color.red;
 
@@ -22,7 +23,6 @@ public class ClickTest : MonoBehaviour, IClickable
     public void OnPrimaryClick()
     {
 
-        Renderer rend = GetComponent<Renderer>();
         if (rend != null)
             rend.material.color = Color.green;
 
@@ -31,7 +31,9 @@ public class ClickTest : MonoBehaviour, IClickable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
+        rend = GetComponent<Renderer>();
+
     }
 
     // Update is called once per frame

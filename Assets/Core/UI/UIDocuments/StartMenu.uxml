@@ -1,14 +1,14 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="Background" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Content/Sprites/Background/KattegatGrafik4.png?fileID=6396264863310025688&amp;guid=5a0582f01f64cef44bce6ed15bf8d19f&amp;type=3#KattegatGrafik4_0&quot;);">
-        <ui:VisualElement name="TopSpacer" style="flex-grow: 1; height: 10%;" />
-        <ui:VisualElement name="MiddleSpacer" style="flex-grow: 1; height: 80%; flex-direction: row; align-items: center;">
-            <ui:VisualElement name="LeftSpacer" style="flex-grow: 1; width: 10%; left: auto; align-self: flex-start; align-items: stretch; height: 100%;" />
+    <ui:VisualElement name="Background" style="flex-grow: 1; background-image: none;">
+        <ui:VisualElement name="TopBorder" style="flex-grow: 1; height: 10%;" />
+        <ui:VisualElement name="MiddleFrame" style="flex-grow: 1; height: 80%; flex-direction: row; align-items: center;">
+            <ui:VisualElement name="LeftBorder" style="flex-grow: 1; width: 10%; left: auto; align-self: flex-start; align-items: stretch; height: 100%;" />
             <ui:VisualElement name="Centre" style="flex-grow: 1; width: 80%; align-self: center; position: relative; align-items: stretch; height: 100%;">
-                <ui:Label text="Ocean Defender (TitlePlaceholder)" name="Header" style="align-self: center; height: 10%;" />
-                <ui:VisualElement name="ButtonContainer" style="flex-grow: 1;" />
+                <ui:VisualElement name="Header" style="flex-grow: 1; height: 15%; min-height: 15%; max-height: 15px; background-size: contain; -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
-            <ui:VisualElement name="RightSpacer" style="flex-grow: 1; width: 10%; right: auto; align-self: flex-end; justify-content: center; align-content: flex-start; height: 100%;" />
+            <ui:VisualElement name="RightBorder" style="flex-grow: 1; width: 10%; right: auto; align-self: flex-end; justify-content: center; align-content: flex-start; height: 100%;" />
         </ui:VisualElement>
-        <ui:VisualElement name="BottomSpacer" style="flex-grow: 1; height: 10%;" />
+        <ui:VisualElement name="BottomBorder" style="flex-grow: 1; height: 10%; background-size: contain;" />
     </ui:VisualElement>
 </ui:UXML>

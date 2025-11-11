@@ -68,7 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca00087a98cfad4a9a6a8120ac97824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartMenuScript
-  gameLogo: {fileID: 0}
+  gameLogo: {fileID: -3132873794551670915, guid: 1687f4bc09236d547b4f8c98bbb0d67b, type: 3}
   backgroundSprite: {fileID: 6396264863310025688, guid: 5a0582f01f64cef44bce6ed15bf8d19f, type: 3}
+  closeButtonSprite: {fileID: 1086331387851373080, guid: 94308d6f819b2024a89f70e12c0f09f8, type: 3}
   scenes: []
   buttonClickSound: {fileID: 0}

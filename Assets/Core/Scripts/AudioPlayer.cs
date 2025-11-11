@@ -17,7 +17,21 @@ public class AudioPlayer : MonoBehaviour
     void Start()
     {
 
-        audioSource = GetComponent<AudioSource>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+
+    private void OnEnable()
+    {
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+
         if (audioSource != null)
         {
 
@@ -29,9 +43,18 @@ public class AudioPlayer : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnDisable()
     {
+
+        if (audioSource != null && DataTransfer_SO.Instance != null)
+        {
+
+            DataTransfer_SO.Instance.oneShotSoundEvent -= PlayOneShotSound;
+            DataTransfer_SO.Instance.loopingSoundEvent -= PlayLoopingSound;
+            DataTransfer_SO.Instance.playSoundEvent -= Play;
+
+        }
 
     }
 
@@ -44,9 +67,9 @@ public class AudioPlayer : MonoBehaviour
 
             Debug.LogWarning("No clip found");
             return;
-            
+
         }
-        
+
         audioSource.PlayOneShot(clip);
 
     }
@@ -68,6 +91,7 @@ public class AudioPlayer : MonoBehaviour
         audioSource.Play();
 
     }
+
 
     private void Play(AudioClip clip)
     {

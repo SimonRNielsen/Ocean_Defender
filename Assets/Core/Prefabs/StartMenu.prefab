@@ -71,5 +71,10 @@ MonoBehaviour:
   gameLogo: {fileID: -3132873794551670915, guid: 1687f4bc09236d547b4f8c98bbb0d67b, type: 3}
   backgroundSprite: {fileID: 6396264863310025688, guid: 5a0582f01f64cef44bce6ed15bf8d19f, type: 3}
   closeButtonSprite: {fileID: 1086331387851373080, guid: 94308d6f819b2024a89f70e12c0f09f8, type: 3}
-  scenes: []
   buttonClickSound: {fileID: 0}
+  enableButtonBorder: 0
+  scenes:
+  - sceneName: 
+    buttonPicture: {fileID: 0}
+  - sceneName: 
+    buttonPicture: {fileID: 0}

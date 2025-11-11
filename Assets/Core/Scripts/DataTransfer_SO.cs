@@ -16,7 +16,7 @@ public class DataTransfer_SO : ScriptableObject
         {
 
             if (instance == null)
-                instance = CreateInstance<DataTransfer_SO>();
+                instance = Resources.Load<DataTransfer_SO>("DataTransfer_SO");
 
             return instance;
 
@@ -32,5 +32,15 @@ public class DataTransfer_SO : ScriptableObject
     public Action<AudioClip> playSoundEvent;
 
     #endregion
+
+
+    private void OnEnable()
+    {
+
+        oneShotSoundEvent = null;
+        loopingSoundEvent = null;
+        playSoundEvent = null;
+
+    }
 
 }

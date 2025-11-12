@@ -8,6 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: 1ce4cbb82248150498209a02e8ed1078
+  - enabled: 1
+    path: Assets/Scenes/TestScene_Rikke.unity
+    guid: 4c65a6dff892e3b429e33316b86f6264
+  - enabled: 1
+    path: Assets/Scenes/TestScene_Simon.unity
+    guid: 46c4585292430eb4b98b30c8d49e5abf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

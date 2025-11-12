@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trash
   - TrashCan
+  - AudioPlayer
   layers:
   - Default
   - TransparentFX

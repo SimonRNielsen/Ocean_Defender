@@ -11,15 +11,19 @@ public class StartMenuScript : MonoBehaviour
 
     [SerializeField] private Sprite gameLogo, backgroundSprite, closeButtonSprite;
     [SerializeField] private AudioClip buttonClickSound;
-    [SerializeField] private bool enableButtonBorder = false;
-    [SerializeField] private List<SceneSelection> scenes;
+    [Header("Button border settings"), SerializeField] private bool enableButtonBorder = false;
+    [SerializeField, Range(0, 10)] private float borderSize = 3;
+    [SerializeField, Range(0, 255)] private float borderRed = 0, borderGreen = 0, borderBlue = 0, borderOpacity = 0;
+    [Space, SerializeField] private List<SceneSelection> scenes;
     private VisualElement header, background, buttonContainer, closeButtonContainer;
     private List<(Button Button, Action CoRoutine)> buttons = new List<(Button Button, Action CoRoutine)>();
-    private readonly Color transparent = new Color(0, 0, 0, 0);
+    private Color borderColor; //Transparant
     private bool buttonsAdded = false;
 
     private void Awake()
     {
+
+        borderColor = new Color(borderRed, borderGreen, borderBlue, borderOpacity);
 
         AssignElements();
 
@@ -210,7 +214,7 @@ public class StartMenuScript : MonoBehaviour
         button.style.backgroundImage = new StyleBackground(sprite);
         button.style.width = sprite.rect.width;
         button.style.height = sprite.rect.height;
-        button.style.backgroundColor = transparent;
+        button.style.backgroundColor = borderColor;
         //button.style.backgroundSize = new BackgroundSize(BackgroundSizeType.Contain);
         //button.style.backgroundRepeat = new BackgroundRepeat { x = Repeat.NoRepeat, y = Repeat.NoRepeat };
         if (!enableButtonBorder)
@@ -220,19 +224,19 @@ public class StartMenuScript : MonoBehaviour
             button.style.borderRightWidth = 0;
             button.style.borderTopWidth = 0;
             button.style.borderBottomWidth = 0;
-            button.style.borderLeftColor = transparent;
-            button.style.borderRightColor = transparent;
-            button.style.borderTopColor = transparent;
-            button.style.borderBottomColor = transparent;
+            button.style.borderLeftColor = borderColor;
+            button.style.borderRightColor = borderColor;
+            button.style.borderTopColor = borderColor;
+            button.style.borderBottomColor = borderColor;
 
         }
         else
         {
 
-            button.style.borderLeftWidth = 3;
-            button.style.borderRightWidth = 3;
-            button.style.borderTopWidth = 3;
-            button.style.borderBottomWidth = 3;
+            button.style.borderLeftWidth = borderSize;
+            button.style.borderRightWidth = borderSize;
+            button.style.borderTopWidth = borderSize;
+            button.style.borderBottomWidth = borderSize;
             button.style.borderLeftColor = Color.black;
             button.style.borderRightColor = Color.black;
             button.style.borderTopColor = Color.black;

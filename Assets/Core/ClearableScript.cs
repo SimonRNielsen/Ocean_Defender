@@ -2,34 +2,14 @@ using UnityEngine;
 
 public class ClearableScript : MonoBehaviour, IClickable
 {
-    #region Field
-    bool visible = true;
+    #region Fields
+    bool visible = true, collidingWithTrashCan = false;
     Renderer render;
 
     #endregion
 
+    #region Methods 
 
-    public void OnPrimaryRelease()
-    {
-        //When click it will be unvisibel
-        //if (render.isVisible == true)
-        //{
-        //    render.enabled = false;
-        //}
-        render.material.color = Color.white;
-
-    }
-
-    public void OnPrimaryHold(Vector3 movement)
-    {
-        transform.position += movement;
-    }
-
-    public void OnPrimaryClick()
-    {
-        //set opacity so it is more seethrough
-        render.material.color = Color.yellow;
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,4 +23,58 @@ public class ClearableScript : MonoBehaviour, IClickable
 
     }
 
+    public void OnPrimaryRelease()
+    {
+        //Reset opacity when released
+        render.material.color = new Color(1f, 1f, 1f, 1f);
+
+        //If object is trash and is released while colliding with trashcan, call the Recycle method.
+        if (collidingWithTrashCan && CompareTag("Trash"))
+        {
+            Recycle();
+        }
+
+    }
+
+    public void OnPrimaryHold(Vector3 movement)
+    {
+        transform.position += movement;
+    }
+
+    public void OnPrimaryClick()
+    {
+        //Sets opacity so it is more seethrough when dragged
+        render.material.color = new Color(1f, 1f, 1f, .5f); 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Check wheter this object entered a TrashCan, and set the CollsidingWithTrashCan bool accordingly
+        if(collision.CompareTag("TrashCan"))
+        {
+            collidingWithTrashCan = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //Check wheter this object exited a TrashCan, and set the CollsidingWithTrashCan bool accordingly
+        if (collision.CompareTag("TrashCan"))
+        {
+            collidingWithTrashCan = false;
+        }
+    }
+
+    /// <summary>
+    /// Method that handles what happens when trash is thrown out. 
+    /// </summary>
+    void Recycle()
+    {
+        gameObject.SetActive(false);
+
+        //TODO: Use object pool!
+        //TODO: Handle score etc. 
+    }
+
+    #endregion
 }

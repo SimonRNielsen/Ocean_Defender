@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skrald1
       objectReference: {fileID: 0}
+    - target: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_TagString
+      value: Trash
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4022597561578220288, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
     m_RemovedGameObjects: []

@@ -9,16 +9,25 @@ using UnityEngine.UIElements;
 public class StartMenuScript : MonoBehaviour
 {
 
+    [Header("Menu visuals and click-sound"), Space, SerializeField] private AudioClip buttonClickSound;
     [SerializeField] private Sprite gameLogo, backgroundSprite, closeButtonSprite;
-    [SerializeField] private AudioClip buttonClickSound;
-    [Header("Button border settings"), SerializeField] private bool enableButtonBorder = false;
+    [Header("Button border settings"), Space, SerializeField] private bool enableButtonBorder = false;
     [SerializeField, Range(0, 10)] private float borderSize = 3;
-    [SerializeField, Range(0, 255)] private float borderRed = 0, borderGreen = 0, borderBlue = 0, borderOpacity = 0;
+    [SerializeField, Range(0, 255)] private float borderRed = 0, borderGreen = 0, borderBlue = 0;
+    [SerializeField, Range(0, 1)] private float borderOpacity = 1;
     [Space, SerializeField] private List<SceneSelection> scenes;
     private VisualElement header, background, buttonContainer, closeButtonContainer;
+    private Button close;
     private List<(Button Button, Action CoRoutine)> buttons = new List<(Button Button, Action CoRoutine)>();
-    private Color borderColor; //Transparant
+    private Color borderColor;
     private bool buttonsAdded = false;
+    private static float buttonScale = 1f;
+
+    /// <summary>
+    /// Set to adjust scaling of buttons (before runtime)
+    /// </summary>
+    public static float ButtonScale { get => buttonScale; set => buttonScale = value; }
+
 
     private void Awake()
     {
@@ -39,8 +48,6 @@ public class StartMenuScript : MonoBehaviour
     void Start()
     {
 
-
-
     }
 
 
@@ -48,11 +55,11 @@ public class StartMenuScript : MonoBehaviour
     void Update()
     {
 
-
-
     }
 
-
+    /// <summary>
+    /// Pauses and subscribes buttons actions to their "clicked" event
+    /// </summary>
     private void OnEnable()
     {
 
@@ -62,9 +69,14 @@ public class StartMenuScript : MonoBehaviour
             foreach (var entry in buttons)
                 entry.Button.clicked += entry.CoRoutine;
 
+        if (close != null)
+            close.clicked += Quit;
+
     }
 
-
+    /// <summary>
+    /// Unsubscribes events from buttons
+    /// </summary>
     private void OnDisable()
     {
 
@@ -72,14 +84,21 @@ public class StartMenuScript : MonoBehaviour
             foreach (var entry in buttons)
                 entry.Button.clicked -= entry.CoRoutine;
 
+        if (close != null)
+            close.clicked -= Quit;
+
     }
 
-
+    /// <summary>
+    /// Logic for loading sceneloading
+    /// </summary>
+    /// <param name="sceneName">Name of scene to load</param>
+    /// <returns>Scene loading/unloading</returns>
     private IEnumerator LoadMap(string sceneName)
     {
 
         if (buttonClickSound != null)
-            DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(buttonClickSound);
+            DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(buttonClickSound); //Sends audioclip to audio sources and plays it once
 
         Time.timeScale = 1f; //Unpause
 
@@ -89,7 +108,9 @@ public class StartMenuScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Assigns pictures for background and header
+    /// </summary>
     private void SetPictures()
     {
 
@@ -101,7 +122,9 @@ public class StartMenuScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Locates elements that need to be manipulated
+    /// </summary>
     private void AssignElements()
     {
 
@@ -119,7 +142,10 @@ public class StartMenuScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Translates info from editor and converts them into buttons and actions
+    /// </summary>
+    /// <returns>True if operation successful</returns>
     private bool FillButtons()
     {
 
@@ -148,7 +174,9 @@ public class StartMenuScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Adds buttons to 1-2 visual elements, and adds close button at the bottom
+    /// </summary>
     private void AddButtonsToMenu()
     {
 
@@ -179,10 +207,9 @@ public class StartMenuScript : MonoBehaviour
 
                 ChangeVisualElementSettings(closeButtonContainer, false);
 
-                Button closeButton = new Button();
-                closeButton.clicked += Quit;
-                ChangeButtonSettings(closeButton, closeButtonSprite);
-                closeButtonContainer.Add(closeButton);
+                close = new Button();
+                ChangeButtonSettings(close, closeButtonSprite);
+                closeButtonContainer.Add(close);
 
             }
 
@@ -192,7 +219,11 @@ public class StartMenuScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Sets up a VisualElement to specifications
+    /// </summary>
+    /// <param name="element">Element to be changed</param>
+    /// <param name="inRow">Set false if buttons shouldn't be organized in a row</param>
     private void ChangeVisualElementSettings(VisualElement element, bool inRow = true)
     {
 
@@ -207,16 +238,19 @@ public class StartMenuScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Sets up a Button to specifications
+    /// </summary>
+    /// <param name="button">Button to be changed</param>
+    /// <param name="sprite">Sprite to assign to button</param>
     private void ChangeButtonSettings(Button button, Sprite sprite)
     {
 
+
         button.style.backgroundImage = new StyleBackground(sprite);
-        button.style.width = sprite.rect.width;
-        button.style.height = sprite.rect.height;
-        button.style.backgroundColor = borderColor;
-        //button.style.backgroundSize = new BackgroundSize(BackgroundSizeType.Contain);
-        //button.style.backgroundRepeat = new BackgroundRepeat { x = Repeat.NoRepeat, y = Repeat.NoRepeat };
+        button.style.width = sprite.rect.width * buttonScale;
+        button.style.height = sprite.rect.height * buttonScale;
+        button.style.backgroundColor = new Color(0, 0, 0, 0);
         button.style.borderLeftColor = borderColor;
         button.style.borderRightColor = borderColor;
         button.style.borderTopColor = borderColor;
@@ -243,7 +277,9 @@ public class StartMenuScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Program shutdown method
+    /// </summary>
     private void Quit()
     {
 

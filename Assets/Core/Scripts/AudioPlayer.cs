@@ -58,7 +58,10 @@ public class AudioPlayer : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Plays soundclip once
+    /// </summary>
+    /// <param name="clip">Clip to be played</param>
     private void PlayOneShotSound(AudioClip clip)
     {
 
@@ -74,7 +77,10 @@ public class AudioPlayer : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Loops sound
+    /// </summary>
+    /// <param name="clip">Clip to be played</param>
     private void PlayLoopingSound(AudioClip clip)
     {
 
@@ -92,7 +98,10 @@ public class AudioPlayer : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Plays sound
+    /// </summary>
+    /// <param name="clip">Clip to be played</param>
     private void Play(AudioClip clip)
     {
 

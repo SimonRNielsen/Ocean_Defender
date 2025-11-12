@@ -33,7 +33,9 @@ public class DataTransfer_SO : ScriptableObject
 
     #endregion
 
-
+    /// <summary>
+    /// Resets events to avoid memory leaks
+    /// </summary>
     private void OnEnable()
     {
 

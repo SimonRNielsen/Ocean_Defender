@@ -48,9 +48,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3380310965225219088, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1021582734687559077, guid: a810db7c29331e74d9b0c3430636023d, type: 3}
+    - target: {fileID: 4022597561578220288, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022597561578220288, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.03
+      objectReference: {fileID: 0}
     - target: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_Name
-      value: BasicClearable
+      value: Skrald3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

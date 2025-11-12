@@ -3,7 +3,7 @@ using UnityEngine;
 public class ClearableScript : MonoBehaviour, IClickable
 {
     #region Field
-    bool visibel = true;
+    bool visible = true;
     Renderer render;
 
     #endregion
@@ -12,32 +12,23 @@ public class ClearableScript : MonoBehaviour, IClickable
     public void OnPrimaryRelease()
     {
         //When click it will be unvisibel
-        if (render.isVisible == true)
-        {
-            render.enabled = false;
-        }
-
-        //When clicked will it be visibel/unvisibel 
-        //if (visibel == true)
+        //if (render.isVisible == true)
         //{
         //    render.enabled = false;
-        //    visibel = false;
         //}
-        //else if (visibel == false)
-        //{
-        //    render.enabled = true;
-        //    visibel = true;
-        //}
+        render.material.color = Color.white;
+
     }
 
     public void OnPrimaryHold(Vector3 movement)
     {
-        //throw new System.NotImplementedException();
+        transform.position += movement;
     }
 
     public void OnPrimaryClick()
     {
-        //throw new System.NotImplementedException();
+        //set opacity so it is more seethrough
+        render.material.color = Color.yellow;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -34,8 +34,7 @@ public class ClearableScript : MonoBehaviour, IClickable
         //If object is trash and is released while colliding with trashcan, call the Recycle method.
         if (collidingWithTrashCan && CompareTag("Trash"))
         {
-            render.enabled = false;
-            Release();
+            //render.enabled = false;
             Recycle();
         }
 
@@ -76,6 +75,7 @@ public class ClearableScript : MonoBehaviour, IClickable
     void Recycle()
     {
         gameObject.SetActive(false);
+        Release();
 
         //TODO: Use object pool!
         //TODO: Handle score etc. 
@@ -85,6 +85,7 @@ public class ClearableScript : MonoBehaviour, IClickable
 
     public void Release()
     {
+        Debug.Log($"{gameObject.name} blev smidt ud og returneret til poolen!");
         pool.ReturnToPool(this);
     }
     #endregion

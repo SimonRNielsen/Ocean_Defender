@@ -4,11 +4,13 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     #region Fields
-    [SerializeField] private int trashPoolSize = 20;
-    [SerializeField] private int MaxActiveTrash = 10;
+    [SerializeField] private int trashPoolSize = 10;
     [SerializeField] private ClearableScript objectToPool;
+    [SerializeField] private int trashCounter = 0; //Aflæses per pool/trash
     private Stack<ClearableScript> stack;
-    private int currentActiveTrash = 0;
+    //private int currentActiveTrash = 0; //implementeres ved max capacitet
+
+    public event System.Action OnObjectReturned;
 
     #endregion
     #region Methods
@@ -35,12 +37,14 @@ public class ObjectPool : MonoBehaviour
             instance = Instantiate(objectToPool);
             instance.Pool = this;
             stack.Push(instance);
+            instance.gameObject.SetActive(false);
         }
     }
 
     //return the first active GameObject from the pool
     public ClearableScript GetPooledObject()
     {
+
         ClearableScript instance;
 
         //if the pool is not large enough, instantiate a new PooledObject
@@ -63,13 +67,20 @@ public class ObjectPool : MonoBehaviour
 
         
         instance.gameObject.SetActive(true);
+        //currentActiveTrash++; //implementeres ved max capacitet
         return instance;
     }
 
     public void ReturnToPool(ClearableScript pooledObject)
     {
+        trashCounter++; //Aflæses per pool/trash
         stack.Push(pooledObject);
         pooledObject.gameObject.SetActive(false);
+        //currentActiveTrash--; //implementeres ved max capacitet
+
+        ////implementeres hvis vi skal bruge max capacitet
+        //Starter spawn igen, hvis den har været stoppet pga. max capacitet
+        //OnObjectReturned?.Invoke();
     }
 }
 

@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class ClickTest : MonoBehaviour, IClickable
 {
@@ -8,8 +10,9 @@ public class ClickTest : MonoBehaviour, IClickable
     public void OnPrimaryRelease()
     {
 
-        if (rend != null)
-            rend.material.color = Color.red;
+        //if (rend != null)
+        //    rend.material.color = Color.red;
+        StartCoroutine(LoadStartMenu());
 
     }
 
@@ -40,6 +43,15 @@ public class ClickTest : MonoBehaviour, IClickable
     void Update()
     {
         
+    }
+
+    private IEnumerator LoadStartMenu()
+    {
+
+        yield return SceneManager.LoadSceneAsync("StartMenu", LoadSceneMode.Additive);
+
+        yield return SceneManager.UnloadSceneAsync(gameObject.scene);
+
     }
 
 }

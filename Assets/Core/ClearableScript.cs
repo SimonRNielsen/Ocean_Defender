@@ -6,6 +6,9 @@ public class ClearableScript : MonoBehaviour, IClickable
     bool visibel = true;
     Renderer render;
 
+    private ObjectPool pool;
+    public ObjectPool Pool { get => pool; set => pool = value; }
+
     #endregion
 
 
@@ -15,6 +18,7 @@ public class ClearableScript : MonoBehaviour, IClickable
         if (render.isVisible == true)
         {
             render.enabled = false;
+            Release();
         }
 
         //When clicked will it be visibel/unvisibel 
@@ -52,4 +56,10 @@ public class ClearableScript : MonoBehaviour, IClickable
 
     }
 
+
+
+    public void Release()
+    {
+        pool.ReturnToPool(this);
+    }
 }

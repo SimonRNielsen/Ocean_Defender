@@ -217,6 +217,11 @@ public class StartMenuScript : MonoBehaviour
         button.style.backgroundColor = borderColor;
         //button.style.backgroundSize = new BackgroundSize(BackgroundSizeType.Contain);
         //button.style.backgroundRepeat = new BackgroundRepeat { x = Repeat.NoRepeat, y = Repeat.NoRepeat };
+        button.style.borderLeftColor = borderColor;
+        button.style.borderRightColor = borderColor;
+        button.style.borderTopColor = borderColor;
+        button.style.borderBottomColor = borderColor;
+
         if (!enableButtonBorder)
         {
 
@@ -224,10 +229,6 @@ public class StartMenuScript : MonoBehaviour
             button.style.borderRightWidth = 0;
             button.style.borderTopWidth = 0;
             button.style.borderBottomWidth = 0;
-            button.style.borderLeftColor = borderColor;
-            button.style.borderRightColor = borderColor;
-            button.style.borderTopColor = borderColor;
-            button.style.borderBottomColor = borderColor;
 
         }
         else
@@ -237,10 +238,6 @@ public class StartMenuScript : MonoBehaviour
             button.style.borderRightWidth = borderSize;
             button.style.borderTopWidth = borderSize;
             button.style.borderBottomWidth = borderSize;
-            button.style.borderLeftColor = Color.black;
-            button.style.borderRightColor = Color.black;
-            button.style.borderTopColor = Color.black;
-            button.style.borderBottomColor = Color.black;
 
         }
 

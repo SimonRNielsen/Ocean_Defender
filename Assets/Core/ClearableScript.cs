@@ -74,7 +74,7 @@ public class ClearableScript : MonoBehaviour, IClickable
     /// </summary>
     void Recycle()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         Release();
         //render.enabled = false; //blev brugt til tidlig test
         //TODO: Use object pool!

@@ -1,27 +1,35 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class TrashType
-{
-    public ObjectPool pool;
-    public float minSpawnDelay = 1f;
-    public float maxSpawnDelay = 3f;
-}
+
 
 public class TrashSpawner : MonoBehaviour
 {
-    [SerializeField] private ObjectPool pool;
-    [SerializeField] private float minSpawnDelay = 1f;
-    [SerializeField] private float maxSpawnDelay = 3f;
-    //[SerializeField] private float spawnDelay = 3f; //Bruges hvis man ønsker fast spawnrate
+    [System.Serializable]
+    public class TrashType
+    {
+        public ObjectPool pool;
+        public float minDelay = 1f;
+        public float maxDelay = 3f;
+    }
+
+    [Header("Spawn settings")]
+    [SerializeField] private List<TrashType>trashTypes = new List<TrashType>();
     [SerializeField] private Vector3 spawnArea = new Vector3(8, 4, 8);
+    //[SerializeField] private ObjectPool pool;
+    //[SerializeField] private float minSpawnDelay = 1f;
+    //[SerializeField] private float maxSpawnDelay = 3f;
+    //[SerializeField] private float spawnDelay = 3f; //Bruges hvis man ønsker fast spawnrate
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(SpawnLoop());
+        foreach (var type in trashTypes)
+        {
+            StartCoroutine(SpawnLoop(type));
+        }
     }
 
     // Update is called once per frame
@@ -30,18 +38,18 @@ public class TrashSpawner : MonoBehaviour
 
     }
 
-    private IEnumerator SpawnLoop()
+    private IEnumerator SpawnLoop(TrashType type)
     {
         while (true)
         {
             //Random spawntime
-            yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
+            yield return new WaitForSeconds(Random.Range(type.minDelay, type.maxDelay));
 
             //Fast spawntime
             //yield return new WaitForSeconds(spawnDelay);
 
             Vector3 randomPos = GetRandomPos();
-            var obj = pool.GetPooledObject(randomPos);
+            var obj = type.pool.GetPooledObject(randomPos);
 
             obj.transform.position = randomPos;
         }
@@ -49,11 +57,11 @@ public class TrashSpawner : MonoBehaviour
 
     public Vector3 GetRandomPos()
     {
-        Vector3 randomPos = new Vector3(
+        return new Vector3(
                 Random.Range(-spawnArea.x, spawnArea.x),
-                /*Random.Range(*/-spawnArea.y/*, spawnArea.y)*/, 
+                Random.Range(-spawnArea.y, spawnArea.y), 
                 Random.Range(-spawnArea.z, spawnArea.z));
-        return randomPos;
+        
     }
 
 

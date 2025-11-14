@@ -59,7 +59,7 @@ public class TrashSpawner : MonoBehaviour
     {
         return new Vector3(
                 Random.Range(-spawnArea.x, spawnArea.x),
-                Random.Range(-spawnArea.y, spawnArea.y), 
+                Random.Range(-spawnArea.y+2, spawnArea.y), 
                 Random.Range(-spawnArea.z, spawnArea.z));
         
     }

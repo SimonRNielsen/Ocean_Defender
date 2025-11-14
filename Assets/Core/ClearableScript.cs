@@ -35,8 +35,7 @@ public class ClearableScript : MonoBehaviour, IClickable
         if (collidingWithTrashCan && CompareTag("Trash"))
         {
             Recycle();
-            render.enabled = false;
-            Release();
+            
         }
 
     }
@@ -76,7 +75,8 @@ public class ClearableScript : MonoBehaviour, IClickable
     void Recycle()
     {
         gameObject.SetActive(false);
-
+        Release();
+        //render.enabled = false; //blev brugt til tidlig test
         //TODO: Use object pool!
         //TODO: Handle score etc. 
     }

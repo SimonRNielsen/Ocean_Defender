@@ -5,8 +5,9 @@ public class ObjectPool : MonoBehaviour
 {
     #region Fields
     [SerializeField] private int trashPoolSize = 20;
-    [SerializeField] private int MaxActiveTrash = 10;
+    //[SerializeField] private int MaxActiveTrash = 10;
     [SerializeField] private ClearableScript objectToPool;
+    [SerializeField] private int trashedScore = 0;
     private Stack<ClearableScript> stack;
     private int currentActiveTrash = 0;
 
@@ -34,13 +35,18 @@ public class ObjectPool : MonoBehaviour
         {
             instance = Instantiate(objectToPool);
             instance.Pool = this;
+            instance.gameObject.SetActive(false);
             stack.Push(instance);
         }
     }
 
     //return the first active GameObject from the pool
-    public ClearableScript GetPooledObject()
+    public ClearableScript GetPooledObject(Vector3 position)
     {
+
+        //if (currentActiveTrash >= MaxActiveTrash)
+        //    return null;
+
         ClearableScript instance;
 
         //if the pool is not large enough, instantiate a new PooledObject
@@ -61,7 +67,7 @@ public class ObjectPool : MonoBehaviour
         //nextInstance.gameObject.SetActive(true);
         //return nextInstance;
 
-        
+        instance.transform.position = position;
         instance.gameObject.SetActive(true);
         return instance;
     }
@@ -70,6 +76,7 @@ public class ObjectPool : MonoBehaviour
     {
         stack.Push(pooledObject);
         pooledObject.gameObject.SetActive(false);
+        trashedScore++;
     }
 }
 

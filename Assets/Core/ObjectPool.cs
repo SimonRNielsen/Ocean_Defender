@@ -11,10 +11,10 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] private int trashedScore = 0;
     [SerializeField] private int activeCount = 0;
 
-    //private Stack<ClearableScript> stack;
     private Stack<ClearableScript> inActiveStack;
+
+    //Tæller aktive skralde objekter i scenen
     public int Activecount => activeCount;
-    //private int currentActiveTrash = 0;
 
     #endregion
     #region Methods
@@ -22,19 +22,19 @@ public class ObjectPool : MonoBehaviour
     {
         inActiveStack = new Stack<ClearableScript>();
 
+        //instantier trashpoolsize objecter og læg dem i pool
         for (int i = 0; i < trashPoolSize; i++)
         {
             ClearableScript obj = Instantiate(objectToPool);
-            obj.gameObject.SetActive(false);
+            obj.gameObject.SetActive(false); //sørger for at objecterne ikke kan ses før de spawner
             obj.Pool = this;
-            inActiveStack.Push(obj);
+            inActiveStack.Push(obj); //lægger objektet i inactive stack
         }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //SetupPool();
     }
 
     // Update is called once per frame
@@ -43,25 +43,15 @@ public class ObjectPool : MonoBehaviour
         
     }
 
-    //Creates the pool
-    //private void SetupPool()
-    //{
-    //    stack = new Stack<ClearableScript>();
-    //    ClearableScript instance = null;
-
-    //    for (int i = 0; i < trashPoolSize; i++)
-    //    {
-    //        instance = Instantiate(objectToPool);
-    //        instance.Pool = this;
-    //        instance.gameObject.SetActive(false);
-    //        stack.Push(instance);
-    //    }
-    //}
-
-    //return the first active GameObject from the pool
+    /// <summary>
+    /// Henter et object fra poolen og aktiverer det
+    /// Hvis MaxActive er nået, returnerer det null
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
     public ClearableScript GetPooledObject(Vector3 position)
     {
-
+        //Stopper før der kommer for mange aktive objekter i scenen
         if (activeCount >= MaxActiveTrash)
             return null;
 
@@ -71,23 +61,15 @@ public class ObjectPool : MonoBehaviour
         if (inActiveStack.Count > 0)
         {
             clearableObject = inActiveStack.Pop();
-            //clearableObject = Instantiate(objectToPool);
-            //clearableObject.Pool = this;
-            //ClearableScript newInstance = Instantiate(objectToPool);
-            //newInstance.Pool = this;
-            ////return newInstance;
         }
         else
         {
+            //Instantier nyt object, hvis der ikke er flere i stakken
             clearableObject = Instantiate(objectToPool);
             clearableObject.Pool = this;
-            //clearableObject = stack.Pop();
         }
-        ////Otherwise, grab the next one from the list
-        //ClearableScript nextInstance = stack.Pop();
-        //nextInstance.gameObject.SetActive(true);
-        //return nextInstance;
 
+        //Flytter til random pos og aktiverer objekt
         clearableObject.transform.position = position;
         clearableObject.gameObject.SetActive(true);
 
@@ -95,6 +77,10 @@ public class ObjectPool : MonoBehaviour
         return clearableObject;
     }
 
+    /// <summary>
+    /// Returnerer objekt til pool og gør inaktivt
+    /// </summary>
+    /// <param name="pooledObject"></param>
     public void ReturnToPool(ClearableScript pooledObject)
     {
         pooledObject.gameObject.SetActive(false);
@@ -102,9 +88,6 @@ public class ObjectPool : MonoBehaviour
 
         activeCount--;
         trashedScore++;
-        
-        //stack.Push(pooledObject);
-        //pooledObject.gameObject.SetActive(false);
     }
 }
 

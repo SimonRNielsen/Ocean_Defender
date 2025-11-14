@@ -9,10 +9,10 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] private int trashPoolSize = 20;
     [SerializeField] private int MaxActiveTrash = 10;
     [SerializeField] private int trashedScore = 0;
+    [SerializeField] private int activeCount = 0;
 
     //private Stack<ClearableScript> stack;
     private Stack<ClearableScript> inActiveStack;
-    private int activeCount = 0;
     public int Activecount => activeCount;
     //private int currentActiveTrash = 0;
 

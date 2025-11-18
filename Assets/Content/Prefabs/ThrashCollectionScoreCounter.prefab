@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
       propertyPath: scoreUnit
-      value: Years
+      value: "\xE5rs skrald fjernet"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

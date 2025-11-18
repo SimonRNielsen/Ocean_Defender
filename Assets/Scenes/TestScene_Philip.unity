@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   objectToPool: {fileID: 2624168660528798405, guid: 678176d606e5aaa4694963dbaf89fc34, type: 3}
-  trashPoolSize: 20
-  MaxActiveTrash: 10
+  trashPoolSize: 5
+  MaxActiveTrash: 5
   trashedScore: 0
   activeCount: 0
 --- !u!4 &31237412
@@ -198,8 +198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   objectToPool: {fileID: 8043649286907436205, guid: da37ccb61b4de5b4999887406189e35c, type: 3}
-  trashPoolSize: 20
-  MaxActiveTrash: 10
+  trashPoolSize: 5
+  MaxActiveTrash: 5
   trashedScore: 0
   activeCount: 0
 --- !u!4 &65398837
@@ -433,10 +433,6 @@ PrefabInstance:
     - target: {fileID: 3205506240162742545, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
       propertyPath: m_Name
       value: ThrashCollectionScoreCounter
-      objectReference: {fileID: 0}
-    - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
-      propertyPath: scoreUnit
-      value: "\xE5r"
       objectReference: {fileID: 0}
     - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.size
@@ -785,8 +781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   objectToPool: {fileID: 7614954108338535488, guid: 2741c1814766c6746b92fbde433f1b46, type: 3}
-  trashPoolSize: 20
-  MaxActiveTrash: 10
+  trashPoolSize: 5
+  MaxActiveTrash: 5
   trashedScore: 0
   activeCount: 0
 --- !u!4 &2084759283

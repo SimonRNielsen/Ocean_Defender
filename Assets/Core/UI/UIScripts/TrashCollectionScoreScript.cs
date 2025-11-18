@@ -4,7 +4,8 @@ using UnityEngine.UIElements;
 public class TrashCollectionScoreScript : MonoBehaviour
 {
     private Label scoreLabel;
-    [SerializeField, Tooltip("The default text, the UI should show when there is no score.")] private string defaultLabelText; 
+    [SerializeField, Tooltip("The default text, the UI should show when there is no score.")] private string defaultLabelText;
+    [SerializeField, Tooltip("The goal amoint of the score")] private int goalScore;
 
     private void Awake()
     {
@@ -21,6 +22,6 @@ public class TrashCollectionScoreScript : MonoBehaviour
     /// <param name="unit">The unit that the score is in</param>
     public void OnScoreChanged(int score, string unit)
     {
-        scoreLabel.text = (score + " " + unit);
+        scoreLabel.text = score + " / " + goalScore + " " + unit;
     }
 }

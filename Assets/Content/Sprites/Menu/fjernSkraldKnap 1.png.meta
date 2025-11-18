@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 6d2ef9c7945e94248b9bb27b89213b5f
+guid: 48e038accd98c8b48b04408ab42a9459
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5303035740939768953
-    second: fjernSkraldKnap_0
+      213: -3704224698853994508
+    second: fjernSkraldKnap 1_0
   - first:
-      213: 8637057138775774285
-    second: fjernSkraldKnap_1
+      213: 2434516435370152723
+    second: fjernSkraldKnap 1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,11 +116,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fjernSkraldKnap_0
+      name: fjernSkraldKnap 1_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 3
+        x: 2
+        y: 101
         width: 549
         height: 278
       alignment: 0
@@ -131,18 +131,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9745ae1e8ea289940800000000000000
-      internalID: 5303035740939768953
+      spriteID: 4ff44902343f79cc0800000000000000
+      internalID: -3704224698853994508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fjernSkraldKnap_1
+      name: fjernSkraldKnap 1_1
       rect:
         serializedVersion: 2
-        x: 353
-        y: 237
+        x: 340
+        y: 335
         width: 65
         height: 72
       alignment: 0
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d445b75e4bdfcd770800000000000000
-      internalID: 8637057138775774285
+      spriteID: 3139612acc329c120800000000000000
+      internalID: 2434516435370152723
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fjernSkraldKnap_0: 5303035740939768953
-      fjernSkraldKnap_1: 8637057138775774285
+      fjernSkraldKnap 1_0: -3704224698853994508
+      fjernSkraldKnap 1_1: 2434516435370152723
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

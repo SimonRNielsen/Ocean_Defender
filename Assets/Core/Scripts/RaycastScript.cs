@@ -75,28 +75,30 @@ public class RaycastScript : MonoBehaviour
     {
 
         if (DeterminePrimaryInput())
-            UpdateMouseWorldPosition();
+            UpdateInputWorldPosition();
 
-        if (primaryIsPressed)
-        {
+        if (Time.timeScale > 0f)
+            if (primaryIsPressed)
+            {
 
-            OnPrimaryPress();
-            oldPointerWorldPosition = newPointerWorldPosition;
+                OnPrimaryPress();
+                oldPointerWorldPosition = newPointerWorldPosition;
 
-        }
-        else if (primaryIsReleased)
-            OnReleasePrimaryAction();
-        else if (primaryIsHeld)
-            OnHoldingPrimaryAction();
+            }
+            else if (primaryIsReleased)
+                OnReleasePrimaryAction();
+            else if (primaryIsHeld)
+                OnHoldingPrimaryAction();
 
     }
 
     /// <summary>
     /// Updates pointers world position
     /// </summary>
-    private void UpdateMouseWorldPosition()
+    private void UpdateInputWorldPosition()
     {
 
+        TimingsScript.InputDetected = true;
         Vector3 screenPosition = new Vector3(pointerPos.x, pointerPos.y, -cam.transform.position.z);
         newPointerWorldPosition = cam.ScreenToWorldPoint(screenPosition);
 

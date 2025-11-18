@@ -3,7 +3,7 @@ using UnityEngine;
 public class ClearableScript : MonoBehaviour, IClickable
 {
     #region Fields
-    bool visible = true, collidingWithTrashCan = false;
+    bool collidingWithTrashCan = false;
     Renderer render;
 
     private ObjectPool pool;

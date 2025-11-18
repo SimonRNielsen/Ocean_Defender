@@ -19,7 +19,6 @@ public class ScoreCounterScript : MonoBehaviour
     {
         this.score += amount;
         ScoreChanged.Invoke(score, scoreUnit);
-        Debug.Log($"New score: {score}{scoreUnit}");
     }
 
     #endregion

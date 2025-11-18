@@ -168,7 +168,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &552196994
+--- !u!1 &65398835
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,67 +176,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 552196997}
-  - component: {fileID: 552196996}
-  - component: {fileID: 552196995}
-  m_Layer: 5
-  m_Name: TrashCollectionUI
+  - component: {fileID: 65398837}
+  - component: {fileID: 65398836}
+  m_Layer: 0
+  m_Name: CigarettePool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &552196995
+--- !u!114 &65398836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552196994}
+  m_GameObject: {fileID: 65398835}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d52ab98cb162994bade00fa5493c177, type: 3}
+  m_Script: {fileID: 11500000, guid: b87989d329fea8741963e4e6ec14181a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrashCollectionScoreScript
-  defaultLabelText: "0 \xE5r"
---- !u!114 &552196996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552196994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
-  m_PanelSettings: {fileID: 11400000, guid: 9a9b9ac9990e8a042a4418613a37d5e2, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 4a4fd3754073445489b85ee55a066aeb, type: 3}
-  m_SortingOrder: 0
-  m_Position: 0
-  m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 1920
-  m_WorldSpaceHeight: 1080
-  m_PivotReferenceSize: 0
-  m_Pivot: 0
-  m_WorldSpaceCollider: {fileID: 0}
---- !u!4 &552196997
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
+  objectToPool: {fileID: 8043649286907436205, guid: da37ccb61b4de5b4999887406189e35c, type: 3}
+  trashPoolSize: 20
+  MaxActiveTrash: 10
+  trashedScore: 0
+  activeCount: 0
+--- !u!4 &65398837
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552196994}
+  m_GameObject: {fileID: 65398835}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.03935, y: -0.01606, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &552196995 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3987938854103971030, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+  m_PrefabInstance: {fileID: 7608603943633786566}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d52ab98cb162994bade00fa5493c177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrashCollectionScoreScript
 --- !u!1 &778160743
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +433,10 @@ PrefabInstance:
     - target: {fileID: 3205506240162742545, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
       propertyPath: m_Name
       value: ThrashCollectionScoreCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
+      propertyPath: scoreUnit
+      value: "\xE5r"
       objectReference: {fileID: 0}
     - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.size
@@ -738,6 +733,12 @@ MonoBehaviour:
   - pool: {fileID: 31237411}
     minDelay: 2
     maxDelay: 4
+  - pool: {fileID: 2084759282}
+    minDelay: 6
+    maxDelay: 8
+  - pool: {fileID: 65398836}
+    minDelay: 1
+    maxDelay: 5
   spawnArea: {x: 8, y: 4, z: 8}
 --- !u!4 &1650302676
 Transform:
@@ -754,6 +755,112 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2084759281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2084759283}
+  - component: {fileID: 2084759282}
+  m_Layer: 0
+  m_Name: BagPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2084759282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084759281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87989d329fea8741963e4e6ec14181a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
+  objectToPool: {fileID: 7614954108338535488, guid: 2741c1814766c6746b92fbde433f1b46, type: 3}
+  trashPoolSize: 20
+  MaxActiveTrash: 10
+  trashedScore: 0
+  activeCount: 0
+--- !u!4 &2084759283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084759281}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.03935, y: -0.01606, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7608603943633786566
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 438654701154812690, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: m_Name
+      value: TrashCollectionUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153346072306273387, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153346072306273387, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153346072306273387, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153346072306273387, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153346072306273387, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153346072306273387, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153346072306273387, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153346072306273387, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153346072306273387, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153346072306273387, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -764,4 +871,6 @@ SceneRoots:
   - {fileID: 31237412}
   - {fileID: 1650302676}
   - {fileID: 1068465136}
-  - {fileID: 552196997}
+  - {fileID: 7608603943633786566}
+  - {fileID: 2084759283}
+  - {fileID: 65398837}

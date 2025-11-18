@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: gameLogo
       value: 
-      objectReference: {fileID: -3132873794551670915, guid: 1687f4bc09236d547b4f8c98bbb0d67b, type: 3}
+      objectReference: {fileID: -6518106985607779122, guid: bea427c0f9fa67f45a380ae887ea21e5, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: borderRed
       value: 0
@@ -152,9 +152,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: backgroundSprite
+      value: 
+      objectReference: {fileID: -1243620729456664619, guid: bfd1ec800ac3d554b87ce1f26edb13e7, type: 3}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: buttonClickSound
       value: 
       objectReference: {fileID: 8300000, guid: 210fd9b0508166e4c9a13f8c048aa1c6, type: 3}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: closeButtonSprite
+      value: 
+      objectReference: {fileID: -6074569828097595412, guid: f78d68b98215c314fab6539a01ff6aaf, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.size
       value: 4

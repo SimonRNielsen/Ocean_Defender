@@ -88,7 +88,7 @@ public class TimingsScript : MonoBehaviour
 
             timeSinceLastCheck = Time.unscaledTime;
 
-            if (!IsMenuActive())
+            if (!IsMenuOrWarningActive())
             {
 
                 if (Time.unscaledTime - lastActivityTime >= inactivityTimeLimit)
@@ -122,7 +122,7 @@ public class TimingsScript : MonoBehaviour
     /// Checks for startmenu (and return-to-menu warning)
     /// </summary>
     /// <returns>True if startmenu is active</returns>
-    private bool IsMenuActive()
+    private bool IsMenuOrWarningActive()
     {
 
         return SceneManager.GetSceneByName(startMenu).isLoaded || SceneManager.GetSceneByName(returnToMenuWarning).isLoaded;

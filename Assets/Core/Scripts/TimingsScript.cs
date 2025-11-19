@@ -12,8 +12,7 @@ public class TimingsScript : MonoBehaviour
     private static float timeSinceLastCheck, lastActivityTime;
     private readonly float intervalBetweenChecks = 1f;
     private readonly string startMenu = "StartMenu", returnToMenuWarning = "TimeoutWarning";
-    private static bool inputDetected = false;
-    private bool warningActive = false;
+    private static bool inputDetected = false, warningActive = false;
     [SerializeField, Range(5, 50)] private float inactivityTimeLimit = 5f;
 
     #endregion
@@ -22,11 +21,11 @@ public class TimingsScript : MonoBehaviour
     /// <summary>
     /// Bool being set by RaycastScript to indicate input being detected
     /// </summary>
-    public static bool InputDetected 
-    { 
+    public static bool InputDetected
+    {
 
-        get => inputDetected; 
-        set 
+        get => inputDetected;
+        set
         {
 
             if (value)
@@ -35,6 +34,15 @@ public class TimingsScript : MonoBehaviour
             inputDetected = value;
 
         }
+
+    }
+
+
+    public static bool WarningActive
+    {
+
+        get => warningActive;
+        set => warningActive = value;
 
     }
 
@@ -53,8 +61,6 @@ public class TimingsScript : MonoBehaviour
     {
 
         DontDestroyOnLoad(gameObject);
-        timeSinceLastCheck = Time.unscaledTime;
-        lastActivityTime = Time.unscaledTime;
 
     }
 
@@ -67,8 +73,8 @@ public class TimingsScript : MonoBehaviour
     private void OnEnable()
     {
 
-        inputDetected = false;
-        warningActive = false;
+        timeSinceLastCheck = Time.unscaledTime;
+        lastActivityTime = Time.unscaledTime;
 
     }
 
@@ -77,15 +83,6 @@ public class TimingsScript : MonoBehaviour
     /// </summary>
     void Update()
     {
-
-        if (inputDetected && warningActive)
-        {
-
-            inputDetected = false;
-            warningActive = false;
-            StartCoroutine(UnloadWarning());
-
-        }
 
         if (Time.unscaledTime - timeSinceLastCheck >= intervalBetweenChecks)
         {
@@ -110,6 +107,16 @@ public class TimingsScript : MonoBehaviour
 
         }
 
+        if (inputDetected && warningActive)
+        {
+
+            inputDetected = false;
+            StartCoroutine(UnloadWarning());
+
+        }
+
+        inputDetected = false;
+
     }
 
     /// <summary>
@@ -119,27 +126,7 @@ public class TimingsScript : MonoBehaviour
     private bool IsMenuActive()
     {
 
-        int sceneAmount = SceneManager.sceneCount;
-
-        for (int i = 0; i < sceneAmount; i++)
-        {
-
-            var scene = SceneManager.GetSceneAt(i);
-
-            if (scene != null)
-            {
-
-                if (scene.name == startMenu)
-                    return true;
-
-                if (scene.name == returnToMenuWarning)
-                    lastActivityTime = Time.unscaledTime;
-
-            }
-
-        }
-
-        return false;
+        return SceneManager.GetSceneByName(startMenu).isLoaded || SceneManager.GetSceneByName(returnToMenuWarning).isLoaded;
 
     }
 
@@ -150,9 +137,17 @@ public class TimingsScript : MonoBehaviour
     private IEnumerator LoadWarning()
     {
 
-        warningActive = true;
+        if (SceneManager.GetSceneByName(returnToMenuWarning).isLoaded)
+        {
+
+            warningActive = true;
+            yield break;
+
+        }
 
         yield return SceneManager.LoadSceneAsync(returnToMenuWarning, LoadSceneMode.Additive);
+
+        warningActive = true;
 
     }
 
@@ -163,7 +158,12 @@ public class TimingsScript : MonoBehaviour
     private IEnumerator UnloadWarning()
     {
 
+        if (!SceneManager.GetSceneByName(returnToMenuWarning).isLoaded)
+            yield break;
+
         yield return SceneManager.UnloadSceneAsync(returnToMenuWarning);
+
+        warningActive = false;
 
     }
 

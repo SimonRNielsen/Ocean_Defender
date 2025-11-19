@@ -30,6 +30,7 @@ public class DataTransfer_SO : ScriptableObject
     public Action<AudioClip> oneShotSoundEvent;
     public Action<AudioClip> loopingSoundEvent;
     public Action<AudioClip> playSoundEvent;
+    public Action resetEvent;
 
     #endregion
 
@@ -42,6 +43,7 @@ public class DataTransfer_SO : ScriptableObject
         oneShotSoundEvent = null;
         loopingSoundEvent = null;
         playSoundEvent = null;
+        resetEvent = null;
 
     }
 

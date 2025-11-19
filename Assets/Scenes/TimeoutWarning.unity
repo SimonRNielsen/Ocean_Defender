@@ -187,6 +187,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615b17405405cb04496201364ae347ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeoutWarning
+  backgroundSprite: {fileID: 0}
+  countDownTime: 10
+  backgroundColor: {r: 0.3137255, g: 0.72156864, b: 0.8, a: 0}
+  backgroundOpaque: 0.5
+  disableUIWarning: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

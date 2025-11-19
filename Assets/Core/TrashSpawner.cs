@@ -18,7 +18,7 @@ public class TrashSpawner : MonoBehaviour
 
     [Header("Spawn settings")]
     [SerializeField] private List<TrashType>trashTypes = new List<TrashType>();
-    [SerializeField] private Vector3 spawnArea = new Vector3(8, 4, 8); //spawner trash inden for et bestemt område
+    [SerializeField] private Vector3 spawnArea = new Vector3(8, 10, 8); //spawner trash inden for et bestemt område 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -68,7 +68,7 @@ public class TrashSpawner : MonoBehaviour
     {
         return new Vector3(
                 Random.Range(-spawnArea.x, spawnArea.x),
-                Random.Range(-spawnArea.y+2, spawnArea.y), //+2 så skraldet ikke spawner i vores "menu"/nederste del af skærmen
+                /*Random.Range(-spawnArea.y+2,*/ (spawnArea.y), //+2 så skraldet ikke spawner i vores "menu"/nederste del af skærmen
                 Random.Range(-spawnArea.z, spawnArea.z));
         
     }

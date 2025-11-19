@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[0].sceneName
-      value: TestScene_Irene
+      value: TestScene_Simon
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[1].sceneName
@@ -189,6 +189,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[3].sceneName
+      value: TestScene_Rikke
+      objectReference: {fileID: 0}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: scenes.Array.data[4].sceneName
       value: TestScene_Irene
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
@@ -205,6 +209,10 @@ PrefabInstance:
       objectReference: {fileID: -8237346014881870733, guid: 3529ff0a2c135dd419ed5375d21144eb, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[3].buttonPicture
+      value: 
+      objectReference: {fileID: -8237346014881870733, guid: 3529ff0a2c135dd419ed5375d21144eb, type: 3}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: scenes.Array.data[4].buttonPicture
       value: 
       objectReference: {fileID: -8237346014881870733, guid: 3529ff0a2c135dd419ed5375d21144eb, type: 3}
     - target: {fileID: 2073081635821118763, guid: 4ba1175bef4399a4dba623a620465918, type: 3}

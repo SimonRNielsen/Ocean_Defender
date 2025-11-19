@@ -22,19 +22,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2886306009966900167, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9958335
       objectReference: {fileID: 0}
     - target: {fileID: 2886306009966900167, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2886306009966900167, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2886306009966900167, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.091189966
       objectReference: {fileID: 0}
     - target: {fileID: 2886306009966900167, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -46,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2886306009966900167, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -10.464
       objectReference: {fileID: 0}
     - target: {fileID: 3380310965225219088, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_Sprite
@@ -80,8 +80,71 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Trash
       objectReference: {fileID: 0}
+    - target: {fileID: 7932277246039291923, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_Mass
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932277246039291923, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932277246039291923, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_GravityScale
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6045599277893806398}
+    - targetCorrespondingSourceObject: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -177494175865918541}
   m_SourcePrefab: {fileID: 100100000, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+--- !u!1 &8957482533412679670 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+  m_PrefabInstance: {fileID: 1721876090258728033}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6045599277893806398
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957482533412679670}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2b0f8ff452137f48ad5daee3773f7d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-177494175865918541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957482533412679670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29eb4c8b49efd184f8426b314212f69d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrashFloatOrganic
+  horizontalStrength: 1
+  verticalWobbleStrength: 0.2
+  horizontalSpeed: 0.5
+  verticalSpeed: 0.8
+  rotationStrength: 30
+  rotationSpeed: 0.8

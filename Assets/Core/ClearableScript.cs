@@ -5,9 +5,10 @@ public class ClearableScript : MonoBehaviour, IClickable
     #region Fields
     bool visible = true, collidingWithTrashCan = false;
     Renderer render;
-
+    private Rigidbody2D rb;
     private ObjectPool pool;
     public ObjectPool Pool { get => pool; set => pool = value; }
+
 
     #endregion
 
@@ -18,6 +19,7 @@ public class ClearableScript : MonoBehaviour, IClickable
     void Start()
     {
         render = GetComponent<Renderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,9 @@ public class ClearableScript : MonoBehaviour, IClickable
 
     public void OnPrimaryRelease()
     {
+        rb.gravityScale = 0.02f;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+
         //Reset opacity when released
         render.material.color = new Color(1f, 1f, 1f, 1f);
 
@@ -42,11 +47,18 @@ public class ClearableScript : MonoBehaviour, IClickable
 
     public void OnPrimaryHold(Vector3 movement)
     {
-        transform.position += movement;
+        //transform.position += movement;
+        rb.position += (Vector2) movement;
     }
 
     public void OnPrimaryClick()
     {
+        //rb.gravityScale = 0;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.gravityScale = 0;
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+
         //Sets opacity so it is more seethrough when dragged
         render.material.color = new Color(1f, 1f, 1f, .5f); 
     }

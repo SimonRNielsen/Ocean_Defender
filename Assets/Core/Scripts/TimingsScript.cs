@@ -38,6 +38,9 @@ public class TimingsScript : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Logic to see if warning is active
+    /// </summary>
     public static bool WarningActive
     {
 
@@ -46,10 +49,6 @@ public class TimingsScript : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Logic to see if warning is active
-    /// </summary>
-    //public static bool warningActive { get; set; } = false;
 
     #endregion
     #region Methods

@@ -107,12 +107,7 @@ public class TimingsScript : MonoBehaviour
         }
 
         if (inputDetected && warningActive)
-        {
-
-            inputDetected = false;
             StartCoroutine(UnloadWarning());
-
-        }
 
         inputDetected = false;
 
@@ -122,12 +117,7 @@ public class TimingsScript : MonoBehaviour
     /// Checks for startmenu (and return-to-menu warning)
     /// </summary>
     /// <returns>True if startmenu is active</returns>
-    private bool IsMenuOrWarningActive()
-    {
-
-        return SceneManager.GetSceneByName(startMenu).isLoaded || SceneManager.GetSceneByName(returnToMenuWarning).isLoaded;
-
-    }
+    private bool IsMenuOrWarningActive() => SceneManager.GetSceneByName(startMenu).isLoaded || SceneManager.GetSceneByName(returnToMenuWarning).isLoaded;
 
     /// <summary>
     /// Loads warning screen

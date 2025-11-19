@@ -6,7 +6,7 @@ public class ScoreCounterScript : MonoBehaviour
     #region Fields
     [SerializeField, Tooltip("The current score")] private int score;
     [SerializeField, Tooltip("The name of the unit the score is counted in")] string scoreUnit;
-    public UnityEvent<int, string> ScoreChanged;
+    public UnityEvent<int, string, int> ScoreChanged;
     #endregion
 
     #region Methods
@@ -18,7 +18,7 @@ public class ScoreCounterScript : MonoBehaviour
     public void AddToScore(int amount)
     {
         this.score += amount;
-        ScoreChanged.Invoke(score, scoreUnit);
+        ScoreChanged.Invoke(score, scoreUnit, amount);
     }
 
     #endregion

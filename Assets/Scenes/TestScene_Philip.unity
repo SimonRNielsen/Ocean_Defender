@@ -812,6 +812,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashCollectionUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3987938854103971030, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: goalScore
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987938854103971030, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+      propertyPath: defaultLabelText
+      value: "0 \xE5rs affald fjernet"
+      objectReference: {fileID: 0}
     - target: {fileID: 4153346072306273387, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

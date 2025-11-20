@@ -31,8 +31,11 @@ public class DataTransfer_SO : ScriptableObject
     public Action<AudioClip> loopingSoundEvent;
     public Action<AudioClip> playSoundEvent;
     public Action resetEvent;
+    public Action getScore;
 
     #endregion
+
+    public int RoundScore;
 
     /// <summary>
     /// Resets events to avoid memory leaks
@@ -44,6 +47,17 @@ public class DataTransfer_SO : ScriptableObject
         loopingSoundEvent = null;
         playSoundEvent = null;
         resetEvent = null;
+        getScore = null; 
+        RoundScore = 0;
+        resetEvent += ResetWhileRunning;
+
+    }
+
+
+    private void ResetWhileRunning()
+    {
+
+        RoundScore = 0;
 
     }
 

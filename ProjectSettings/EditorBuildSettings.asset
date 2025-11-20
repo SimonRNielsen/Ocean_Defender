@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 1ce4cbb82248150498209a02e8ed1078
   - enabled: 1
+    path: Assets/Scenes/RoundTimer.unity
+    guid: 54deeb60aec0e444b92e6d3109a86820
+  - enabled: 1
     path: Assets/Scenes/TimeoutWarning.unity
     guid: 82f7670036560bf48ab57e06ffa16956
   - enabled: 1

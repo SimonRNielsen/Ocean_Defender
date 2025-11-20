@@ -6,7 +6,15 @@
     </ui:VisualElement>
     <ui:VisualElement name="Middle" style="flex-grow: 1; width: 100%; min-width: 100%; max-width: 100%; height: 33.3%; min-height: 33.3%; max-height: 33.3%; flex-direction: row;">
         <ui:VisualElement name="MiddleLeft" style="flex-grow: 1; width: 33.3%; min-width: 33.3%; max-width: 33.3%; height: 100%; min-height: 100%; max-height: 100%; align-items: flex-start; align-self: flex-start; justify-content: center;" />
-        <ui:VisualElement name="MiddleCentre" style="flex-grow: 1; width: 33.3%; min-width: 33.3%; max-width: 33.3%; height: 100%; min-height: 100%; max-height: 100%; align-items: center; justify-content: center; align-self: center; align-content: center;" />
+        <ui:VisualElement name="MiddleCentre" style="flex-grow: 1; width: 33.3%; min-width: 33.3%; max-width: 33.3%; height: 100%; min-height: 100%; max-height: 100%; align-items: center; justify-content: center; align-self: center; align-content: center;">
+            <ui:VisualElement name="RoundOver" style="flex-grow: 1; width: auto; height: auto; min-width: auto; min-height: auto; max-width: 100%; max-height: 100%; background-color: rgb(52, 164, 62);">
+                <ui:VisualElement style="flex-grow: 1;">
+                    <ui:Label text="Din score blev:&#10;Your score was:&#10;Ihre Punktzahl war:" name="ScoreText" style="-unity-text-align: upper-center; font-size: 18px;" />
+                    <ui:Label text="Label" name="ScoreLabel" style="-unity-text-align: upper-center;" />
+                </ui:VisualElement>
+                <ui:Button text="OK" name="OKButton" style="max-width: 50%; max-height: 30%; align-self: center; min-width: 50%; margin-bottom: 10px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="MiddleRight" style="flex-grow: 1; width: 33.3%; min-width: 33.3%; max-width: 33.3%; height: 100%; min-height: 100%; max-height: 100%; align-items: flex-end; align-self: flex-end; align-content: center; justify-content: center;" />
     </ui:VisualElement>
     <ui:VisualElement name="Bottom" style="flex-grow: 1; width: 100%; min-width: 100%; max-width: 100%; height: 33.3%; min-height: 33.3%; max-height: 33.3%; flex-direction: row;">

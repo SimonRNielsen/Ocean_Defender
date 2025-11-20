@@ -11,20 +11,23 @@ public class RoundCountDownTimerScript : MonoBehaviour
     [SerializeField, Range(0, 1), Space, Header("Styling")] private float opaqueness = 1f;
     [SerializeField] private Color barColor, textColor, backgroundColor;
     [SerializeField] private bool barOpaque = false, textOpaque = false, backgroundOpaque = false;
-    [SerializeField, Range(0, 10)] private int margin = 3;
+    [SerializeField, Range(0, 100)] private int margin = 10;
     [SerializeField, Space, Header("Placement and displaymode")] private VerticalAlignment verticalPlacement = VerticalAlignment.Top;
     [SerializeField] private HorizontalAlignment horizontalPlacement = HorizontalAlignment.Right;
     [SerializeField] private bool turnBarIntoLabel = false, displayText = true;
-    [SerializeField] private string[] returnScenes;
+    [SerializeField] private Sprite roundOverSprite;
+    [SerializeField, Space, Header("Scenes to open on exit")] private string[] returnScenes;
     private readonly float notOpaque = 1f;
+    private readonly string roundOver = "RoundOver", buttonName = "OKButton", scoreLabelName = "ScoreLabel";
     private ProgressBar progressBar;
-    private Label label;
-    private VisualElement placement;
+    private Label label, scoreLabel;
+    private VisualElement placement, centre;
+    private Button button;
     private float roundTimeRemaining;
-    private bool roundEnded;
+    private bool roundEnded, scoreSet;
 
 
-    private float RoundTimeRemaining { get => roundTimeRemaining + 1; set => UpdateTimer(value); }
+    private float RoundTimeRemaining { get => roundTimeRemaining; set => UpdateTimer(value); }
 
 
     private bool RoundEnded
@@ -66,6 +69,16 @@ public class RoundCountDownTimerScript : MonoBehaviour
     {
 
         RoundEnded = false;
+        centre.visible = false;
+        scoreSet = false;
+
+    }
+
+
+    private void OnDisable()
+    {
+
+        button.clicked -= ButtonAction;
 
     }
 
@@ -131,9 +144,17 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
         var root = GetComponent<UIDocument>().rootVisualElement;
         placement = root.Q<VisualElement>(placementID);
+        centre = root.Q<VisualElement>(roundOver);
+        button = root.Q<Button>(buttonName);
+        scoreLabel = root.Q<Label>(scoreLabelName);
 
-        if (placement != null)
+        if (centre != null && roundOverSprite != null)
+            centre.style.backgroundImage = new StyleBackground(roundOverSprite);
+
+        if (placement != null && centre != null && button != null && scoreLabel != null)
             return true;
+        else
+            Debug.LogWarning("Not all UI-elements found");
 
         return false;
 
@@ -148,7 +169,16 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
             progressBar = new ProgressBar();
 
+            progressBar.style.width = new Length(100, LengthUnit.Percent);
+            progressBar.lowValue = 0;
+            progressBar.highValue = roundTime;
+            progressBar.style.color = textColor;
+            progressBar.style.backgroundColor = backgroundColor;
 
+            progressBar.style.marginBottom = margin;
+            progressBar.style.marginTop = margin;
+            progressBar.style.marginLeft = margin;
+            progressBar.style.marginRight = margin;
 
             placement.Add(progressBar);
 
@@ -158,7 +188,13 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
             label = new Label();
 
+            label.style.color = textColor;
+            label.style.backgroundColor = backgroundColor;
 
+            label.style.marginBottom = margin;
+            label.style.marginTop = margin;
+            label.style.marginLeft = margin;
+            label.style.marginRight = margin;
 
             placement.Add(label);
 
@@ -172,17 +208,32 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
         roundTimeRemaining = time;
 
-        if (roundTimeRemaining <= 0f)
+        if (scoreSet) return;
+
+        if (centre.visible)
         {
 
-            if (!RoundEnded)
+            if (!scoreSet)
             {
 
-                RoundEnded = true;
-                StartCoroutine(EndRound(returnScenes));
+                int score = DataTransfer_SO.Instance.RoundScore;
+
+                scoreLabel.text = $"{score}";
+                if (score != 0)
+                    scoreSet = true;
 
             }
             return;
+
+        }
+
+        if (roundTimeRemaining <= 0f && !centre.visible)
+        {
+
+            centre.visible = true;
+
+            DataTransfer_SO.Instance.getScore?.Invoke();
+            button.clicked += ButtonAction;
 
         }
 
@@ -194,21 +245,18 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
         }
 
-        int displayedTime = (int)RoundTimeRemaining;
+        int displayedTime = centre.visible ? 0 : (int)RoundTimeRemaining + 1;
         string text = displayText ? $"Time Remaining: {displayedTime}s" : string.Empty;
 
         if (!turnBarIntoLabel)
         {
 
-
+            progressBar.title = text;
+            progressBar.value = RoundTimeRemaining;
 
         }
         else
-        {
-
-
-
-        }
+            label.text = text;
 
     }
 
@@ -232,6 +280,20 @@ public class RoundCountDownTimerScript : MonoBehaviour
             yield return SceneManager.LoadSceneAsync(sceneNames[i], LoadSceneMode.Additive);
 
         yield return SceneManager.UnloadSceneAsync(gameObject.scene);
+
+    }
+
+
+    private void ButtonAction()
+    {
+
+        if (!RoundEnded)
+        {
+
+            RoundEnded = true;
+            StartCoroutine(EndRound(returnScenes));
+
+        }
 
     }
 

@@ -26,6 +26,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     private float RoundTimeRemaining { get => roundTimeRemaining + 1; set => UpdateTimer(value); }
 
+
     private bool RoundEnded
     {
 
@@ -174,10 +175,10 @@ public class RoundCountDownTimerScript : MonoBehaviour
         if (roundTimeRemaining <= 0f)
         {
 
-            if (!roundEnded)
+            if (!RoundEnded)
             {
 
-                roundEnded = true;
+                RoundEnded = true;
                 StartCoroutine(EndRound(returnScenes));
 
             }

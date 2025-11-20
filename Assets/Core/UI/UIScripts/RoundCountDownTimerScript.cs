@@ -26,6 +26,22 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     private float RoundTimeRemaining { get => roundTimeRemaining + 1; set => UpdateTimer(value); }
 
+    private bool RoundEnded
+    {
+
+        get => roundEnded;
+        set
+        {
+
+            if (!value)
+                RoundTimeRemaining = (float)roundTime;
+
+            roundEnded = value;
+
+        }
+
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() { }
 
@@ -48,8 +64,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
     private void OnEnable()
     {
 
-        roundEnded = false;
-        RoundTimeRemaining = (float)roundTime;
+        RoundEnded = false;
 
     }
 

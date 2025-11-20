@@ -3,13 +3,17 @@ using UnityEngine;
 public class ClearableScript : MonoBehaviour, IClickable
 {
     #region Fields
-    bool visible = true, collidingWithTrashCan = false;
+    bool collidingWithTrashCan = false;
     Renderer render;
     private Rigidbody2D rb;
     private ObjectPool pool;
+    [SerializeField, Tooltip("The score awarded when clearing the clearable object")] private int score =0;
+    private ScoreCounterScript scoreCounter; //The Scorecounter used to add a score when the objects is cleared.
+    #endregion
+
+    #region Properties
     public ObjectPool Pool { get => pool; set => pool = value; }
-
-
+    public int Score { get  => score; private set => score = value; }
     #endregion
 
     #region Methods 
@@ -20,6 +24,7 @@ public class ClearableScript : MonoBehaviour, IClickable
     {
         render = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody2D>();
+        scoreCounter = FindAnyObjectByType<ScoreCounterScript>();
     }
 
     // Update is called once per frame
@@ -40,7 +45,6 @@ public class ClearableScript : MonoBehaviour, IClickable
         if (collidingWithTrashCan && CompareTag("Trash"))
         {
             Recycle();
-            
         }
 
     }
@@ -60,13 +64,13 @@ public class ClearableScript : MonoBehaviour, IClickable
         rb.angularVelocity = 0f;
 
         //Sets opacity so it is more seethrough when dragged
-        render.material.color = new Color(1f, 1f, 1f, .5f); 
+        render.material.color = new Color(1f, 1f, 1f, .5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Check wheter this object entered a TrashCan, and set the CollsidingWithTrashCan bool accordingly
-        if(collision.CompareTag("TrashCan"))
+        if (collision.CompareTag("TrashCan"))
         {
             collidingWithTrashCan = true;
         }
@@ -87,10 +91,17 @@ public class ClearableScript : MonoBehaviour, IClickable
     void Recycle()
     {
         //gameObject.SetActive(false);
-        Release();
+        if(scoreCounter != null)
+        {
+            scoreCounter.AddToScore(score);
+        }
+        else
+        {
+            Debug.Log("No ScoreCounter found...");
+        }
+            Release();
         //render.enabled = false; //blev brugt til tidlig test
         //TODO: Use object pool!
-        //TODO: Handle score etc. 
     }
 
 

@@ -87,7 +87,7 @@ public class ObjectPool : MonoBehaviour
         inActiveStack.Push(pooledObject);
 
         activeCount--;
-        trashedScore++;
+       // trashedScore += pooledObject.Score;
     }
 }
 

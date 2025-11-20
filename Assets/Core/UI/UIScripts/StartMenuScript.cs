@@ -22,6 +22,7 @@ public class StartMenuScript : MonoBehaviour
     private Color borderColor;
     private bool buttonsAdded = false;
     private static float buttonScale = 1f;
+    private readonly string timerScene = "RoundTimer";
 
     /// <summary>
     /// Set to adjust scaling of buttons (before runtime)
@@ -103,6 +104,8 @@ public class StartMenuScript : MonoBehaviour
         Time.timeScale = 1f; //Unpause
 
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+        yield return SceneManager.LoadSceneAsync(timerScene, LoadSceneMode.Additive);
 
         yield return SceneManager.UnloadSceneAsync(gameObject.scene);
 

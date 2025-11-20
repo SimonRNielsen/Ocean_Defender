@@ -105,6 +105,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6808c04a2c4f7644b5010794baaefa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClearableScript
+  score: 0
+  ObjectCleared:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
+        m_TargetAssemblyTypeName: ScoreCounterScript, Assembly-CSharp
+        m_MethodName: OnObjectCleared
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -123684870135785439}
+          m_ObjectArgumentAssemblyTypeName: ClearableScript, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &4022597561578220288
 BoxCollider2D:
   m_ObjectHideFlags: 0

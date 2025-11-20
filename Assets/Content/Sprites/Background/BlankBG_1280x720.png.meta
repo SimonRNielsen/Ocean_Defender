@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2cac6b9ced4c7ea42ab1e00516bee019
+guid: be661a70324497c448f8627a74a0b346
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6523123228621029407
-    second: forside menuMknap_0
+      213: 4043045485501408408
+    second: BlankBG_1280x720_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: forside menuMknap_0
+      name: BlankBG_1280x720_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1920
-        height: 1080
+        width: 1280
+        height: 720
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f104e04f30ac68a50800000000000000
-      internalID: 6523123228621029407
+      spriteID: 894ee06b278cb1830800000000000000
+      internalID: 4043045485501408408
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      forside menuMknap_0: 6523123228621029407
+      BlankBG_1280x720_0: 4043045485501408408
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

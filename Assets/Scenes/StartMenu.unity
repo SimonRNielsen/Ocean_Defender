@@ -158,7 +158,7 @@ PrefabInstance:
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: backgroundSprite
       value: 
-      objectReference: {fileID: -4392493273350068299, guid: 2f26e1b9485b4c84fb02beb0165cd854, type: 3}
+      objectReference: {fileID: -540192241824250543, guid: 2395547179688ee479ca60ca1234164d, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: buttonClickSound
       value: 
@@ -198,19 +198,19 @@ PrefabInstance:
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[0].buttonPicture
       value: 
-      objectReference: {fileID: -8237346014881870733, guid: 3529ff0a2c135dd419ed5375d21144eb, type: 3}
+      objectReference: {fileID: 4957696465083020347, guid: 5aa7a06454e223a44b4df7a5aac440f5, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[1].buttonPicture
       value: 
-      objectReference: {fileID: -8237346014881870733, guid: 3529ff0a2c135dd419ed5375d21144eb, type: 3}
+      objectReference: {fileID: 4957696465083020347, guid: 5aa7a06454e223a44b4df7a5aac440f5, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[2].buttonPicture
       value: 
-      objectReference: {fileID: -8237346014881870733, guid: 3529ff0a2c135dd419ed5375d21144eb, type: 3}
+      objectReference: {fileID: 4957696465083020347, guid: 5aa7a06454e223a44b4df7a5aac440f5, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[3].buttonPicture
       value: 
-      objectReference: {fileID: -8237346014881870733, guid: 3529ff0a2c135dd419ed5375d21144eb, type: 3}
+      objectReference: {fileID: 4957696465083020347, guid: 5aa7a06454e223a44b4df7a5aac440f5, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[4].buttonPicture
       value: 

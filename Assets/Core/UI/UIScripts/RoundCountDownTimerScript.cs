@@ -209,6 +209,8 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
         }
 
+        DataTransfer_SO.Instance.resetEvent?.Invoke();
+
     }
 
 }

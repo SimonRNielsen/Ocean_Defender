@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; justify-content: space-between; font-size: 16px; align-items: flex-start;">
+        <ui:VisualElement style="flex-grow: 1; width: auto; height: auto; min-width: 25%; min-height: 10%; max-width: 75%; max-height: 10%; top: 2%; align-self: center; background-color: rgba(2, 104, 115, 0.79); border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; justify-content: center; padding-left: 2%; padding-right: 2%;">
+            <ui:Label text="Label" name="ScoreLabel" style="-unity-text-align: middle-left; background-color: rgba(32, 32, 32, 0); -unity-paragraph-spacing: -1px; -unity-background-image-tint-color: rgb(56, 56, 56); top: auto; align-self: center; font-size: 25px; color: rgb(255, 228, 225); -unity-text-outline-width: initial; -unity-text-outline-color: rgb(255, 228, 225); -unity-font-style: bold; left: auto; right: auto; padding-left: initial; padding-right: initial; margin-left: 4px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; justify-content: center; align-self: flex-end; min-width: 5%; min-height: 10%; max-width: 75%; max-height: 10%; align-items: center; padding-right: 1%;">
+        <ui:Label name="ScoreAmountLabel" enabled="false" style="height: 31px; width: 46px; min-width: auto; min-height: auto; max-width: none; max-height: none; align-content: auto; align-self: flex-end; bottom: 10%; border-left-color: rgb(13, 220, 13); border-right-color: rgb(13, 220, 13); border-top-color: rgb(13, 220, 13); border-bottom-color: rgb(13, 220, 13); color: rgb(16, 217, 19); -unity-font-style: bold; font-size: 16px;" />
+    </ui:VisualElement>
+</ui:UXML>

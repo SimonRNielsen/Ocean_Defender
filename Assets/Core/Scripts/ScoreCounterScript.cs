@@ -21,6 +21,9 @@ public class ScoreCounterScript : MonoBehaviour
         ScoreChanged.Invoke(score, scoreUnit, amount);
     }
 
+    /// <summary>
+    /// Subscribes to getScore event
+    /// </summary>
     private void OnEnable()
     {
 
@@ -28,6 +31,9 @@ public class ScoreCounterScript : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Unsubscribes to getScore event
+    /// </summary>
     private void OnDisable()
     {
 
@@ -35,12 +41,10 @@ public class ScoreCounterScript : MonoBehaviour
 
     }
 
-    private void SetRoundScore()
-    {
-
-        DataTransfer_SO.Instance.RoundScore = score;
-
-    }
+    /// <summary>
+    /// Sets score on scriptable object "DataTransfer"
+    /// </summary>
+    private void SetRoundScore() => DataTransfer_SO.Instance.RoundScore = score;
 
     #endregion
 }

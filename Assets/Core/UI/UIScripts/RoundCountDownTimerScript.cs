@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 public class RoundCountDownTimerScript : MonoBehaviour
 {
 
+    #region Fields
+
     [SerializeField, Range(10, 180), Header("Timer")] private int roundTime = 120;
     [SerializeField, Range(0, 1), Space, Header("Styling")] private float opaqueness = 1f;
     [SerializeField] private Color barColor, textColor, backgroundColor;
@@ -26,10 +28,17 @@ public class RoundCountDownTimerScript : MonoBehaviour
     private float roundTimeRemaining;
     private bool roundEnded, scoreSet;
 
+    #endregion
+    #region Properties
 
+    /// <summary>
+    /// Time remaining of round
+    /// </summary>
     private float RoundTimeRemaining { get => roundTimeRemaining; set => UpdateTimer(value); }
 
-
+    /// <summary>
+    /// Bool to indicate that time has run out
+    /// </summary>
     private bool RoundEnded
     {
 
@@ -46,10 +55,15 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
+    #endregion
+    #region Methods
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() { }
 
-
+    /// <summary>
+    /// Builds UI and sets values and properties according to settings
+    /// </summary>
     private void Awake()
     {
 
@@ -64,7 +78,9 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// (Re)sets UI logic
+    /// </summary>
     private void OnEnable()
     {
 
@@ -74,7 +90,9 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Disables button action
+    /// </summary>
     private void OnDisable()
     {
 
@@ -90,7 +108,10 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Determines where to put custom UI element
+    /// </summary>
+    /// <returns>True if operation was successful</returns>
     private bool DeterminePlacement()
     {
 
@@ -141,7 +162,9 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Creates UI elements based on settings
+    /// </summary>
     private void CreateTimer()
     {
 
@@ -183,7 +206,10 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Update logic
+    /// </summary>
+    /// <param name="time">Time to set</param>
     private void UpdateTimer(float time)
     {
 
@@ -243,7 +269,11 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Handles loading/unloading of all scenes
+    /// </summary>
+    /// <param name="sceneNames">Array of scenes to load</param>
+    /// <returns>Loading/unloading of scenes</returns>
     private IEnumerator EndRound(string[] sceneNames)
     {
 
@@ -266,7 +296,9 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Action for when button is pressed
+    /// </summary>
     private void ButtonAction()
     {
 
@@ -280,6 +312,8 @@ public class RoundCountDownTimerScript : MonoBehaviour
         }
 
     }
+
+    #endregion
 
 }
 

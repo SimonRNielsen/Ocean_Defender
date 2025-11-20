@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -199,17 +200,22 @@ public class RoundCountDownTimerScript : MonoBehaviour
     private IEnumerator EndRound(string[] sceneNames)
     {
 
-        for (int i = 0; i < sceneNames.Length; i++)
-        {
+        int activeSceneCount = SceneManager.sceneCount;
+        List<string> sceneNamesToUnload = new List<string>();
 
-            if (i == 0)
-                yield return SceneManager.LoadSceneAsync(sceneNames[i], LoadSceneMode.Single);
-            else
-                yield return SceneManager.LoadSceneAsync(sceneNames[i], LoadSceneMode.Additive);
+        for (int i = 0; i < activeSceneCount; i++)
+            sceneNamesToUnload.Add(SceneManager.GetSceneAt(i).name);
 
-        }
+        for (int i = 0; i < sceneNamesToUnload.Count; i++)
+            if (sceneNamesToUnload[i] != gameObject.scene.name)
+                yield return SceneManager.UnloadSceneAsync(sceneNamesToUnload[i]);
 
         DataTransfer_SO.Instance.resetEvent?.Invoke();
+
+        for (int i = 0; i < sceneNames.Length; i++)
+            yield return SceneManager.LoadSceneAsync(sceneNames[i], LoadSceneMode.Additive);
+
+        yield return SceneManager.UnloadSceneAsync(gameObject.scene);
 
     }
 

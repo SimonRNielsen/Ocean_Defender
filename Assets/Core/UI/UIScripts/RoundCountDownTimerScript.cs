@@ -98,47 +98,28 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
         switch (verticalPlacement)
         {
+            default:
             case VerticalAlignment.Top:
-                switch (horizontalPlacement)
-                {
-                    case HorizontalAlignment.Left:
-                        placementID = "TopLeft";
-                        break;
-                    case HorizontalAlignment.Center:
-                        placementID = "TopCentre";
-                        break;
-                    case HorizontalAlignment.Right:
-                        placementID = "TopRight";
-                        break;
-                }
+                placementID = "Top";
                 break;
             case VerticalAlignment.Middle:
-                switch (horizontalPlacement)
-                {
-                    case HorizontalAlignment.Left:
-                        placementID = "MiddleLeft";
-                        break;
-                    case HorizontalAlignment.Center:
-                        placementID = "MiddleCentre";
-                        break;
-                    case HorizontalAlignment.Right:
-                        placementID = "MiddleRight";
-                        break;
-                }
+                placementID = "Middle";
                 break;
             case VerticalAlignment.Bottom:
-                switch (horizontalPlacement)
-                {
-                    case HorizontalAlignment.Left:
-                        placementID = "BottomLeft";
-                        break;
-                    case HorizontalAlignment.Center:
-                        placementID = "BottomCentre";
-                        break;
-                    case HorizontalAlignment.Right:
-                        placementID = "BottomRight";
-                        break;
-                }
+                placementID = "Bottom";
+                break;
+        }
+        switch (horizontalPlacement)
+        {
+            case HorizontalAlignment.Left:
+                placementID += "Left";
+                break;
+            case HorizontalAlignment.Center:
+                placementID += "Centre";
+                break;
+            default:
+            case HorizontalAlignment.Right:
+                placementID += "Right";
                 break;
         }
 
@@ -222,6 +203,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
                 if (score != 0)
                     scoreSet = true;
 
+
             }
             return;
 
@@ -233,6 +215,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
             centre.visible = true;
 
             DataTransfer_SO.Instance.getScore?.Invoke();
+            Time.timeScale = 0f;
             button.clicked += ButtonAction;
 
         }
@@ -290,6 +273,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
         if (!RoundEnded)
         {
 
+            Time.timeScale = 1f;
             RoundEnded = true;
             StartCoroutine(EndRound(returnScenes));
 

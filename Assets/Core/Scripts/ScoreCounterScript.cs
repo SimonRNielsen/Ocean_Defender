@@ -21,5 +21,26 @@ public class ScoreCounterScript : MonoBehaviour
         ScoreChanged.Invoke(score, scoreUnit, amount);
     }
 
+    private void OnEnable()
+    {
+
+        DataTransfer_SO.Instance.getScore += SetRoundScore;
+
+    }
+
+    private void OnDisable()
+    {
+
+        DataTransfer_SO.Instance.getScore -= SetRoundScore;
+
+    }
+
+    private void SetRoundScore()
+    {
+
+        DataTransfer_SO.Instance.RoundScore = score;
+
+    }
+
     #endregion
 }

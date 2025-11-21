@@ -28,6 +28,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
     private float roundTimeRemaining;
     private bool roundEnded, scoreSet;
 
+
     #endregion
     #region Properties
 
@@ -106,6 +107,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
         RoundTimeRemaining -= Time.deltaTime;
 
+        DataTransfer_SO.Instance.roundTimeRemaining = roundTimeRemaining;
     }
 
     /// <summary>

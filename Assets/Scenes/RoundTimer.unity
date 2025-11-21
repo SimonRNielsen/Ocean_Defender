@@ -171,6 +171,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoundTimer
       objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: roundTime
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: achievement
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

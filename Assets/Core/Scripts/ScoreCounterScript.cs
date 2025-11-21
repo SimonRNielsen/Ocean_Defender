@@ -12,7 +12,6 @@ public class ScoreCounterScript : MonoBehaviour
     public GameObject achievement;
     [SerializeField, Tooltip("The amoungt of point to active the achievement")]
     public int achievementScore;
-    private bool achievementUnloocked = false;
 
     #endregion
 
@@ -31,9 +30,8 @@ public class ScoreCounterScript : MonoBehaviour
         if (score >= achievementScore)
         {
             achievement.SetActive(true);
-            achievementUnloocked = true;
         }
-        else if (achievementUnloocked == true)
+        else if (achievement.activeSelf == true)
         {
             achievement.transform.position = new Vector3(8, 2, 0);
             achievement.transform.localScale = Vector3.one / 4;

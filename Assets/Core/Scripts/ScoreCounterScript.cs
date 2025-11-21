@@ -42,5 +42,30 @@ public class ScoreCounterScript : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Subscribes to getScore event
+    /// </summary>
+    private void OnEnable()
+    {
+
+        DataTransfer_SO.Instance.getScore += SetRoundScore;
+
+    }
+
+    /// <summary>
+    /// Unsubscribes to getScore event
+    /// </summary>
+    private void OnDisable()
+    {
+
+        DataTransfer_SO.Instance.getScore -= SetRoundScore;
+
+    }
+
+    /// <summary>
+    /// Sets score on scriptable object "DataTransfer"
+    /// </summary>
+    private void SetRoundScore() => DataTransfer_SO.Instance.RoundScore = score;
+
     #endregion
 }

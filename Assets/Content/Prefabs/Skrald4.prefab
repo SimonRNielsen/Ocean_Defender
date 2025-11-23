@@ -76,6 +76,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Trash
       objectReference: {fileID: 0}
+    - target: {fileID: 7932277246039291923, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_Mass
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932277246039291923, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932277246039291923, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_GravityScale
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4022597561578220288, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
     m_RemovedGameObjects: []

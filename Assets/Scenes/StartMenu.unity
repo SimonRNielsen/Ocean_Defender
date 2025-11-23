@@ -130,13 +130,17 @@ PrefabInstance:
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: gameLogo
       value: 
-      objectReference: {fileID: -3132873794551670915, guid: 1687f4bc09236d547b4f8c98bbb0d67b, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: borderRed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: borderBlue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: borderSize
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
@@ -149,16 +153,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: borderOpacity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: backgroundSprite
       value: 
-      objectReference: {fileID: 6396264863310025688, guid: 644cdcbc8aab6544d938975807ee2089, type: 3}
+      objectReference: {fileID: -540192241824250543, guid: 2395547179688ee479ca60ca1234164d, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: buttonClickSound
       value: 
       objectReference: {fileID: 8300000, guid: 210fd9b0508166e4c9a13f8c048aa1c6, type: 3}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: closeButtonSprite
+      value: 
+      objectReference: {fileID: -6074569828097595412, guid: f78d68b98215c314fab6539a01ff6aaf, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.size
       value: 4
@@ -177,28 +185,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[2].sceneName
-      value: TestScene_Rikke
+      value: TestScene_Philip
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[3].sceneName
-      value: TestScene_Philip
+      value: TestScene_Rikke
+      objectReference: {fileID: 0}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: scenes.Array.data[4].sceneName
+      value: TestScene_Irene
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[0].buttonPicture
       value: 
-      objectReference: {fileID: 9120261001377641651, guid: 12bbde7fee5866d489329348e65f5b8f, type: 3}
+      objectReference: {fileID: 4957696465083020347, guid: 5aa7a06454e223a44b4df7a5aac440f5, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[1].buttonPicture
       value: 
-      objectReference: {fileID: -6109180259893682311, guid: 6ad60bab306a28b44b7902394119cae4, type: 3}
+      objectReference: {fileID: 4957696465083020347, guid: 5aa7a06454e223a44b4df7a5aac440f5, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[2].buttonPicture
       value: 
-      objectReference: {fileID: 5688376453356524470, guid: 16015eba3f98ac4479ac1dacb40ac815, type: 3}
+      objectReference: {fileID: 4957696465083020347, guid: 5aa7a06454e223a44b4df7a5aac440f5, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[3].buttonPicture
       value: 
-      objectReference: {fileID: -2025897326721808144, guid: 8f8473005af66904e9f91b8506d268cb, type: 3}
+      objectReference: {fileID: 4957696465083020347, guid: 5aa7a06454e223a44b4df7a5aac440f5, type: 3}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: scenes.Array.data[4].buttonPicture
+      value: 
+      objectReference: {fileID: -8237346014881870733, guid: 3529ff0a2c135dd419ed5375d21144eb, type: 3}
     - target: {fileID: 2073081635821118763, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: m_Name
       value: StartMenu

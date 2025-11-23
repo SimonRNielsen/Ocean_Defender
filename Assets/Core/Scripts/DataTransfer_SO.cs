@@ -56,6 +56,8 @@ public class DataTransfer_SO : ScriptableObject
     /// </summary>
     public int RoundScore;
 
+
+    public float roundTimeRemaining;
     #endregion
     #region Methods
 
@@ -72,6 +74,8 @@ public class DataTransfer_SO : ScriptableObject
         getScore = null; 
         RoundScore = 0;
         resetEvent += ResetWhileRunning;
+
+        roundTimeRemaining = 0;
 
     }
 

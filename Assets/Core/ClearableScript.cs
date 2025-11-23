@@ -9,6 +9,8 @@ public class ClearableScript : MonoBehaviour, IClickable
     private ObjectPool pool;
     [SerializeField, Tooltip("The score awarded when clearing the clearable object")] private int score =0;
     private ScoreCounterScript scoreCounter; //The Scorecounter used to add a score when the objects is cleared.
+    private Vector2 screenPosition;
+    private Vector2 screenBorder;
     #endregion
 
     #region Properties
@@ -110,5 +112,11 @@ public class ClearableScript : MonoBehaviour, IClickable
     {
         pool.ReturnToPool(this);
     }
+
+    //public void TrashOffScreen()
+    //{
+    //    Vector2 screenPosition = transform.position;
+    //    if ((screenPosition.x < screenBorder) ||)
+    //}
     #endregion
 }

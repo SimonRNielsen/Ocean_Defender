@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[0].sceneName
-      value: TestScene_Simon
+      value: Quiz_Stefanie
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[1].sceneName

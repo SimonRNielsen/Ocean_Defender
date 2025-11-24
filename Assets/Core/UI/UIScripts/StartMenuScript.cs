@@ -103,9 +103,9 @@ public class StartMenuScript : MonoBehaviour
 
         Time.timeScale = 1f; //Unpause
 
-        yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-
         yield return SceneManager.LoadSceneAsync(timerScene, LoadSceneMode.Additive);
+
+        yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
 
         yield return SceneManager.UnloadSceneAsync(gameObject.scene);
 

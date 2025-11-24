@@ -20,7 +20,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
     [SerializeField] private Sprite roundOverSprite;
     [SerializeField, Space, Header("Scenes to open on exit")] private string[] returnScenes;
     private readonly float notOpaque = 1f;
-    private readonly string roundOver = "RoundOver", buttonName = "OKButton", scoreLabelName = "ScoreLabel", timeout = "TimeoutWarning";
+    private readonly string roundOver = "RoundOver", buttonName = "OKButton", scoreLabelName = "ScoreLabel";
     private ProgressBar progressBar;
     private Label label, scoreLabel;
     private VisualElement placement, centre;

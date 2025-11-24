@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4806348817402309457, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
+      propertyPath: m_Radius
+      value: 2.402383
+      objectReference: {fileID: 0}
+    - target: {fileID: -4806348817402309457, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0042188168
+      objectReference: {fileID: 0}
     - target: {fileID: -2300230331068662812, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 4.78

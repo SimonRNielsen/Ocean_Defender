@@ -27,7 +27,7 @@ public class ScoreCounterScript : MonoBehaviour
         ScoreChanged.Invoke(score, scoreUnit, amount);
 
         //Spawning the achievement when achievementScore reached
-        if (score >= achievementScore)
+        if (score >= achievementScore && achievement.activeSelf == false)
         {
             achievement.SetActive(true);
         }
@@ -37,7 +37,7 @@ public class ScoreCounterScript : MonoBehaviour
             achievement.transform.localScale = Vector3.one / 4;
         }
 
-        
+
     }
 
     /// <summary>

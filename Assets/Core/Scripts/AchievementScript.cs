@@ -4,9 +4,9 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class AchievementScript : MonoBehaviour, IClickable
 {
-    
-    #region Field
 
+    #region Field
+    private float timeLeft;
 
     #endregion
 
@@ -14,12 +14,18 @@ public class AchievementScript : MonoBehaviour, IClickable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
+        timeLeft = DataTransfer_SO.Instance.roundTimeRemaining;
+
+        if (timeLeft <= 0)
+        {
+            transform.position = new Vector3(5, 0, 0);
+            transform.localScale = Vector3.one;
+        }
     }
 
     public void OnPrimaryClick()

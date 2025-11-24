@@ -56,6 +56,11 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Bool for other mechanics to check if round is over
+    /// </summary>
+    public static bool RoundOver { get; private set; }
+
     #endregion
     #region Methods
 
@@ -88,6 +93,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
         RoundEnded = false;
         centre.visible = false;
         scoreSet = false;
+        RoundOver = false;
 
     }
 
@@ -243,6 +249,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
             centre.visible = true;
 
             DataTransfer_SO.Instance.getScore?.Invoke();
+            RoundOver = true;
             Time.timeScale = 0f;
             button.clicked += ButtonAction;
 
@@ -314,6 +321,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
         }
 
     }
+
 
     #endregion
 

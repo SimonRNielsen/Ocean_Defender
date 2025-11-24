@@ -202,11 +202,11 @@ PrefabInstance:
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[1].buttonPicture
       value: 
-      objectReference: {fileID: 2949857681622141484, guid: 715466e0743c613419720536e20aa79d, type: 3}
+      objectReference: {fileID: -1189158245976831236, guid: 1daf9255e2881bf4882ed0051c3c23bc, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[2].buttonPicture
       value: 
-      objectReference: {fileID: -1189158245976831236, guid: 1daf9255e2881bf4882ed0051c3c23bc, type: 3}
+      objectReference: {fileID: 2949857681622141484, guid: 715466e0743c613419720536e20aa79d, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[3].buttonPicture
       value: 

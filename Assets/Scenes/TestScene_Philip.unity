@@ -180,6 +180,10 @@ PrefabInstance:
       value: 2.369221
       objectReference: {fileID: 0}
     - target: {fileID: 2642678144582724135, guid: ca192cfde529f1f4a85c64cc83ac35b6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2642678144582724135, guid: ca192cfde529f1f4a85c64cc83ac35b6, type: 3}
       propertyPath: m_Offset.x
       value: -0.00000023841858
       objectReference: {fileID: 0}
@@ -228,8 +232,16 @@ PrefabInstance:
       value: TrashAchievement
       objectReference: {fileID: 0}
     - target: {fileID: 6533456261333350139, guid: ca192cfde529f1f4a85c64cc83ac35b6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533456261333350139, guid: ca192cfde529f1f4a85c64cc83ac35b6, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8339233008025422574, guid: ca192cfde529f1f4a85c64cc83ac35b6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

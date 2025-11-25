@@ -176,8 +176,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: barOpaque
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: roundTime
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: barColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: barColor.b
+      value: 0.1333333
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: barColor.g
+      value: 0.5450981
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: barColor.r
+      value: 0.1333333
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: achievement
@@ -189,19 +209,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: textColor.b
-      value: 0.9019608
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: textColor.g
-      value: 0.9607844
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: textColor.r
-      value: 0.9921569
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: turnBarIntoLabel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: backgroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: backgroundColor.b
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: backgroundColor.g
-      value: 0.7058824
+      value: 0.3921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: backgroundColor.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

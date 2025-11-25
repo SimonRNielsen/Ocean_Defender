@@ -185,8 +185,9 @@ public class RoundCountDownTimerScript : MonoBehaviour
             progressBar.lowValue = 0;
             progressBar.highValue = roundTime;
             progressBar.style.color = textColor;
-            progressBar.style.backgroundColor = backgroundColor;
-
+            /*progressBar.style.backgroundColor = backgroundColor; Doesn't access the right visual element. 
+              See under USS Classes: https://docs.unity3d.com/6000.2/Documentation/Manual/UIE-uxml-element-ProgressBar.html  
+             */
             progressBar.style.marginBottom = margin;
             progressBar.style.marginTop = margin;
             progressBar.style.marginLeft = margin;
@@ -194,6 +195,13 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
             placement.Add(progressBar);
 
+            //Acceses the visualelement respsponsible for the styling of the progress bar process, and changes color.
+            var progressBarVisualElement = placement.Q(className: "unity-progress-bar__progress");
+            progressBarVisualElement.style.backgroundColor = barColor;
+
+            //Acceses the visualelement respsponsible for the styling of the progress bar background, and changes color.
+            var progressBarBackgroundVisualElement = placement.Q(className: "unity-progress-bar__background");
+            progressBarBackgroundVisualElement.style.backgroundColor = backgroundColor;
         }
         else
         {

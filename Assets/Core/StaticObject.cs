@@ -73,40 +73,40 @@ public class StaticObject : MonoBehaviour, IClickable
     //    }
     //}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Collision on");
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    //Debug.Log("Collision on");
 
-        Debug.LogAssertion("Collision on");
-
-
-        GameObject go = collision.gameObject;
-
-        if (go != null)
-            Debug.LogWarning("No object found");
-        SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
-
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = Color.red;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Debug.Log("Collision off");
-
-        Debug.LogAssertion("Collision off");
+    //    //Debug.LogAssertion("Collision on");
 
 
-        GameObject go = collision.gameObject;
+    //    GameObject go = collision.gameObject;
 
-        SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
+    //    if (go != null)
+    //        Debug.LogWarning("No object found");
+    //    SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
 
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = Color.blue;
-        }
-    }
+    //    if (spriteRenderer != null)
+    //    {
+    //        spriteRenderer.color = Color.red;
+    //    }
+    //}
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    //Debug.Log("Collision off");
+
+    //    //Debug.LogAssertion("Collision off");
+
+
+    //    GameObject go = collision.gameObject;
+
+    //    SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
+
+    //    if (spriteRenderer != null)
+    //    {
+    //        spriteRenderer.color = Color.blue;
+    //    }
+    //}
     #endregion
 }

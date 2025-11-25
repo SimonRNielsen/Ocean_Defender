@@ -32,7 +32,7 @@ public class StartMenuScript : MonoBehaviour
 
     private void Awake()
     {
-
+        ButtonScale = 0.7f;
         borderColor = new Color(borderRed, borderGreen, borderBlue, borderOpacity);
 
         AssignElements();

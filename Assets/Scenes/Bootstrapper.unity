@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae02d8f2c56653e4387c9f7e5216df5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimingsScript
-  inactivityTimeLimit: 50
+  inactivityTimeLimit: 10
 --- !u!4 &1633579166
 Transform:
   m_ObjectHideFlags: 0

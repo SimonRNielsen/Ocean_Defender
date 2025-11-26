@@ -67,9 +67,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8859926177648037396, guid: f912407b0467cf04692c14a0e81b86fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: -1766764811870137215}
-    - targetCorrespondingSourceObject: {fileID: 8859926177648037396, guid: f912407b0467cf04692c14a0e81b86fa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1131315956338330659}
   m_SourcePrefab: {fileID: 100100000, guid: f912407b0467cf04692c14a0e81b86fa, type: 3}
 --- !u!1 &1008525794990814647 stripped
 GameObject:
@@ -103,15 +100,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1131315956338330659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008525794990814647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d4a0f11caebe74c91625a26f70d710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HoleScript

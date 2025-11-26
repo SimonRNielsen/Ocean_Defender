@@ -195,13 +195,23 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
             placement.Add(progressBar);
 
+
+
             //Acceses the visualelement respsponsible for the styling of the progress bar process, and changes color.
             var progressBarVisualElement = placement.Q(className: "unity-progress-bar__progress");
             progressBarVisualElement.style.backgroundColor = barColor;
+            progressBarVisualElement.style.borderBottomLeftRadius = 10;
+            progressBarVisualElement.style.borderBottomRightRadius = 10;
+            progressBarVisualElement.style.borderTopLeftRadius = 10;
+            progressBarVisualElement.style.borderTopRightRadius = 10;
 
             //Acceses the visualelement respsponsible for the styling of the progress bar background, and changes color.
             var progressBarBackgroundVisualElement = placement.Q(className: "unity-progress-bar__background");
             progressBarBackgroundVisualElement.style.backgroundColor = backgroundColor;
+            progressBarBackgroundVisualElement.style.borderBottomLeftRadius = 15;
+            progressBarBackgroundVisualElement.style.borderBottomRightRadius = 15;
+            progressBarBackgroundVisualElement.style.borderTopLeftRadius = 15;
+            progressBarBackgroundVisualElement.style.borderTopRightRadius = 15;
         }
         else
         {
@@ -272,7 +282,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
         }
 
         int displayedTime = centre.visible ? 0 : (int)RoundTimeRemaining + 1;
-        string text = displayText ? $"Time Remaining: {displayedTime}s" : string.Empty;
+        string text = displayText ? $"{displayedTime}s" : string.Empty;
 
         if (!turnBarIntoLabel)
         {

@@ -73,6 +73,8 @@ public class StaticObject : MonoBehaviour, IClickable
 
             //Setting the position on top og the hole where it is planted
             this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0, spriteHeight / 2);
+
+            go.tag = "Untagged";
         }
     }
 
@@ -83,10 +85,10 @@ public class StaticObject : MonoBehaviour, IClickable
         {
             go = collision.gameObject;
             isPlant = true;
-            OnPrimaryRelease();
+            //OnPrimaryRelease();
 
             //Changing the collision tag so there can't be planted another Eelgrass in the same Hole
-            collision.gameObject.tag = "Untagged";
+            //collision.gameObject.tag = "Untagged";
         }
     }
 

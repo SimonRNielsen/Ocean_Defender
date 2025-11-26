@@ -36,7 +36,7 @@ public class WebManagerScript : MonoBehaviour
     private static bool loopRunning = false, own = false;
     private static float timeSinceLastConnectionAttempt;
     private static string serverPublicKey, clientPrivateKey, clientPublicKey;
-    private static Queue<WebRequest> requests = new Queue<WebRequest>();
+    private static List<WebRequest> requests = new List<WebRequest>();
     private static WebRequest currentRequest = WebRequest.GetKey;
     private static UserReturnDTO currentUser = null;
     private static LoginDTO login = null;
@@ -80,7 +80,7 @@ public class WebManagerScript : MonoBehaviour
                 if (currentRequest == WebRequest.None)
                     currentRequest = value;
                 else if (!requests.Contains(value))
-                    requests.Enqueue(value);
+                    requests.Add(value);
 
             }
 
@@ -118,6 +118,9 @@ public class WebManagerScript : MonoBehaviour
             highScore = value;
             Request = WebRequest.AddHighscore;
 
+            if (highScore == null && requests.Contains(WebRequest.AddHighscore))
+                requests.Remove(WebRequest.AddHighscore);
+
         }
 
     }
@@ -132,6 +135,9 @@ public class WebManagerScript : MonoBehaviour
             achievement = value;
             Request = WebRequest.AddAchievement;
 
+            if (achievement == null && requests.Contains(WebRequest.AddAchievement))
+                requests.Remove(WebRequest.AddAchievement);
+
         }
 
     }
@@ -145,6 +151,9 @@ public class WebManagerScript : MonoBehaviour
 
             createUser = value;
             Request = WebRequest.CreateUser;
+
+            if (createUser == null && requests.Contains(WebRequest.CreateUser))
+                requests.Remove(WebRequest.CreateUser);
 
         }
 
@@ -185,18 +194,7 @@ public class WebManagerScript : MonoBehaviour
         }
 
         if (!loopRunning)
-            try
-            {
-
-                await TaskHandler();
-
-            }
-            catch (Exception e)
-            {
-
-                Debug.LogError(e);
-
-            }
+            await TaskHandler();
 
     }
 
@@ -217,33 +215,49 @@ public class WebManagerScript : MonoBehaviour
         while (loopRunning)
         {
 
-            if (currentRequest == WebRequest.None && requests.Count > 0)
-                Request = requests.Dequeue();
-
-            object needsAttention = null;
-
-            switch (currentRequest)
+            try
             {
-                case WebRequest.Ping:
-                    await PingServer();
-                    break;
-                case WebRequest.GetKey:
-                    ServerPublicKey = await GetPublicKey();
-                    break;
-                case WebRequest.None:
-                default:
-                    if (Time.unscaledTime - timeSinceLastConnectionAttempt >= pingInterval && !requests.Contains(WebRequest.Ping))
-                        Request = WebRequest.Ping;
-                    break;
+
+                if (currentRequest == WebRequest.None && requests.Count > 0)
+                {
+
+                    Request = requests[0];
+                    requests.RemoveAt(0);
+
+                }
+
+                object needsAttention = null;
+
+                switch (currentRequest)
+                {
+                    case WebRequest.Ping:
+                        await PingServer();
+                        break;
+                    case WebRequest.GetKey:
+                        ServerPublicKey = await GetPublicKey();
+                        break;
+                    case WebRequest.None:
+                    default:
+                        if (Time.unscaledTime - timeSinceLastConnectionAttempt >= pingInterval && !requests.Contains(WebRequest.Ping))
+                            Request = WebRequest.Ping;
+                        break;
+                }
+
+                if (needsAttention != null)
+                    ObjectHandler(needsAttention);
+
+                if (string.IsNullOrWhiteSpace(ServerPublicKey) && !requests.Contains(WebRequest.GetKey))
+                    Request = WebRequest.GetKey;
+
+                await Task.Delay(200);
+
             }
+            catch (Exception e)
+            {
 
-            if (needsAttention != null)
-                ObjectHandler(needsAttention);
+                Debug.LogError(e);
 
-            if (string.IsNullOrWhiteSpace(ServerPublicKey) && !requests.Contains(WebRequest.GetKey))
-                Request = WebRequest.GetKey;
-
-            await Task.Delay(200);
+            }
 
         }
 

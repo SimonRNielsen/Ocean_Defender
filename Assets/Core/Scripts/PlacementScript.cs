@@ -51,19 +51,19 @@ public class PlacementScript : MonoBehaviour
                 objects[objects.Count - 1].gameObject.SetActive(false);
             }
 
-
-                Debug.LogWarning("Hi");
-                eelgrassWithNail.SetActive(true);
-                eelgrassWithNail.transform.position = Vector2.zero;
-
             
-        }
 
+            SpawnConnetedEelgrass();
+
+            this.gameObject.SetActive(false);
+        }
 
     }
 
     private void SpawnConnetedEelgrass()
     {
+            eelgrassWithNail.SetActive(true);
+            eelgrassWithNail.transform.position = Vector2.zero;
 
     }
 }

@@ -18,6 +18,10 @@ public class RoundCountDownTimerScript : MonoBehaviour
     [SerializeField] private HorizontalAlignment horizontalPlacement = HorizontalAlignment.Right;
     [SerializeField] private bool turnBarIntoLabel = false, displayText = true;
     [SerializeField] private Sprite roundOverSprite;
+    [SerializeField, Tooltip("The radius of the corners on the right side of outer bar")] int outerBarRightBorderRadius;
+    [SerializeField, Tooltip("The radius of the corners on the left side of outer bar")] int outerBarLeftBorderRadius;
+    [SerializeField, Tooltip("The radius of the corners on the right side of inner bar")] int innerBarRightBorderRadius;
+    [SerializeField, Tooltip("The radius of the corners on the left side of inner bar")] int innerBarLeftBorderRadius;
     [SerializeField, Space, Header("Scenes to open on exit")] private string[] returnScenes;
     private readonly float notOpaque = 1f;
     private readonly string roundOver = "RoundOver", buttonName = "OKButton", scoreLabelName = "ScoreLabel";
@@ -200,18 +204,18 @@ public class RoundCountDownTimerScript : MonoBehaviour
             //Acceses the visualelement respsponsible for the styling of the progress bar process, and changes color.
             var progressBarVisualElement = placement.Q(className: "unity-progress-bar__progress");
             progressBarVisualElement.style.backgroundColor = barColor;
-            progressBarVisualElement.style.borderBottomLeftRadius = 10;
-            progressBarVisualElement.style.borderBottomRightRadius = 10;
-            progressBarVisualElement.style.borderTopLeftRadius = 10;
-            progressBarVisualElement.style.borderTopRightRadius = 10;
+            progressBarVisualElement.style.borderBottomLeftRadius = innerBarLeftBorderRadius;
+            progressBarVisualElement.style.borderBottomRightRadius = innerBarRightBorderRadius;
+            progressBarVisualElement.style.borderTopLeftRadius = innerBarLeftBorderRadius;
+            progressBarVisualElement.style.borderTopRightRadius = innerBarRightBorderRadius;
 
             //Acceses the visualelement respsponsible for the styling of the progress bar background, and changes color.
             var progressBarBackgroundVisualElement = placement.Q(className: "unity-progress-bar__background");
             progressBarBackgroundVisualElement.style.backgroundColor = backgroundColor;
-            progressBarBackgroundVisualElement.style.borderBottomLeftRadius = 15;
-            progressBarBackgroundVisualElement.style.borderBottomRightRadius = 15;
-            progressBarBackgroundVisualElement.style.borderTopLeftRadius = 15;
-            progressBarBackgroundVisualElement.style.borderTopRightRadius = 15;
+            progressBarBackgroundVisualElement.style.borderBottomLeftRadius = outerBarLeftBorderRadius;
+            progressBarBackgroundVisualElement.style.borderBottomRightRadius = outerBarRightBorderRadius;
+            progressBarBackgroundVisualElement.style.borderTopLeftRadius = outerBarLeftBorderRadius;
+            progressBarBackgroundVisualElement.style.borderTopRightRadius = outerBarRightBorderRadius;
         }
         else
         {

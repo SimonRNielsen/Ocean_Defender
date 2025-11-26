@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 410, y: 33}
+  m_AnchoredPosition: {x: 405, y: 33}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162849030
@@ -353,6 +353,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: margin
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: barOpaque
       value: 0
       objectReference: {fileID: 0}
@@ -366,19 +370,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: barColor.b
-      value: 0.1333333
+      value: 0.882353
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: barColor.g
-      value: 0.5450981
+      value: 0.8941177
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: barColor.r
-      value: 0.1333333
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: opaqueness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: textOpaque
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: achievement
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: displayText
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: textColor.a
@@ -401,6 +417,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3565467349299780894, guid: 794e5686fee37c64aa1201f2d2f1acb6, type: 3}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: backgroundOpaque
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: turnBarIntoLabel
       value: 0
       objectReference: {fileID: 0}
@@ -410,15 +430,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: backgroundColor.b
-      value: 0
+      value: 0.39607847
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: backgroundColor.g
-      value: 0.3921569
+      value: 0.29803923
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: backgroundColor.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: outerBarLeftBorderRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: innerBarRightBorderRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
+      propertyPath: outerBarRightBorderRadius
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

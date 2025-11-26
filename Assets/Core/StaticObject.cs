@@ -5,15 +5,19 @@ using System.Collections.Generic;
 public class StaticObject : MonoBehaviour, IClickable
 {
     #region Field
+    //The Rigidbody for this Gameobject
     private Rigidbody2D rb;
-    private SpriteRenderer rbSprite;
-    private float height;
+    //To check if the GameObject is planted
+    private bool isPlant = false;
 
-    private bool canPlant = false;
+    //The GameObject of the collision
     private GameObject go;
 
+    [SerializeField, Tooltip("The sprite for when the eelgrass is planted")]
     public Sprite plantedEelgrass;
-    private List<Sprite> sprites = new List<Sprite>();
+    //SpriteRenderer for the plantedEelgrass
+    private SpriteRenderer rbSprite;
+    private float spriteHeight;
 
     #endregion
 
@@ -31,8 +35,6 @@ public class StaticObject : MonoBehaviour, IClickable
         if (plantedEelgrass != null)
         {
             rbSprite = GetComponent<SpriteRenderer>();
-
-            sprites.Add(plantedEelgrass);
         }
 
     }
@@ -44,13 +46,13 @@ public class StaticObject : MonoBehaviour, IClickable
     }
     public void OnPrimaryClick()
     {
-        //throw new System.NotImplementedException();
+        
     }
 
     public void OnPrimaryHold(Vector3 movement)
     {
-        //Can move the object while it's hold if plant is false
-        if (canPlant == false)
+        //Can move the object while it's hold if plant is false and isn't planted
+        if (isPlant == false)
         {
             rb.position += (Vector2)movement;
         }
@@ -58,26 +60,32 @@ public class StaticObject : MonoBehaviour, IClickable
 
     public void OnPrimaryRelease()
     {
-        if (canPlant == true)
+        //If the GameObject is going to be planted
+        if (isPlant == true && rbSprite != null)
         {
+            //Change the spirte
             rbSprite.sprite = plantedEelgrass;
 
-            height = rbSprite.size.y;
-
             this.transform.localScale = Vector3.one * 0.15f;
+            //Get the of the sprite
+            spriteHeight = rbSprite.size.y * 0.15f;
 
-            this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0, (height * 1.5f)/ 2);
+
+            //Setting the position on top og the hole where it is planted
+            this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0, spriteHeight / 2);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //If collision is between a Hole and EelgrasNail the Eelgrass will be planted in the Hole
         if (collision.CompareTag("Hole") == true && this.tag == "EelgrassNail")
         {
             go = collision.gameObject;
-            canPlant = true;
+            isPlant = true;
             OnPrimaryRelease();
 
+            //Changing the collision tag so there can't be planted another Eelgrass in the same Hole
             collision.gameObject.tag = "Untagged";
         }
     }

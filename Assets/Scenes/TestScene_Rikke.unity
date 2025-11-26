@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &657291176
+--- !u!1001 &105489403
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -133,19 +133,19 @@ PrefabInstance:
       objectReference: {fileID: -3066513665594385628, guid: 806ea723db616ce418e8aa2900de8504, type: 3}
     - target: {fileID: 2992348907703295536, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_Size.x
-      value: 4.9269824
+      value: 17.4537
       objectReference: {fileID: 0}
     - target: {fileID: 2992348907703295536, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_Size.y
-      value: 2.1115854
+      value: 12.024919
       objectReference: {fileID: 0}
     - target: {fileID: 2992348907703295536, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_Offset.x
-      value: -0.016844511
+      value: -0.03369236
       objectReference: {fileID: 0}
     - target: {fileID: 2992348907703295536, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_Offset.y
-      value: 0.0043383837
+      value: -0.00978899
       objectReference: {fileID: 0}
     - target: {fileID: 3222243827466462973, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_SortingOrder
@@ -153,19 +153,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5054876520492576752, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.35
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5054876520492576752, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.35
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5054876520492576752, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.35
+      value: -0.98
       objectReference: {fileID: 0}
     - target: {fileID: 5054876520492576752, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.97
+      value: 3.84
       objectReference: {fileID: 0}
     - target: {fileID: 5054876520492576752, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -814,19 +814,19 @@ PrefabInstance:
       objectReference: {fileID: -3066513665594385628, guid: 806ea723db616ce418e8aa2900de8504, type: 3}
     - target: {fileID: 2992348907703295536, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_Size.x
-      value: 4.917817
+      value: 17.4537
       objectReference: {fileID: 0}
     - target: {fileID: 2992348907703295536, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_Size.y
-      value: 2.081168
+      value: 12.024919
       objectReference: {fileID: 0}
     - target: {fileID: 2992348907703295536, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_Offset.x
-      value: -0.0059370995
+      value: -0.03369236
       objectReference: {fileID: 0}
     - target: {fileID: 2992348907703295536, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_Offset.y
-      value: -0.0040568113
+      value: -0.00978899
       objectReference: {fileID: 0}
     - target: {fileID: 3222243827466462973, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_SortingOrder
@@ -834,11 +834,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5054876520492576752, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.35
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5054876520492576752, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.35
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5054876520492576752, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -998,5 +998,5 @@ SceneRoots:
   - {fileID: 888867767}
   - {fileID: 1872246820}
   - {fileID: 1543624186}
-  - {fileID: 657291176}
   - {fileID: 1282278479}
+  - {fileID: 105489403}

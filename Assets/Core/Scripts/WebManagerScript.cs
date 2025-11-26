@@ -5,15 +5,45 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class WebIntegrationScript : MonoBehaviour
+
+#region RequestForms
+
+public enum WebRequest
 {
 
-    private static float timeSinceLastConnection;
+    None,
+    GetKey,
+    Ping,
+    AddHighscore,
+    AddAchievement,
+    CreateUser,
+    Login
+
+}
+
+#endregion
+
+public class WebManagerScript : MonoBehaviour
+{
+
+    #region Fields
+
     private static readonly float pingInterval = 60f;
-    private static bool connectionRunning = false, loopRunning = false;
-    private static string serverPublicKey, clientPrivateKey, clientPublicKey;
     private static readonly string baseURL = "https://odrestserver.onrender.com/";
-    private static WebRequest request = WebRequest.GetKey;
+#pragma warning disable CS0414
+    private static bool lastConnectionActive = false;
+#pragma warning restore CS0414
+    private static bool loopRunning = false, own = false;
+    private static float timeSinceLastConnectionAttempt;
+    private static string serverPublicKey, clientPrivateKey, clientPublicKey;
+    private static Queue<WebRequest> requests = new Queue<WebRequest>();
+    private static WebRequest currentRequest = WebRequest.GetKey;
+    private static UserReturnDTO currentUser = null;
+    private static LoginDTO login = null;
+    private static CreateUserDTO createUser = null;
+    private static HighScoreDTO highScore = null;
+    private static AchievementDTO achievement = null;
+    private static DataTransfer_SO events;
     private static Dictionary<Endpoint, string> endpoints = new Dictionary<Endpoint, string>
         {
 
@@ -33,24 +63,26 @@ public class WebIntegrationScript : MonoBehaviour
 
         };
 
+    #endregion
+    #region Properties
 
-    public static WebRequest Request
+
+    private static WebRequest Request
     {
 
-        get => request;
         set
         {
 
-            if (value == WebRequest.None && value != request)
+            if (value != currentRequest)
             {
 
-                timeSinceLastConnection = Time.unscaledTime;
-                connectionRunning = true;
+                timeSinceLastConnectionAttempt = Time.unscaledTime;
+                if (currentRequest == WebRequest.None)
+                    currentRequest = value;
+                else if (!requests.Contains(value))
+                    requests.Enqueue(value);
 
             }
-
-            if (value != request)
-                request = value;
 
         }
 
@@ -64,8 +96,8 @@ public class WebIntegrationScript : MonoBehaviour
         set
         {
 
-            if (request == WebRequest.GetKey)
-                Request = WebRequest.None;
+            if (currentRequest == WebRequest.GetKey && !string.IsNullOrEmpty(value))
+                currentRequest = WebRequest.None;
 
             serverPublicKey = value;
 
@@ -73,10 +105,73 @@ public class WebIntegrationScript : MonoBehaviour
 
     }
 
+
+    public static bool ConnectionRunning { get => lastConnectionActive; }
+
+
+    public static HighScoreDTO HighScore
+    {
+
+        set
+        {
+
+            highScore = value;
+            Request = WebRequest.AddHighscore;
+
+        }
+
+    }
+
+
+    public static AchievementDTO Achievement
+    {
+
+        set
+        {
+
+            achievement = value;
+            Request = WebRequest.AddAchievement;
+
+        }
+
+    }
+
+
+    public static CreateUserDTO CreateUser
+    {
+
+        set
+        {
+
+            createUser = value;
+            Request = WebRequest.CreateUser;
+
+        }
+
+    }
+
+
+    public static LoginDTO Login
+    {
+
+        set
+        {
+
+            login = value;
+            Request = WebRequest.Login;
+
+        }
+
+    }
+
+    #endregion
+    #region Methods
+
+
     private async void Awake()
     {
 
-        timeSinceLastConnection = Time.unscaledTime;
+        timeSinceLastConnectionAttempt = Time.unscaledTime;
 
         using (RSA rsa = RSA.Create())
         {
@@ -87,12 +182,31 @@ public class WebIntegrationScript : MonoBehaviour
         }
 
         if (!loopRunning)
-            await CheckTasks();
+            try
+            {
+
+                await TaskHandler();
+
+            }
+            catch (Exception e)
+            {
+
+                Debug.LogError(e);
+
+            }
 
     }
 
 
-    private async Task CheckTasks()
+    private void Start()
+    {
+
+        events = DataTransfer_SO.Instance;
+
+    }
+
+
+    private async Task TaskHandler()
     {
 
         loopRunning = true;
@@ -100,22 +214,30 @@ public class WebIntegrationScript : MonoBehaviour
         while (loopRunning)
         {
 
-            switch (Request)
+            if (currentRequest == WebRequest.None && requests.Count > 0)
+                Request = requests.Dequeue();
+
+            object needsAttention = null;
+
+            switch (currentRequest)
             {
                 case WebRequest.Ping:
                     await PingServer();
                     break;
                 case WebRequest.GetKey:
                     ServerPublicKey = await GetPublicKey();
-                    return;
+                    break;
                 case WebRequest.None:
                 default:
-                    if (Time.unscaledTime - timeSinceLastConnection >= pingInterval)
+                    if (Time.unscaledTime - timeSinceLastConnectionAttempt >= pingInterval && !requests.Contains(WebRequest.Ping))
                         Request = WebRequest.Ping;
                     break;
             }
 
-            if (string.IsNullOrWhiteSpace(ServerPublicKey))
+            if (needsAttention != null)
+                ObjectHandler(needsAttention);
+
+            if (string.IsNullOrWhiteSpace(ServerPublicKey) && !requests.Contains(WebRequest.GetKey))
                 Request = WebRequest.GetKey;
 
             await Task.Delay(200);
@@ -125,6 +247,43 @@ public class WebIntegrationScript : MonoBehaviour
     }
 
 
+    private void ObjectHandler(object obj)
+    {
+
+        switch (obj)
+        {
+            case string message:
+                Debug.LogWarning(message);
+                break;
+            case List<HighScoreDTO> leaderboard when leaderboard.Count > 0:
+                events.transmitScores?.Invoke(leaderboard);
+                break;
+            case HighScoreDTO ownScore when ownScore.Score > 0:
+                events.transmitScore?.Invoke(ownScore);
+                break;
+            case UserReturnDTO userReturnDTO:
+                currentUser = userReturnDTO;
+                break;
+            case List<AchievementDTO> achievementDTOs when achievementDTOs.Count > 0:
+                if (own)
+                {
+
+                    own = false;
+                    events.transmitOwnAchievements?.Invoke(achievementDTOs);
+
+                }
+                else
+                    events.transmitAchievements?.Invoke(achievementDTOs);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    #region Tasks
+
+
     private async Task<string> GetPublicKey()
     {
 
@@ -132,9 +291,19 @@ public class WebIntegrationScript : MonoBehaviour
         await request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
+        {
+
+            lastConnectionActive = true;
             return request.downloadHandler.text;
+
+        }
         else
+        {
+
+            lastConnectionActive = false;
             return null;
+
+        }
 
     }
 
@@ -146,37 +315,24 @@ public class WebIntegrationScript : MonoBehaviour
         await request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
-            Request = WebRequest.None;
+        {
+
+            currentRequest = WebRequest.None;
+            lastConnectionActive = true;
+
+        }
         else
-            connectionRunning = false;
+            lastConnectionActive = false;
 
     }
 
+    #endregion
+    #endregion
 
     /*
 
     static async Task Main(string[] args)
     {
-
-        bool onlineMode = false;
-
-        baseURL = onlineMode ? "https://odrestserver.onrender.com/" : "https://localhost:32771/";
-
-        using (RSA rsa = RSA.Create())
-        {
-
-            clientPrivateKey = rsa.ToXmlString(true);
-            clientPublicKey = rsa.ToXmlString(false);
-
-
-        }
-
-        var program = new Program();
-
-        if (string.IsNullOrWhiteSpace(serverPublicKey))
-            serverPublicKey = await program.GetPublicKey();
-
-        Console.WriteLine(serverPublicKey);
 
         CreateUserDTO newUser = new CreateUserDTO();
 
@@ -234,17 +390,6 @@ public class WebIntegrationScript : MonoBehaviour
 
     }
 
-
-    private async Task<string> GetPublicKey()
-    {
-
-        var response = await client.GetAsync(baseURL + endpoints[Endpoint.PublicKey]);
-
-        return await response.Content.ReadAsStringAsync();
-
-    }
-
-
     private async Task<string> CreateUser(CreateUserDTO newUser)
     {
 
@@ -271,18 +416,6 @@ public class WebIntegrationScript : MonoBehaviour
 
 }
 
-#region Requestforms
-
-public enum WebRequest
-{
-
-    None,
-    GetKey,
-    Ping
-
-}
-
-#endregion
 #region Endpoints
 
 public enum Endpoint
@@ -306,28 +439,6 @@ public enum Endpoint
 
 #endregion
 #region DTOs
-
-/// <summary>
-/// Data storage class for saving relevant info pertinent for a specific user
-/// </summary>
-public class User
-{
-
-    public string Name { get; set; }
-
-
-    public byte[] PasswordHashWithSalt { get; set; }
-
-
-    public byte[] Salt { get; set; }
-
-
-    public string Email { get; set; }
-
-
-    public DateTime JoinTime { get; set; }
-
-}
 
 /// <summary>
 /// Data transfer object with data needed for logging in
@@ -381,7 +492,7 @@ public class UserReturnDTO
 /// <summary>
 /// Data storage class for saving information pertinent for a earned achievement
 /// </summary>
-public class Achievement
+public class AchievementDTO
 {
 
 
@@ -401,7 +512,7 @@ public class Achievement
 /// <summary>
 /// Data storage class for saving information pertinent for a highscore
 /// </summary>
-public class HighScore
+public class HighScoreDTO
 {
 
 

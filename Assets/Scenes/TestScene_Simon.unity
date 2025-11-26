@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 1416270464}
   - component: {fileID: 1416270463}
   m_Layer: 0
-  m_Name: WebIntegrationScript
+  m_Name: WebController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -452,9 +452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9106247c0541aa740b8493595c1700e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WebIntegrationScript
-  simulated: 0
-  onlineUrl: https://odrestserver.onrender.com/
-  offlineUrl: https://10.131.66.121:32771/
 --- !u!4 &1416270464
 Transform:
   m_ObjectHideFlags: 0

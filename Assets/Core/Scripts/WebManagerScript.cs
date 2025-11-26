@@ -164,6 +164,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
+
+    public static UserReturnDTO CurrentUser { get => currentUser; set => currentUser = value; }
+
     #endregion
     #region Methods
 
@@ -278,6 +281,18 @@ public class WebManagerScript : MonoBehaviour
             default:
                 break;
         }
+
+    }
+
+
+    public static void ClearCache()
+    {
+
+        currentUser = null;
+        login = null;
+        createUser = null;
+        highScore = null;
+        achievement = null;
 
     }
 

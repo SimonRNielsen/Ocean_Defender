@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -10,12 +8,11 @@ using UnityEngine.Networking;
 public class WebIntegrationScript : MonoBehaviour
 {
 
-    [SerializeField] private bool simulated = true;
-    [SerializeField] private string onlineUrl = "https://odrestserver.onrender.com/", offlineUrl = "http://10.131.66.121:32771/";
-    private static bool connectionRunning = false;
+    private static float timeSinceLastConnection;
+    private static readonly float pingInterval = 60f;
+    private static bool connectionRunning = false, loopRunning = false;
     private static string serverPublicKey, clientPrivateKey, clientPublicKey;
-    private static string baseURL;
-    private static Thread connectionThread;
+    private static readonly string baseURL = "https://odrestserver.onrender.com/";
     private static WebRequest request = WebRequest.GetKey;
     private static Dictionary<Endpoint, string> endpoints = new Dictionary<Endpoint, string>
         {
@@ -37,18 +34,38 @@ public class WebIntegrationScript : MonoBehaviour
         };
 
 
-    public static WebRequest Request { get => request; set => request = value; }
+    public static WebRequest Request
+    {
 
-
-    public static string ServerPublicKey 
-    { 
-
-        get => serverPublicKey;  
+        get => request;
         set
         {
 
-            if (value != serverPublicKey)
-                Debug.LogWarning(value);
+            if (value == WebRequest.None && value != request)
+            {
+
+                timeSinceLastConnection = Time.unscaledTime;
+                connectionRunning = true;
+
+            }
+
+            if (value != request)
+                request = value;
+
+        }
+
+    }
+
+
+    private static string ServerPublicKey
+    {
+
+        get => serverPublicKey;
+        set
+        {
+
+            if (request == WebRequest.GetKey)
+                Request = WebRequest.None;
 
             serverPublicKey = value;
 
@@ -56,36 +73,62 @@ public class WebIntegrationScript : MonoBehaviour
 
     }
 
-    private void Awake()
+    private async void Awake()
     {
 
-        baseURL = simulated ? offlineUrl : onlineUrl;
-        connectionThread = new Thread(RunThread);
-        connectionThread.IsBackground = true;
-        connectionThread.Start();
+        timeSinceLastConnection = Time.unscaledTime;
 
-    }
+        using (RSA rsa = RSA.Create())
+        {
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
-    {
+            clientPrivateKey = rsa.ToXmlString(true);
+            clientPublicKey = rsa.ToXmlString(false);
 
-        //serverPublicKey = await GetPublicKey();
+        }
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        if (!loopRunning)
+            await CheckTasks();
 
     }
 
 
-    public async Task<string> GetPublicKey()
+    private async Task CheckTasks()
+    {
+
+        loopRunning = true;
+
+        while (loopRunning)
+        {
+
+            switch (Request)
+            {
+                case WebRequest.Ping:
+                    await PingServer();
+                    break;
+                case WebRequest.GetKey:
+                    ServerPublicKey = await GetPublicKey();
+                    return;
+                case WebRequest.None:
+                default:
+                    if (Time.unscaledTime - timeSinceLastConnection >= pingInterval)
+                        Request = WebRequest.Ping;
+                    break;
+            }
+
+            if (string.IsNullOrWhiteSpace(ServerPublicKey))
+                Request = WebRequest.GetKey;
+
+            await Task.Delay(200);
+
+        }
+
+    }
+
+
+    private async Task<string> GetPublicKey()
     {
 
         using UnityWebRequest request = UnityWebRequest.Get(baseURL + endpoints[Endpoint.PublicKey]);
-        request.certificateHandler = new AcceptAllCertificates();
         await request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
@@ -96,27 +139,19 @@ public class WebIntegrationScript : MonoBehaviour
     }
 
 
-    public async void RunThread()
+    private async Task PingServer()
     {
 
-        while (true)
-        {
+        using UnityWebRequest request = UnityWebRequest.Head(baseURL + endpoints[Endpoint.Ping]);
+        await request.SendWebRequest();
 
-            switch (request)
-            {
-                case WebRequest.GetKey:
-                    ServerPublicKey = await GetPublicKey();
-                    break;
-                default:
-                    break;
-            }
-
-            if (string.IsNullOrWhiteSpace(ServerPublicKey))
-                Request = WebRequest.GetKey;
-
-        }
+        if (request.result == UnityWebRequest.Result.Success)
+            Request = WebRequest.None;
+        else
+            connectionRunning = false;
 
     }
+
 
     /*
 
@@ -236,14 +271,19 @@ public class WebIntegrationScript : MonoBehaviour
 
 }
 
+#region Requestforms
+
 public enum WebRequest
 {
 
     None,
-    GetKey
+    GetKey,
+    Ping
 
 }
 
+#endregion
+#region Endpoints
 
 public enum Endpoint
 {
@@ -263,6 +303,9 @@ public enum Endpoint
     Ping
 
 }
+
+#endregion
+#region DTOs
 
 /// <summary>
 /// Data storage class for saving relevant info pertinent for a specific user
@@ -375,7 +418,4 @@ public class HighScore
 
 }
 
-class AcceptAllCertificates : CertificateHandler
-{
-    protected override bool ValidateCertificate(byte[] certificateData) => true;
-}
+#endregion

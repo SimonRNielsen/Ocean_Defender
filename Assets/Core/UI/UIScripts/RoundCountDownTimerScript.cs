@@ -201,7 +201,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
 
 
-            //Acceses the visualelement respsponsible for the styling of the progress bar process, and changes color.
+            //Acceses the visualelement respsponsible for the styling of the progress bar process, and changes color and radius.
             var progressBarVisualElement = placement.Q(className: "unity-progress-bar__progress");
             progressBarVisualElement.style.backgroundColor = barColor;
             progressBarVisualElement.style.borderBottomLeftRadius = innerBarLeftBorderRadius;
@@ -209,7 +209,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
             progressBarVisualElement.style.borderTopLeftRadius = innerBarLeftBorderRadius;
             progressBarVisualElement.style.borderTopRightRadius = innerBarRightBorderRadius;
 
-            //Acceses the visualelement respsponsible for the styling of the progress bar background, and changes color.
+            //Acceses the visualelement respsponsible for the styling of the progress bar background, and changes color and radius.
             var progressBarBackgroundVisualElement = placement.Q(className: "unity-progress-bar__background");
             progressBarBackgroundVisualElement.style.backgroundColor = backgroundColor;
             progressBarBackgroundVisualElement.style.borderBottomLeftRadius = outerBarLeftBorderRadius;

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f8216719097bf604296dba5b8aa72a9a
+guid: ec6eecec47d2f3a4fa1b9cff18e83c80
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3047807121591678487
-    second: Achievements_affald_0
+      213: 8254493198469476310
+    second: Achievements_aalegraas_Lys_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Achievements_affald_0
+      name: Achievements_aalegraas_Lys_0
       rect:
         serializedVersion: 2
         x: 1
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e94f95229304b5d0800000000000000
-      internalID: -3047807121591678487
+      spriteID: 6dfa6af64d9dd8270800000000000000
+      internalID: 8254493198469476310
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Achievements_affald_0: -3047807121591678487
+      Achievements_aalegraas_Lys_0: 8254493198469476310
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -150,14 +150,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrashSpawner
   trashTypes:
   - pool: {fileID: 539259850}
-    minDelay: 1
+    minDelay: 2
     maxDelay: 4
   - pool: {fileID: 1996340733}
-    minDelay: 5
-    maxDelay: 10
+    minDelay: 3
+    maxDelay: 6
   - pool: {fileID: 408403403}
     minDelay: 2
     maxDelay: 5
+  - pool: {fileID: 1323371837}
+    minDelay: 4
+    maxDelay: 8
   spawnArea: {x: 8, y: 6, z: 8}
 --- !u!4 &229950091
 Transform:
@@ -185,7 +188,7 @@ GameObject:
   - component: {fileID: 408403404}
   - component: {fileID: 408403403}
   m_Layer: 0
-  m_Name: ObjectPoolCan
+  m_Name: ObjectPoolKarton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   objectToPool: {fileID: 2624168660528798405, guid: 678176d606e5aaa4694963dbaf89fc34, type: 3}
   trashPoolSize: 20
-  MaxActiveTrash: 20
+  MaxActiveTrash: 10
   activeCount: 0
 --- !u!4 &408403404
 Transform:
@@ -492,7 +495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   objectToPool: {fileID: 7614954108338535488, guid: 2741c1814766c6746b92fbde433f1b46, type: 3}
   trashPoolSize: 20
-  MaxActiveTrash: 20
+  MaxActiveTrash: 10
   activeCount: 0
 --- !u!4 &539259851
 Transform:
@@ -924,7 +927,7 @@ GameObject:
   - component: {fileID: 1323371838}
   - component: {fileID: 1323371837}
   m_Layer: 0
-  m_Name: ObjectPoolPipe
+  m_Name: ObjectPoolFlaske
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -944,7 +947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   objectToPool: {fileID: 971405471559682369, guid: b542766ca501e7a43bcf6f2daaa5b71d, type: 3}
   trashPoolSize: 20
-  MaxActiveTrash: 20
+  MaxActiveTrash: 10
   activeCount: 0
 --- !u!4 &1323371838
 Transform:
@@ -1223,7 +1226,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.02}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1233,7 +1236,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 17.71, y: 0.02}
+  m_Size: {x: 17.71, y: 0.15071553}
   m_EdgeRadius: 0
 --- !u!4 &1993654921
 Transform:
@@ -1244,7 +1247,7 @@ Transform:
   m_GameObject: {fileID: 1993654919}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.12, z: 0}
+  m_LocalPosition: {x: 0, y: -3.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1261,7 +1264,7 @@ GameObject:
   - component: {fileID: 1996340734}
   - component: {fileID: 1996340733}
   m_Layer: 0
-  m_Name: ObjectPoolCigarette
+  m_Name: ObjectPoolKapsel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1281,7 +1284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
   objectToPool: {fileID: 8043649286907436205, guid: da37ccb61b4de5b4999887406189e35c, type: 3}
   trashPoolSize: 20
-  MaxActiveTrash: 0
+  MaxActiveTrash: 10
   activeCount: 0
 --- !u!4 &1996340734
 Transform:

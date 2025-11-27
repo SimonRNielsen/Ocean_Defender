@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f8216719097bf604296dba5b8aa72a9a
+guid: 936c9878ade02eb4bbba63c47e622a00
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3047807121591678487
-    second: Achievements_affald_0
+      213: -6255794092153362195
+    second: Achievements_fiskehvisker_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Achievements_affald_0
+      name: Achievements_fiskehvisker_0
       rect:
         serializedVersion: 2
         x: 1
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e94f95229304b5d0800000000000000
-      internalID: -3047807121591678487
+      spriteID: de82635fa64fe29a0800000000000000
+      internalID: -6255794092153362195
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Achievements_affald_0: -3047807121591678487
+      Achievements_fiskehvisker_0: -6255794092153362195
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

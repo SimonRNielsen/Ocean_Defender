@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bf8af80cc513f304dbb2231df64539f0
+guid: 5b82392f0d660a84db956e983c1f9acc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1520512763418365247
-    second: Achievements_aalegraas_0
+      213: -1833914499966934918
+    second: affald_karton_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Achievements_aalegraas_0
+      name: affald_karton_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 742
-        height: 742
+        x: 1
+        y: 1
+        width: 141
+        height: 278
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1c2300c92bd06eae0800000000000000
-      internalID: -1520512763418365247
+      spriteID: a7068019a70ac86e0800000000000000
+      internalID: -1833914499966934918
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Achievements_aalegraas_0: -1520512763418365247
+      affald_karton_0: -1833914499966934918
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

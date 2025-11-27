@@ -1,6 +1,8 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -39,8 +41,8 @@ public class WebManagerScript : MonoBehaviour
     private static bool loopRunning = false, own = false, approved = false, showHighScores = false, showAchievements = true, chatActive = false;
     private static float timeSinceLastConnectionAttempt;
     private static string serverPublicKey, clientPrivateKey, clientPublicKey;
-    private static List<WebRequest> requests = new List<WebRequest>();
     private static WebRequest currentRequest = WebRequest.GetKey;
+    private static List<WebRequest> requests = new List<WebRequest>();
     private static UserReturnDTO currentUser = null;
     private static LoginDTO login = null;
     private static CreateUserDTO createUser = null;
@@ -51,9 +53,6 @@ public class WebManagerScript : MonoBehaviour
     private static Dictionary<Endpoint, string> endpoints = new Dictionary<Endpoint, string>
         {
 
-            { Endpoint.PublicKey , "UserListing/publickey" },
-            { Endpoint.AddUser , "UserListing/add" },
-            { Endpoint.Login , "UserListing/login" },
             // { Endpoint.ClearUsers , "UserListing/clear" },
             // { Endpoint.TestReadUsers , "UserListing/testreader" },
             // { Endpoint.ClearScoresAndAchievements , "AchievementListing/clear" },
@@ -63,10 +62,13 @@ public class WebManagerScript : MonoBehaviour
             { Endpoint.AddHighscore , "AchievementListing/addscore" },
             { Endpoint.OwnHighscore , "AchievementListing/getownscore" },
             { Endpoint.Leaderboard , "AchievementListing/getleaderboard" },
+            { Endpoint.PublicKey , "UserListing/publickey" },
+            { Endpoint.AddUser , "UserListing/add" },
+            { Endpoint.Login , "UserListing/login" },
             { Endpoint.Ping , "UserListing/ping" }
 
         };
-    private static List<WebRequest> requiresData = new List<WebRequest>
+    private static readonly List<WebRequest> requiresData = new List<WebRequest>
     {
 
         WebRequest.Login,
@@ -80,37 +82,34 @@ public class WebManagerScript : MonoBehaviour
     #region Properties
 
 
-    private static WebRequest Request
+    public static WebRequest Request
     {
 
         set
         {
 
-            lock (transitionLock)
+            if ((requiresData.Contains(value) && !approved) || (currentUser == null && (value == WebRequest.OwnAchievements || value == WebRequest.OwnHighscore)))
             {
 
-                if ((requiresData.Contains(value) && !approved) || (currentUser == null && (value == WebRequest.OwnAchievements || value == WebRequest.OwnHighscore)))
-                {
+                Debug.LogError("Invalid request added, needs data");
+                return;
 
-                    Debug.LogError("Invalid request added, needs data");
-                    return;
+            }
 
-                }
+            if (value != currentRequest)
+            {
 
-                if (value != currentRequest)
-                {
+                timeSinceLastConnectionAttempt = Time.unscaledTime;
 
-                    timeSinceLastConnectionAttempt = Time.unscaledTime;
-                    if (currentRequest == WebRequest.Idle)
+                lock (transitionLock)
+                    if (currentRequest == WebRequest.Idle || value == WebRequest.Idle)
                         currentRequest = value;
                     else if (!requests.Contains(value))
                         requests.Add(value);
 
-                }
-
-                approved = false;
-
             }
+
+            approved = false;
 
         }
 
@@ -171,7 +170,6 @@ public class WebManagerScript : MonoBehaviour
     private static string ServerPublicKey
     {
 
-        get => serverPublicKey;
         set
         {
 
@@ -198,10 +196,11 @@ public class WebManagerScript : MonoBehaviour
 
             bool pending = requests.Contains(WebRequest.AddHighscore);
 
-            if (highScore == null && pending)
-                requests.Remove(WebRequest.AddHighscore);
-            else if (!pending)
-                requests.Add(WebRequest.AddHighscore);
+            lock (transitionLock)
+                if (highScore == null && pending)
+                    requests.Remove(WebRequest.AddHighscore);
+                else if (!pending)
+                    requests.Add(WebRequest.AddHighscore);
 
         }
 
@@ -218,10 +217,11 @@ public class WebManagerScript : MonoBehaviour
 
             bool pending = requests.Contains(WebRequest.AddAchievement);
 
-            if (achievement == null && pending)
-                requests.Remove(WebRequest.AddAchievement);
-            else if (!pending)
-                requests.Add(WebRequest.AddAchievement);
+            lock (transitionLock)
+                if (achievement == null && pending)
+                    requests.Remove(WebRequest.AddAchievement);
+                else if (!pending)
+                    requests.Add(WebRequest.AddAchievement);
 
         }
 
@@ -238,10 +238,11 @@ public class WebManagerScript : MonoBehaviour
 
             bool pending = requests.Contains(WebRequest.CreateUser);
 
-            if (createUser == null && pending)
-                requests.Remove(WebRequest.CreateUser);
-            else if (!pending)
-                requests.Add(WebRequest.CreateUser);
+            lock (transitionLock)
+                if (createUser == null && pending)
+                    requests.Remove(WebRequest.CreateUser);
+                else if (!pending)
+                    requests.Add(WebRequest.CreateUser);
 
         }
 
@@ -258,10 +259,11 @@ public class WebManagerScript : MonoBehaviour
 
             bool pending = requests.Contains(WebRequest.Login);
 
-            if (login == null && pending)
-                requests.Remove(WebRequest.Login);
-            else if (!pending)
-                requests.Add(WebRequest.Login);
+            lock (transitionLock)
+                if (login == null && pending)
+                    requests.Remove(WebRequest.Login);
+                else if (!pending)
+                    requests.Add(WebRequest.Login);
 
         }
 
@@ -298,7 +300,28 @@ public class WebManagerScript : MonoBehaviour
     private void Start()
     {
 
+#pragma warning disable CS0219
+        string name = "OceanDefenderUnityProgram", mail = "oceandefender@oceandefender.dk", password = "MortenErSejereEndDinMor"; //Testing strings
+#pragma warning restore CS0219
+
+        Login = new LoginDTO(mail, password);
+
+    }
+
+    private void OnEnable()
+    {
+
         events = DataTransfer_SO.Instance;
+        events.resetEvent += ClearCache;
+
+    }
+
+
+    private void OnDisable()
+    {
+
+        loopRunning = false;
+        events.resetEvent -= ClearCache;
 
     }
 
@@ -366,20 +389,30 @@ public class WebManagerScript : MonoBehaviour
                     case WebRequest.GetKey:
                         ServerPublicKey = await GetPublicKey();
                         break;
-                        
-                        //      ------------------------------------------------------------------------------
-
-                    case WebRequest.AddHighscore:
-                    case WebRequest.AddAchievement:
                     case WebRequest.CreateUser:
+                        await CreateUserPost();
+                        break;
                     case WebRequest.Login:
+                        needsAttention = await PostLogin();
+                        break;
+                    case WebRequest.AddHighscore:
+                        await PostHighscore();
+                        break;
+                    case WebRequest.AddAchievement:
+                        await PostAchievement();
+                        break;
                     case WebRequest.OwnAchievements:
+                        needsAttention = await PostGetOwnAchievement();
+                        break;
                     case WebRequest.OwnHighscore:
+                        needsAttention = await PostGetOwnHighscore();
+                        break;
                     case WebRequest.ShowAchievements:
+                        needsAttention = await GetLastAchievements();
+                        break;
                     case WebRequest.ShowHighscores:
-
-                        //      ------------------------------------------------------------------------------
-
+                        needsAttention = await GetLeaderboard();
+                        break;
                     case WebRequest.Idle:
                     default:
                         if (Time.unscaledTime - timeSinceLastConnectionAttempt >= pingInterval && !requests.Contains(WebRequest.Ping))
@@ -401,7 +434,7 @@ public class WebManagerScript : MonoBehaviour
                 if (needsAttention != null)
                     ObjectHandler(needsAttention);
 
-                if (string.IsNullOrWhiteSpace(ServerPublicKey) && !requests.Contains(WebRequest.GetKey))
+                if (string.IsNullOrWhiteSpace(serverPublicKey) && currentRequest == WebRequest.Idle && !requests.Contains(WebRequest.GetKey))
                     Request = WebRequest.GetKey;
 
                 await Task.Delay(200);
@@ -434,6 +467,8 @@ public class WebManagerScript : MonoBehaviour
                 events.transmitScore?.Invoke(ownScore);
                 break;
             case UserReturnDTO userReturnDTO:
+                userReturnDTO.Email = Decrypt(userReturnDTO.Email);
+                userReturnDTO.Name = Decrypt(userReturnDTO.Name);
                 currentUser = userReturnDTO;
                 break;
             case List<AchievementDTO> achievementDTOs when achievementDTOs.Count > 0:
@@ -448,6 +483,7 @@ public class WebManagerScript : MonoBehaviour
                     events.transmitAchievements?.Invoke(achievementDTOs);
                 break;
             default:
+                Debug.LogError("Unknown DTO in ObjectHandler");
                 break;
         }
 
@@ -464,6 +500,39 @@ public class WebManagerScript : MonoBehaviour
         achievement = null;
 
     }
+
+
+    private string Decrypt(string input)
+    {
+
+        byte[] bytes = Convert.FromBase64String(input);
+
+        using (RSA rsa = RSA.Create())
+        {
+
+            rsa.FromXmlString(clientPrivateKey);
+            return Encoding.UTF8.GetString(rsa.Decrypt(bytes, RSAEncryptionPadding.Pkcs1));
+
+        }
+
+    }
+
+
+    private string Encrypt(string input)
+    {
+
+        byte[] bytes = Encoding.UTF8.GetBytes(input);
+
+        using (RSA rsa = RSA.Create())
+        {
+
+            rsa.FromXmlString(serverPublicKey);
+            return Convert.ToBase64String(rsa.Encrypt(bytes, RSAEncryptionPadding.Pkcs1));
+
+        }
+
+    }
+
 
     #region Tasks
 
@@ -499,104 +568,355 @@ public class WebManagerScript : MonoBehaviour
         await request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
-        {
-
-            Request = WebRequest.Idle;
             lastConnectionActive = true;
-
-        }
         else
             lastConnectionActive = false;
 
+        Request = WebRequest.Idle;
+
     }
 
-    #endregion
-    #endregion
 
-    /*
-
-    static async Task Main(string[] args)
+    private async Task CreateUserPost()
     {
 
-        CreateUserDTO newUser = new CreateUserDTO();
-
-        newUser.Email = "simon@test.dk";
-        newUser.Name = "SimonTest";
-        string password = "DetteErEnTest";
-
-        using (RSA rsa = RSA.Create())
+        if (createUser == null)
         {
 
-            rsa.FromXmlString(serverPublicKey);
-            newUser.Password = Convert.ToBase64String(rsa.Encrypt(Encoding.UTF8.GetBytes(password), RSAEncryptionPadding.Pkcs1));
+            Debug.LogWarning("createUser was null");
+            return;
 
         }
 
-        string response = await program.CreateUser(newUser);
+        createUser.Password = Encrypt(createUser.Password);
 
-        Console.WriteLine(response);
+        string json = JsonConvert.SerializeObject(createUser);
+        createUser = null;
+        byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
 
-        Console.ReadLine();
-
-        LoginDTO loginDTO = new LoginDTO();
-        loginDTO.Email = "simon@test.dk";
-        loginDTO.EncryptReturnKey = clientPublicKey;
-
-        using (RSA rsa = RSA.Create())
+        using (UnityWebRequest request = new UnityWebRequest(baseURL + endpoints[Endpoint.AddUser], "POST"))
         {
 
-            rsa.FromXmlString(serverPublicKey);
-            loginDTO.Password = Convert.ToBase64String(rsa.Encrypt(Encoding.UTF8.GetBytes(password), RSAEncryptionPadding.Pkcs1));
+            request.uploadHandler = new UploadHandlerRaw(jsonBytes) { contentType = "application/json" };
+            request.downloadHandler = new DownloadHandlerBuffer();
 
-        }
+            await request.SendWebRequest();
 
-        UserReturnDTO returnDTO = await program.Login(loginDTO);
-        string returnUser;
-        string returnEmail;
-
-        if (returnDTO == default)
-            Console.WriteLine("Login failed");
-        else
-        {
-
-            using (RSA rsa = RSA.Create())
+            if (request.result == UnityWebRequest.Result.Success)
             {
 
-                rsa.FromXmlString(clientPrivateKey);
-                returnUser = Encoding.UTF8.GetString(rsa.Decrypt(Convert.FromBase64String(returnDTO.Name), RSAEncryptionPadding.Pkcs1));
-                returnEmail = Encoding.UTF8.GetString(rsa.Decrypt(Convert.FromBase64String(returnDTO.Email), RSAEncryptionPadding.Pkcs1));
+                lastConnectionActive = true;
+                Debug.Log(request.downloadHandler.text);
+
+            }
+            else
+            {
+
+                Debug.LogError("Error creating user");
+                lastConnectionActive = false;
 
             }
 
-            Console.WriteLine($"{returnUser} with email: {returnEmail} - was successfully logged in");
+            Request = WebRequest.Idle;
 
         }
 
     }
 
-    private async Task<string> CreateUser(CreateUserDTO newUser)
+
+    private async Task<UserReturnDTO> PostLogin()
     {
 
-        HttpResponseMessage response = await client.PostAsJsonAsync(baseURL + endpoints[Endpoint.AddUser], newUser);
+        if (login == null)
+        {
 
-        return await response.Content.ReadAsStringAsync();
-
-    }
-
-
-    private async Task<UserReturnDTO> Login(LoginDTO login)
-    {
-
-        HttpResponseMessage response = await client.PostAsJsonAsync(baseURL + endpoints[Endpoint.Login], login);
-
-        if (response.IsSuccessStatusCode)
-            return await response.Content.ReadFromJsonAsync<UserReturnDTO>();
-        else
+            Debug.LogWarning("login credentials were null");
+            Request = WebRequest.Idle;
             return null;
 
+        }
+
+        login.Password = Encrypt(login.Password);
+        login.EncryptReturnKey = clientPublicKey;
+
+        string json = JsonConvert.SerializeObject(login);
+        login = null;
+        byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
+
+        using (UnityWebRequest request = new UnityWebRequest(baseURL + endpoints[Endpoint.Login], "POST"))
+        {
+
+            request.uploadHandler = new UploadHandlerRaw(jsonBytes) { contentType = "application/json" };
+            request.downloadHandler = new DownloadHandlerBuffer();
+
+            await request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+
+                lastConnectionActive = true;
+                Debug.Log(request.downloadHandler.text);
+                Request = WebRequest.Idle;
+                return JsonConvert.DeserializeObject<UserReturnDTO>(request.downloadHandler.text);
+
+            }
+            else
+            {
+
+                Debug.LogError("Login Error");
+                lastConnectionActive = false;
+
+            }
+
+        }
+
+        Request = WebRequest.Idle;
+        return null;
+
     }
 
-    */
+
+    private async Task PostHighscore()
+    {
+
+        if (highScore == null)
+        {
+
+            Debug.LogWarning("highscore was null");
+            return;
+
+        }
+
+        string json = JsonConvert.SerializeObject(highScore);
+        highScore = null;
+        byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
+
+        using (UnityWebRequest request = new UnityWebRequest(baseURL + endpoints[Endpoint.AddHighscore], "POST"))
+        {
+
+            request.uploadHandler = new UploadHandlerRaw(jsonBytes) { contentType = "application/json" };
+            request.downloadHandler = new DownloadHandlerBuffer();
+
+            await request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+
+                lastConnectionActive = true;
+                Debug.Log(request.downloadHandler.text);
+
+            }
+            else
+            {
+
+                Debug.LogError("Error posting highscore");
+                lastConnectionActive = false;
+
+            }
+
+            Request = WebRequest.Idle;
+
+        }
+
+    }
+
+
+    private async Task PostAchievement()
+    {
+
+        if (achievement == null)
+        {
+
+            Debug.LogWarning("achievement was null");
+            return;
+
+        }
+
+        string json = JsonConvert.SerializeObject(achievement);
+        achievement = null;
+        byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
+
+        using (UnityWebRequest request = new UnityWebRequest(baseURL + endpoints[Endpoint.AddAchievement], "POST"))
+        {
+
+            request.uploadHandler = new UploadHandlerRaw(jsonBytes) { contentType = "application/json" };
+            request.downloadHandler = new DownloadHandlerBuffer();
+
+            await request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+
+                lastConnectionActive = true;
+                Debug.Log(request.downloadHandler.text);
+
+            }
+            else
+            {
+
+                Debug.LogError("Error posting achievement");
+                lastConnectionActive = false;
+
+            }
+
+            Request = WebRequest.Idle;
+
+        }
+
+    }
+
+
+    private async Task<List<AchievementDTO>> PostGetOwnAchievement()
+    {
+
+        if (currentUser == null)
+        {
+
+            Debug.Log("No user logged in");
+            Request = WebRequest.Idle;
+            return null;
+
+        }
+
+        string json = JsonConvert.SerializeObject(currentUser);
+        byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
+
+        using (UnityWebRequest request = new UnityWebRequest(baseURL + endpoints[Endpoint.OwnAchievements], "POST"))
+        {
+
+            request.uploadHandler = new UploadHandlerRaw(jsonBytes) { contentType = "application/json" };
+            request.downloadHandler = new DownloadHandlerBuffer();
+
+            await request.SendWebRequest();
+
+            own = true;
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+
+                lastConnectionActive = true;
+                Debug.Log(request.downloadHandler.text);
+                Request = WebRequest.Idle;
+                return JsonConvert.DeserializeObject<List<AchievementDTO>>(request.downloadHandler.text);
+
+            }
+            else
+            {
+
+                Debug.LogError("Error getting own achievements");
+                lastConnectionActive = false;
+
+            }
+
+        }
+
+        Request = WebRequest.Idle;
+        return null;
+
+    }
+
+
+    private async Task<List<AchievementDTO>> GetLastAchievements()
+    {
+
+        using UnityWebRequest request = UnityWebRequest.Get(baseURL + endpoints[Endpoint.AchievementsEarned]);
+        await request.SendWebRequest();
+
+        Request = WebRequest.Idle;
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+
+            lastConnectionActive = true;
+            return JsonConvert.DeserializeObject<List<AchievementDTO>>(request.downloadHandler.text);
+
+        }
+        else
+        {
+
+            lastConnectionActive = false;
+            return null;
+
+        }
+
+    }
+
+
+    private async Task<HighScoreDTO> PostGetOwnHighscore()
+    {
+
+        if (currentUser == null)
+        {
+
+            Debug.Log("No user logged in");
+            Request = WebRequest.Idle;
+            return null;
+
+        }
+
+        string json = JsonConvert.SerializeObject(currentUser);
+        byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
+
+        using (UnityWebRequest request = new UnityWebRequest(baseURL + endpoints[Endpoint.OwnHighscore], "POST"))
+        {
+
+            request.uploadHandler = new UploadHandlerRaw(jsonBytes) { contentType = "application/json" };
+            request.downloadHandler = new DownloadHandlerBuffer();
+
+            await request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+
+                lastConnectionActive = true;
+                Debug.Log(request.downloadHandler.text);
+                Request = WebRequest.Idle;
+                return JsonConvert.DeserializeObject<HighScoreDTO>(request.downloadHandler.text);
+
+            }
+            else
+            {
+
+                Debug.LogError("Error getting own highscore");
+                lastConnectionActive = false;
+
+            }
+
+        }
+
+        Request = WebRequest.Idle;
+        return null;
+
+    }
+
+
+    private async Task<List<HighScoreDTO>> GetLeaderboard()
+    {
+
+        using UnityWebRequest request = UnityWebRequest.Get(baseURL + endpoints[Endpoint.Leaderboard]);
+        await request.SendWebRequest();
+
+        Request = WebRequest.Idle;
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+
+            lastConnectionActive = true;
+            return JsonConvert.DeserializeObject<List<HighScoreDTO>>(request.downloadHandler.text);
+
+        }
+        else
+        {
+
+            lastConnectionActive = false;
+            return null;
+
+        }
+
+    }
+
+    #endregion
+    #endregion
 
 }
 
@@ -640,12 +960,12 @@ public class LoginDTO : ISendableDTO
     public string EncryptReturnKey { get; set; }
 
 
-    public LoginDTO(string email, string password) 
-    {  
-        
-        Email = email; 
-        Password = password; 
-    
+    public LoginDTO(string email, string password)
+    {
+
+        Email = email;
+        Password = password;
+
     }
 
 }

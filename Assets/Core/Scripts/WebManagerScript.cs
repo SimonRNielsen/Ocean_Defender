@@ -5,19 +5,22 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-
 #region RequestForms
 
 public enum WebRequest
 {
 
-    None,
+    Idle,
     GetKey,
     Ping,
     AddHighscore,
     AddAchievement,
     CreateUser,
-    Login
+    Login,
+    OwnAchievements,
+    OwnHighscore,
+    ShowAchievements,
+    ShowHighscores
 
 }
 
@@ -33,7 +36,7 @@ public class WebManagerScript : MonoBehaviour
 #pragma warning disable CS0414
     private static bool lastConnectionActive = false;
 #pragma warning restore CS0414
-    private static bool loopRunning = false, own = false;
+    private static bool loopRunning = false, own = false, approved = false, showHighScores = false, showAchievements = true, chatActive = false;
     private static float timeSinceLastConnectionAttempt;
     private static string serverPublicKey, clientPrivateKey, clientPublicKey;
     private static List<WebRequest> requests = new List<WebRequest>();
@@ -44,15 +47,16 @@ public class WebManagerScript : MonoBehaviour
     private static HighScoreDTO highScore = null;
     private static AchievementDTO achievement = null;
     private static DataTransfer_SO events;
+    private static readonly object transitionLock = new object();
     private static Dictionary<Endpoint, string> endpoints = new Dictionary<Endpoint, string>
         {
 
             { Endpoint.PublicKey , "UserListing/publickey" },
             { Endpoint.AddUser , "UserListing/add" },
             { Endpoint.Login , "UserListing/login" },
-            { Endpoint.ClearUsers , "UserListing/clear" },
-            { Endpoint.TestReadUsers , "UserListing/testreader" },
-            { Endpoint.ClearScoresAndAchievements , "AchievementListing/clear" },
+            // { Endpoint.ClearUsers , "UserListing/clear" },
+            // { Endpoint.TestReadUsers , "UserListing/testreader" },
+            // { Endpoint.ClearScoresAndAchievements , "AchievementListing/clear" },
             { Endpoint.AddAchievement , "AchievementListing/addachievement" },
             { Endpoint.OwnAchievements , "AchievementListing/getownachievements" },
             { Endpoint.AchievementsEarned, "AchievementListing/achievementsearned" },
@@ -62,6 +66,15 @@ public class WebManagerScript : MonoBehaviour
             { Endpoint.Ping , "UserListing/ping" }
 
         };
+    private static List<WebRequest> requiresData = new List<WebRequest>
+    {
+
+        WebRequest.Login,
+        WebRequest.CreateUser,
+        WebRequest.AddHighscore,
+        WebRequest.AddAchievement,
+
+    };
 
     #endregion
     #region Properties
@@ -73,16 +86,82 @@ public class WebManagerScript : MonoBehaviour
         set
         {
 
-            if (value != currentRequest)
+            lock (transitionLock)
             {
 
-                timeSinceLastConnectionAttempt = Time.unscaledTime;
-                if (currentRequest == WebRequest.None)
-                    currentRequest = value;
-                else if (!requests.Contains(value))
-                    requests.Add(value);
+                if ((requiresData.Contains(value) && !approved) || (currentUser == null && (value == WebRequest.OwnAchievements || value == WebRequest.OwnHighscore)))
+                {
+
+                    Debug.LogError("Invalid request added, needs data");
+                    return;
+
+                }
+
+                if (value != currentRequest)
+                {
+
+                    timeSinceLastConnectionAttempt = Time.unscaledTime;
+                    if (currentRequest == WebRequest.Idle)
+                        currentRequest = value;
+                    else if (!requests.Contains(value))
+                        requests.Add(value);
+
+                }
+
+                approved = false;
 
             }
+
+        }
+
+    }
+
+
+    public static bool ShowHighscore
+    {
+
+        get => showHighScores;
+        set
+        {
+
+            if (value)
+                showAchievements = false;
+
+            showHighScores = value;
+
+        }
+
+    }
+
+
+    public static bool ShowAchievement
+    {
+
+        get => showAchievements;
+        set
+        {
+
+            if (value)
+                showHighScores = false;
+
+            showAchievements = value;
+
+        }
+
+    }
+
+
+    public static bool ChatActive
+    {
+
+        get => chatActive;
+        set
+        {
+
+            if (value && !showAchievements && !showHighScores)
+                showAchievements = true;
+
+            chatActive = value;
 
         }
 
@@ -97,7 +176,7 @@ public class WebManagerScript : MonoBehaviour
         {
 
             if (currentRequest == WebRequest.GetKey && !string.IsNullOrEmpty(value))
-                currentRequest = WebRequest.None;
+                Request = WebRequest.Idle;
 
             serverPublicKey = value;
 
@@ -109,65 +188,80 @@ public class WebManagerScript : MonoBehaviour
     public static bool ConnectionRunning { get => lastConnectionActive; }
 
 
-    public static HighScoreDTO HighScore
+    private static HighScoreDTO HighScore
     {
 
         set
         {
 
             highScore = value;
-            Request = WebRequest.AddHighscore;
 
-            if (highScore == null && requests.Contains(WebRequest.AddHighscore))
+            bool pending = requests.Contains(WebRequest.AddHighscore);
+
+            if (highScore == null && pending)
                 requests.Remove(WebRequest.AddHighscore);
+            else if (!pending)
+                requests.Add(WebRequest.AddHighscore);
 
         }
 
     }
 
 
-    public static AchievementDTO Achievement
+    private static AchievementDTO Achievement
     {
 
         set
         {
 
             achievement = value;
-            Request = WebRequest.AddAchievement;
 
-            if (achievement == null && requests.Contains(WebRequest.AddAchievement))
+            bool pending = requests.Contains(WebRequest.AddAchievement);
+
+            if (achievement == null && pending)
                 requests.Remove(WebRequest.AddAchievement);
+            else if (!pending)
+                requests.Add(WebRequest.AddAchievement);
 
         }
 
     }
 
 
-    public static CreateUserDTO CreateUser
+    private static CreateUserDTO CreateUser
     {
 
         set
         {
 
             createUser = value;
-            Request = WebRequest.CreateUser;
 
-            if (createUser == null && requests.Contains(WebRequest.CreateUser))
+            bool pending = requests.Contains(WebRequest.CreateUser);
+
+            if (createUser == null && pending)
                 requests.Remove(WebRequest.CreateUser);
+            else if (!pending)
+                requests.Add(WebRequest.CreateUser);
 
         }
 
     }
 
 
-    public static LoginDTO Login
+    private static LoginDTO Login
     {
 
         set
         {
 
             login = value;
-            Request = WebRequest.Login;
+
+            bool pending = requests.Contains(WebRequest.Login);
+
+            if (login == null && pending)
+                requests.Remove(WebRequest.Login);
+            else if (!pending)
+                requests.Add(WebRequest.Login);
 
         }
 
@@ -182,6 +276,8 @@ public class WebManagerScript : MonoBehaviour
 
     private async void Awake()
     {
+
+        DontDestroyOnLoad(gameObject);
 
         timeSinceLastConnectionAttempt = Time.unscaledTime;
 
@@ -207,6 +303,34 @@ public class WebManagerScript : MonoBehaviour
     }
 
 
+    public static void RequestWithData<T>(T obj) where T : ISendableDTO
+    {
+
+        switch (obj)
+        {
+            case CreateUserDTO createUserDTO when !string.IsNullOrWhiteSpace(createUserDTO.Password) && !string.IsNullOrWhiteSpace(createUserDTO.Email) && !string.IsNullOrWhiteSpace(createUserDTO.Name):
+                CreateUser = createUserDTO;
+                break;
+            case LoginDTO loginDTO when !string.IsNullOrWhiteSpace(loginDTO.Email) && !string.IsNullOrWhiteSpace(loginDTO.Password):
+                loginDTO.EncryptReturnKey = clientPublicKey;
+                Login = loginDTO;
+                break;
+            case AchievementDTO achievementDTO when !string.IsNullOrWhiteSpace(achievementDTO.UserName) && !string.IsNullOrWhiteSpace(achievementDTO.UserEmail):
+                achievementDTO.Date = DateTime.UtcNow;
+                Achievement = achievementDTO;
+                break;
+            case HighScoreDTO highScoreDTO when !string.IsNullOrWhiteSpace(highScoreDTO.UserName) && !string.IsNullOrWhiteSpace(highScoreDTO.UserEmail) && highScoreDTO.Score > 0:
+                highScoreDTO.Date = DateTime.UtcNow;
+                HighScore = highScoreDTO;
+                break;
+            default:
+                Debug.LogError("RequestWithData object contained/was null data, or missing handle logic");
+                break;
+        }
+
+    }
+
+
     private async Task TaskHandler()
     {
 
@@ -218,11 +342,17 @@ public class WebManagerScript : MonoBehaviour
             try
             {
 
-                if (currentRequest == WebRequest.None && requests.Count > 0)
+                if (currentRequest == WebRequest.Idle && requests.Count > 0)
                 {
 
-                    Request = requests[0];
-                    requests.RemoveAt(0);
+                    lock (transitionLock)
+                    {
+
+                        approved = true;
+                        Request = requests[0];
+                        requests.RemoveAt(0);
+
+                    }
 
                 }
 
@@ -236,10 +366,35 @@ public class WebManagerScript : MonoBehaviour
                     case WebRequest.GetKey:
                         ServerPublicKey = await GetPublicKey();
                         break;
-                    case WebRequest.None:
+                        
+                        //      ------------------------------------------------------------------------------
+
+                    case WebRequest.AddHighscore:
+                    case WebRequest.AddAchievement:
+                    case WebRequest.CreateUser:
+                    case WebRequest.Login:
+                    case WebRequest.OwnAchievements:
+                    case WebRequest.OwnHighscore:
+                    case WebRequest.ShowAchievements:
+                    case WebRequest.ShowHighscores:
+
+                        //      ------------------------------------------------------------------------------
+
+                    case WebRequest.Idle:
                     default:
                         if (Time.unscaledTime - timeSinceLastConnectionAttempt >= pingInterval && !requests.Contains(WebRequest.Ping))
-                            Request = WebRequest.Ping;
+                            switch (chatActive)
+                            {
+                                case true when showAchievements:
+                                    Request = WebRequest.ShowAchievements;
+                                    break;
+                                case true when showHighScores:
+                                    Request = WebRequest.ShowHighscores;
+                                    break;
+                                default:
+                                    Request = WebRequest.Ping;
+                                    break;
+                            }
                         break;
                 }
 
@@ -346,7 +501,7 @@ public class WebManagerScript : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
 
-            currentRequest = WebRequest.None;
+            Request = WebRequest.Idle;
             lastConnectionActive = true;
 
         }
@@ -472,7 +627,7 @@ public enum Endpoint
 /// <summary>
 /// Data transfer object with data needed for logging in
 /// </summary>
-public class LoginDTO
+public class LoginDTO : ISendableDTO
 {
 
 
@@ -485,12 +640,20 @@ public class LoginDTO
     public string EncryptReturnKey { get; set; }
 
 
+    public LoginDTO(string email, string password) 
+    {  
+        
+        Email = email; 
+        Password = password; 
+    
+    }
+
 }
 
 /// <summary>
 /// Data transfer object with data pertinent for creating a new user
 /// </summary>
-public class CreateUserDTO
+public class CreateUserDTO : ISendableDTO
 {
 
 
@@ -501,6 +664,16 @@ public class CreateUserDTO
 
 
     public string Password { get; set; }
+
+
+    public CreateUserDTO(string name, string email, string password)
+    {
+
+        Name = name;
+        Email = email;
+        Password = password;
+
+    }
 
 }
 
@@ -521,7 +694,7 @@ public class UserReturnDTO
 /// <summary>
 /// Data storage class for saving information pertinent for a earned achievement
 /// </summary>
-public class AchievementDTO
+public class AchievementDTO : ISendableDTO
 {
 
 
@@ -536,12 +709,21 @@ public class AchievementDTO
 
     public int AchievementID { get; set; }
 
+
+    public AchievementDTO(string userName, string userEmail, int achievementID)
+    {
+
+        UserName = userName;
+        UserEmail = userEmail;
+        AchievementID = achievementID;
+
+    }
 }
 
 /// <summary>
 /// Data storage class for saving information pertinent for a highscore
 /// </summary>
-public class HighScoreDTO
+public class HighScoreDTO : ISendableDTO
 {
 
 
@@ -555,6 +737,22 @@ public class HighScoreDTO
 
 
     public int Score { get; set; }
+
+
+    public HighScoreDTO(string userName, string userEmail, int score)
+    {
+
+        UserName = userName;
+        UserEmail = userEmail;
+        Score = score;
+
+    }
+
+}
+
+
+public interface ISendableDTO
+{
 
 }
 

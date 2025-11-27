@@ -81,7 +81,9 @@ public class WebManagerScript : MonoBehaviour
     #endregion
     #region Properties
 
-
+    /// <summary>
+    /// Set to request data from server except for requests needing data (Create user, Login, Add Achievement, Add Highscore) - use "RequestWithData" for this instead
+    /// </summary>
     public static WebRequest Request
     {
 
@@ -115,7 +117,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Set if chat is set to show leaderboard
+    /// </summary>
     public static bool ShowHighscore
     {
 
@@ -132,7 +136,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Set if chat is set to show achievements
+    /// </summary>
     public static bool ShowAchievement
     {
 
@@ -149,7 +155,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Set if "chat" is active
+    /// </summary>
     public static bool ChatActive
     {
 
@@ -182,7 +190,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Checks if last connection was successful
+    /// </summary>
     public static bool ConnectionRunning { get => lastConnectionActive; }
 
 
@@ -269,8 +279,10 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
-    public static UserReturnDTO CurrentUser { get => currentUser; set => currentUser = value; }
+    /// <summary>
+    /// Info on currently logged in user
+    /// </summary>
+    public static UserReturnDTO CurrentUser { get => currentUser; }
 
     #endregion
     #region Methods
@@ -325,7 +337,11 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Method to send requests needing data (Create user, Login, Add Achievement, Add Highscore)
+    /// </summary>
+    /// <typeparam name="T">Generic object type</typeparam>
+    /// <param name="obj">Object needed for sending requests</param>
     public static void RequestWithData<T>(T obj) where T : ISendableDTO
     {
 
@@ -489,7 +505,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Clears data of any DTOs or logged in user - can also be triggeded with DataTransfer_SO.resetEvent?.Invoke()
+    /// </summary>
     public static void ClearCache()
     {
 

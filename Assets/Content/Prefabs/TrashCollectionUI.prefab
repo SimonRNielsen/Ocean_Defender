@@ -68,5 +68,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d52ab98cb162994bade00fa5493c177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrashCollectionScoreScript
-  defaultLabelText: "0 / 100000 \xE5rs affald fjernet"
-  goalScore: 100000
+  defaultLabelText: "0 \xE5rs affald fjernet"

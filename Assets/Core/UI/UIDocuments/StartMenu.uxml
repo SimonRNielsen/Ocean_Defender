@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="Background" style="flex-grow: 1; background-image: none;">
-        <ui:VisualElement name="TopBorder" style="flex-grow: 1; height: 10%;" />
+    <ui:VisualElement name="Background" style="flex-grow: 1; background-image: none; width: 1280px; height: 720px;">
+        <ui:VisualElement name="TopBorder" style="flex-grow: 1; height: 40%;" />
         <ui:VisualElement name="MiddleFrame" style="flex-grow: 1; height: 80%; flex-direction: row; align-items: center;">
             <ui:VisualElement name="LeftBorder" style="flex-grow: 1; width: 10%; left: auto; align-self: flex-start; align-items: stretch; height: 100%;" />
             <ui:VisualElement name="Centre" style="flex-grow: 1; width: 80%; align-self: center; position: relative; align-items: center; height: 100%; -unity-background-scale-mode: scale-to-fit; align-content: center;">

@@ -637,7 +637,6 @@ public class WebManagerScript : MonoBehaviour
         }
 
         login.Password = Encrypt(login.Password);
-        login.EncryptReturnKey = clientPublicKey;
 
         string json = JsonConvert.SerializeObject(login);
         login = null;

@@ -312,11 +312,7 @@ public class WebManagerScript : MonoBehaviour
     private void Start()
     {
 
-#pragma warning disable CS0219
-        string name = "OceanDefenderUnityProgram", mail = "oceandefender@oceandefender.dk", password = "MortenErSejereEndDinMor"; //Testing strings
-#pragma warning restore CS0219
-
-        Login = new LoginDTO(mail, password);
+        //string name = "OceanDefenderUnityProgram", mail = "oceandefender@oceandefender.dk", password = "MortenErSejereEndDinMor"; //Testing strings
 
     }
 

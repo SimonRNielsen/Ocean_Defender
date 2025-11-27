@@ -77,8 +77,8 @@ MonoBehaviour:
   textOpaque: 0
   backgroundOpaque: 0
   margin: 20
-  verticalPlacement: 0
-  horizontalPlacement: 2
+  verticalPlacement: 2
+  horizontalPlacement: 1
   turnBarIntoLabel: 0
   displayText: 1
   roundOverSprite: {fileID: 0}

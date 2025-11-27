@@ -34,7 +34,7 @@ public class TrashCollectionScoreScript : MonoBehaviour
     /// <param name="amount"></param>
     public IEnumerator ShowScoreAmount(int amount)
     {
-        scoreAmountLabel.text = ("+ " + amount);
+        scoreAmountLabel.text = ("+" + amount);
         scoreAmountLabel.SetEnabled(true);
         yield return new WaitForSeconds(1f);
         scoreAmountLabel.SetEnabled(false);

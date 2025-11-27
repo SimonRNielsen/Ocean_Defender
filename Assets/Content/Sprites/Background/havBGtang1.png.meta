@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: a72aa18a874f96a4c954499f4861aa8e
+guid: 8c7db0b535c79ac46b92710319b41f8b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3520050170538060725
-    second: trashcanOpen__0
-  - first:
-      213: 8674897261683825998
-    second: trashcanOpen__1
+      213: 2923200532797094966
+    second: havBGtang1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: trashcanOpen__0
+      name: havBGtang1_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 3
-        width: 405
-        height: 350
+        x: 3
+        y: 0
+        width: 256
+        height: 477
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5bb6976eafab9d030800000000000000
-      internalID: 3520050170538060725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: trashcanOpen__1
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 348
-        width: 410
-        height: 190
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e4d5ca1191d636870800000000000000
-      internalID: 8674897261683825998
+      spriteID: 63c7a94956b419820800000000000000
+      internalID: 2923200532797094966
       vertices: []
       indices: 
       edges: []
@@ -163,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      trashcanOpen__0: 3520050170538060725
-      trashcanOpen__1: 8674897261683825998
+      havBGtang1_0: 2923200532797094966
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

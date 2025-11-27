@@ -1,10 +1,24 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 
 public class StaticObject : MonoBehaviour, IClickable
 {
     #region Field
+    //The Rigidbody for this Gameobject
     private Rigidbody2D rb;
-    //private SpriteRenderer rbSprite;
+    //To check if the GameObject is planted
+    private bool isPlant = false;
+
+    //The GameObject of the collision
+    private GameObject go;
+
+    [SerializeField, Tooltip("The sprite for when the eelgrass is planted")]
+    public Sprite plantedEelgrass;
+    //SpriteRenderer for the plantedEelgrass
+    private SpriteRenderer rbSprite;
+    private float spriteHeight;
+
     #endregion
 
     #region Properties
@@ -15,98 +29,66 @@ public class StaticObject : MonoBehaviour, IClickable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //Getting the component Rigidbody2D to make the GameObject move around
         rb = GetComponent<Rigidbody2D>();
 
-        //rbSprite = GetComponent<SpriteRenderer>();
+        if (plantedEelgrass != null)
+        {
+            rbSprite = GetComponent<SpriteRenderer>();
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void OnPrimaryClick()
     {
-        //throw new System.NotImplementedException();
+        
     }
 
     public void OnPrimaryHold(Vector3 movement)
     {
-        //Can move the object while it's hold
-        rb.position += (Vector2)movement;
+        //Can move the object while it's hold if plant is false and isn't planted
+        if (isPlant == false)
+        {
+            rb.position += (Vector2)movement;
+        }
     }
 
     public void OnPrimaryRelease()
     {
-        //throw new System.NotImplementedException();
+        //If the GameObject is going to be planted
+        if (isPlant == true && rbSprite != null)
+        {
+            //Change the spirte
+            rbSprite.sprite = plantedEelgrass;
+
+            this.transform.localScale = Vector3.one * 0.15f;
+            //Get the of the sprite
+            spriteHeight = rbSprite.size.y * 0.15f;
+
+
+            //Setting the position on top og the hole where it is planted
+            this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0, spriteHeight / 2);
+        }
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    Debug.Log("Collision");
-
-    //    Debug.LogAssertion("Collision");
-
-    //    GameObject go = collision.gameObject;
-
-    //    if (go != null)
-    //        Debug.LogWarning("No object found");
-
-    //    SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
-
-    //    if (spriteRenderer != null)
-    //    {
-    //        spriteRenderer.color = Color.green;
-    //    }
-    //}
-
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-
-    //    GameObject go = collision.gameObject;
-
-    //    SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
-
-    //    if (spriteRenderer != null)
-    //    {
-    //        spriteRenderer.color = Color.yellow;
-    //    }
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision on");
-
-        Debug.LogAssertion("Collision on");
-
-
-        GameObject go = collision.gameObject;
-
-        if (go != null)
-            Debug.LogWarning("No object found");
-        SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
-
-        if (spriteRenderer != null)
+        //If collision is between a Hole and EelgrasNail the Eelgrass will be planted in the Hole
+        if (collision.CompareTag("Hole") == true && this.tag == "EelgrassNail")
         {
-            spriteRenderer.color = Color.red;
+            go = collision.gameObject;
+            isPlant = true;
+            OnPrimaryRelease();
+
+            //Changing the collision tag so there can't be planted another Eelgrass in the same Hole
+            collision.gameObject.tag = "Untagged";
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Debug.Log("Collision off");
-
-        Debug.LogAssertion("Collision off");
-
-
-        GameObject go = collision.gameObject;
-
-        SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
-
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = Color.blue;
-        }
-    }
     #endregion
 }

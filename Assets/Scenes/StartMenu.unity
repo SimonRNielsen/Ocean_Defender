@@ -296,11 +296,11 @@ PrefabInstance:
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[2].buttonPicture
       value: 
-      objectReference: {fileID: 2949857681622141484, guid: 715466e0743c613419720536e20aa79d, type: 3}
+      objectReference: {fileID: -582033777381683148, guid: 6d006be50484b6743b2657a25391a4c8, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[3].buttonPicture
       value: 
-      objectReference: {fileID: 2184272265985713294, guid: bfe2655b7241dd04b873960f2e4372b9, type: 3}
+      objectReference: {fileID: 2949857681622141484, guid: 715466e0743c613419720536e20aa79d, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[4].buttonPicture
       value: 

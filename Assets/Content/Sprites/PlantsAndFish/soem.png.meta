@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 96ad13aca57e9074fb6b683fa7afcb14
+guid: 692b061b23145e9419436eccf0163570
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8562977285269585924
-    second: eelgrass_som2_0
+      213: 24343697886704128
+    second: soem_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: eelgrass_som2_0
+      name: soem_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1740
-        height: 1192
+        width: 176
+        height: 189
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cff74c317813a2980800000000000000
-      internalID: -8562977285269585924
+      spriteID: 0027e09d67c765000800000000000000
+      internalID: 24343697886704128
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      eelgrass_som2_0: -8562977285269585924
+      soem_0: 24343697886704128
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

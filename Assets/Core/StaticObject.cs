@@ -19,6 +19,9 @@ public class StaticObject : MonoBehaviour, IClickable
     private SpriteRenderer rbSprite;
     private float spriteHeight;
 
+
+
+    private bool inCollision = false;
     #endregion
 
     #region Properties
@@ -42,20 +45,20 @@ public class StaticObject : MonoBehaviour, IClickable
     // Update is called once per frame
     void Update()
     {
-
+        Debug.LogWarning(inCollision);
     }
     public void OnPrimaryClick()
     {
-        
+
     }
 
     public void OnPrimaryHold(Vector3 movement)
     {
         //Can move the object while it's hold if plant is false and isn't planted
-        if (isPlant == false)
-        {
-            rb.position += (Vector2)movement;
-        }
+        //if (inCollision == false)
+        //{
+        rb.position += (Vector2)movement;
+        //}
     }
 
     public void OnPrimaryRelease()
@@ -68,28 +71,36 @@ public class StaticObject : MonoBehaviour, IClickable
 
             this.transform.localScale = Vector3.one * 0.15f;
             //Get the of the sprite
-            spriteHeight = rbSprite.size.y * 0.15f;
+            spriteHeight = rbSprite.size.y /** 0.15f*/;
 
-
+            Debug.LogWarning(spriteHeight);
             //Setting the position on top og the hole where it is planted
-            this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0, spriteHeight / 2);
+            this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0, (spriteHeight / 2) * 0.15f);
 
             go.tag = "Untagged";
+
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //If collision is between a Hole and EelgrasNail the Eelgrass will be planted in the Hole
+        inCollision = true;
+
         if (collision.CompareTag("Hole") == true && this.tag == "EelgrassNail")
         {
             go = collision.gameObject;
             isPlant = true;
-            //OnPrimaryRelease();
 
             //Changing the collision tag so there can't be planted another Eelgrass in the same Hole
-            //collision.gameObject.tag = "Untagged";
+            collision.gameObject.tag = "Untagged";
         }
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isPlant = false;
+        inCollision = false;
     }
 
     #endregion

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 8389161616124391016}
   - component: {fileID: 6045367268428161867}
   - component: {fileID: 3298044733546882312}
+  - component: {fileID: -6497318454287862706}
   m_Layer: 3
   m_Name: stribetFisk
   m_TagString: Untagged
@@ -170,6 +171,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-6497318454287862706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3594803031695339822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190f68e7534711c40890b8b82c3e590c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FishMovement
+  speed: 3
+  rightBorder: 12
+  leftBorder: -12
+  waitMin: 5
+  waitMax: 10
 --- !u!1 &5945882246366672637
 GameObject:
   m_ObjectHideFlags: 0

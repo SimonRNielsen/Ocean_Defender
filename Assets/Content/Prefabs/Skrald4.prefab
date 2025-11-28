@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -123684870135785439, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: score
-      value: 500
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: -123684870135785439, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: scoreCounter
@@ -57,9 +57,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3380310965225219088, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380310965225219088, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_Size.y
+      value: 3.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380310965225219088, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4236749984606314760, guid: b01b50cfe24e2f044b20cf5b9dee8134, type: 3}
+      objectReference: {fileID: -2956611287795785565, guid: bb52d1d3329669e44a9ef2652a998ad3, type: 3}
+    - target: {fileID: 3380310965225219088, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4022597561578220288, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 6.85
@@ -73,12 +85,16 @@ PrefabInstance:
       value: Skrald4
       objectReference: {fileID: 0}
     - target: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_TagString
       value: Trash
       objectReference: {fileID: 0}
     - target: {fileID: 7932277246039291923, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_Mass
-      value: 0.05
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 7932277246039291923, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_BodyType
@@ -86,7 +102,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7932277246039291923, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_GravityScale
-      value: 0.05
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932277246039291923, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_AngularDamping
+      value: 0.08
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4022597561578220288, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
@@ -95,15 +115,39 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -8960721651352475476}
+      addedObject: {fileID: 86267128136842916}
+    - targetCorrespondingSourceObject: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6796963668464178011}
+    - targetCorrespondingSourceObject: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 522310068707064421}
   m_SourcePrefab: {fileID: 100100000, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
 --- !u!1 &1772657576514738935 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
   m_PrefabInstance: {fileID: 8301177984146526560}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &-8960721651352475476
-BoxCollider2D:
+--- !u!114 &86267128136842916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772657576514738935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29eb4c8b49efd184f8426b314212f69d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrashFloatOrganic
+  horizontalStrength: 1
+  verticalWobbleStrength: 0.2
+  horizontalSpeed: 0.5
+  verticalSpeed: 0.8
+  rotationStrength: 30
+  rotationSpeed: 0.8
+--- !u!70 &6796963668464178011
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,7 +162,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -136,15 +180,43 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.89901924, y: 0.7463557}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.85, y: 4.73}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 5.051962, y: 1.8463534}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: -0.3705616}
+  m_Size: {x: 0.7246065, y: 2.14809}
+  m_Direction: 0
+--- !u!70 &522310068707064421
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772657576514738935}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 1.0223596}
+  m_Size: {x: 0.28865147, y: 0.8880901}
+  m_Direction: 0

@@ -156,7 +156,7 @@ public class LoginUIScript : MonoBehaviour
         {
             if (WebManagerScript.CurrentUser == null)
             {
-                WebManagerScript.RequestWithData<CreateUserDTO>(new CreateUserDTO(createUserEmailTextField.value, createUserUserNameTextField.value, createUserPasswordTextField.value));
+                WebManagerScript.RequestWithData<CreateUserDTO>(new CreateUserDTO(createUserUserNameTextField.value, createUserEmailTextField.value, createUserPasswordTextField.value));
                 Debug.Log($"Created user with: \nEmail: {createUserEmailTextField.value}\nUsername: {createUserUserNameTextField.value}\nPassword: {createUserPasswordTextField.value}");
             }
             else

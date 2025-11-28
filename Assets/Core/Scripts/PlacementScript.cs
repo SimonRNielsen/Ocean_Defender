@@ -22,22 +22,29 @@ public class PlacementScript : MonoBehaviour
         {
             ConnectThem();
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collisions.Add(collision);
+        if (collision.tag == "Nail" || collision.tag == "Eelgrass")
+        {
+            collisions.Add(collision);
 
-        objects.Add(collision.gameObject);
+            objects.Add(collision.gameObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collisions.Remove(collision);
+        if (collision.tag == "Nail" || collision.tag == "Eelgrass")
+        {
+            collisions.Remove(collision);
 
-        objects.Remove(collision.gameObject);
+            objects.Remove(collision.gameObject);
 
-        timer = 0f;
+            timer = 0f;
+        }
     }
 
     private void ConnectThem()
@@ -51,8 +58,6 @@ public class PlacementScript : MonoBehaviour
                 objects[objects.Count - 1].gameObject.SetActive(false);
             }
 
-            
-
             SpawnConnetedEelgrass();
 
             this.gameObject.SetActive(false);
@@ -62,8 +67,8 @@ public class PlacementScript : MonoBehaviour
 
     private void SpawnConnetedEelgrass()
     {
-            eelgrassWithNail.SetActive(true);
-            eelgrassWithNail.transform.position = Vector2.zero;
+        eelgrassWithNail.SetActive(true);
+        eelgrassWithNail.transform.position = Vector2.zero;
 
     }
 }

@@ -50,8 +50,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4849173009468229747, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
       propertyPath: m_Name
-      value: Achievement
+      value: EelgrassAchievement
       objectReference: {fileID: 0}
+    - target: {fileID: 7663489181192434790, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1520512763418365247, guid: bf8af80cc513f304dbb2231df64539f0, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

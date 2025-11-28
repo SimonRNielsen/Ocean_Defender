@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class QuizManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class QuizManager : MonoBehaviour
     public GameObject questionPrefab;
     public GameObject resultPrefab;
     public Transform questionParent;
+    public QuizController quizController;
     
 
     int questionIndex = 0;
@@ -43,27 +45,8 @@ public class QuizManager : MonoBehaviour
     {
         Debug.Log(correct ? "Correct!" : "Wrong!");
 
-        if (correct)
-        {
-            correctCount++;
-        }
-
-        //Clean the last panel
-        foreach (Transform child in questionParent)
-        {
-            Destroy(child.gameObject);
-        }
-
-        //Go to next question
-        questionIndex++;
-
-        if (questionIndex >= quizData.questions.Length)
-        {
-            ShowResult();
-            return;
-        }
-
-        ShowQuestion();
+        StartCoroutine(HandleAnswer(correct));
+        //ShowQuestion();
     }
 
     public void ShowResult()
@@ -71,6 +54,56 @@ public class QuizManager : MonoBehaviour
         GameObject panel = Instantiate(resultPrefab, questionParent);
         var ui = panel.GetComponent<ResultPanelUI>();
         ui.SetUp(correctCount, quizData.questions.Length, this);
+
+        StartCoroutine(CloseQuizAfterDelay());
+    }
+
+    private IEnumerator CloseQuizAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(2f); //Realtid - Timescale doesnt work on this
+        quizController.QuizEnded();
+    }
+    private IEnumerator HandleAnswer(bool correct)
+    {
+        //Wait for 2 sekunds
+        yield return new WaitForSeconds(2f);
+
+        if (correct)
+        {
+            correctCount++;
+        }
+
+        //Remove last panel
+        foreach (Transform child in questionParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        //Go to next question 
+        questionIndex++;
+
+        if (questionIndex >= quizData.questions.Length)
+        {
+            ShowResult();
+        }
+        else
+        {
+            ShowQuestion();
+        }
+
+    }
+
+    public void StartQuiz()
+    {
+        questionIndex = 0;
+        correctCount = 0;
+
+        foreach (Transform child in questionParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        ShowQuestion();
     }
 
     // Update is called once per frame

@@ -152,7 +152,6 @@ MonoBehaviour:
   questionPrefab: {fileID: 5459540239178074127, guid: 555f13022ef17d04f9c2349a31435c4f, type: 3}
   resultPrefab: {fileID: 8974027490542803763, guid: a2639cfc65f7d4c42a6afbfa4155bb8a, type: 3}
   questionParent: {fileID: 793596076}
-  quizController: {fileID: 0}
 --- !u!4 &242451844
 Transform:
   m_ObjectHideFlags: 0
@@ -432,51 +431,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1554698393
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1554698395}
-  - component: {fileID: 1554698394}
-  m_Layer: 0
-  m_Name: QuizControllerHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1554698394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1554698393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1e7b2ef2df5e2488387ead59700751, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuizController
-  quizManager: {fileID: 242451843}
---- !u!4 &1554698395
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1554698393}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 444.5, y: 250, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2015126442
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,4 +541,3 @@ SceneRoots:
   - {fileID: 2015126446}
   - {fileID: 1312855144}
   - {fileID: 242451844}
-  - {fileID: 1554698395}

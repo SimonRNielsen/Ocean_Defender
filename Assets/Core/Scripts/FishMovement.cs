@@ -12,7 +12,7 @@ public class FishMovement : MonoBehaviour, IClickable
     [SerializeField] private float waveAmplitude = 0.5f;   // hvor højt den gynger
     [SerializeField] private float waveFrequency = 2f;     // hvor hurtigt den gynger
     private float baseY;                                   // udgangspunkt for y-position
-
+    public bool clickedAchievement = false;
 
     private bool movingRight = true;
     private float waitTimer = 0f;
@@ -28,17 +28,43 @@ public class FishMovement : MonoBehaviour, IClickable
 
     public void OnPrimaryClick()
     {
-        throw new System.NotImplementedException();
+        //// Sæt achievement flag
+        //clickedAchievement = true;
+
+        //// Fjern fisken
+        ////gameObject.SetActive(false);
+        //Destroy(gameObject);
+        //// eller Destroy(gameObject); hvis den skal fjernes permanent
+        //Debug.Log("click");
+        //sr.color = new Color(19f, 146f, 79f);
+        sr.color = Color.yellowGreen;
+
     }
 
     public void OnPrimaryHold(Vector3 movement)
     {
-        throw new System.NotImplementedException();
+        //// Sæt achievement flag
+        //clickedAchievement = true;
+
+        //// Fjern fisken
+        ////gameObject.SetActive(false);
+        //Destroy(gameObject);
+        //// eller Destroy(gameObject); hvis den skal fjernes permanent
+        //Debug.Log("hold");
+
     }
 
     public void OnPrimaryRelease()
     {
-        throw new System.NotImplementedException();
+        // Sæt achievement flag
+        clickedAchievement = true;
+
+        // Fjern fisken
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
+        // eller Destroy(gameObject); hvis den skal fjernes permanent
+
+        //Debug.Log("release");
     }
 
     private void Awake()

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6045367268428161867}
   - component: {fileID: 3298044733546882312}
   - component: {fileID: -6497318454287862706}
+  - component: {fileID: 4185109840784426717}
   m_Layer: 3
   m_Name: stribetFisk
   m_TagString: Untagged
@@ -188,6 +189,46 @@ MonoBehaviour:
   leftBorder: -12
   waitMin: 5
   waitMax: 10
+  waveAmplitude: 0.5
+  waveFrequency: 2
+  clickedAchievement: 0
+--- !u!70 &4185109840784426717
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3594803031695339822}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.23086509, y: -0.324722}
+  m_Size: {x: 25.765266, y: 7.751575}
+  m_Direction: 1
 --- !u!1 &5945882246366672637
 GameObject:
   m_ObjectHideFlags: 0

@@ -85,6 +85,10 @@ PrefabInstance:
       value: Skrald4
       objectReference: {fileID: 0}
     - target: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_TagString
       value: Trash
       objectReference: {fileID: 0}
@@ -114,7 +118,10 @@ PrefabInstance:
       addedObject: {fileID: 86267128136842916}
     - targetCorrespondingSourceObject: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -8960721651352475476}
+      addedObject: {fileID: 6796963668464178011}
+    - targetCorrespondingSourceObject: {fileID: 7758026268813560727, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 522310068707064421}
   m_SourcePrefab: {fileID: 100100000, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
 --- !u!1 &1772657576514738935 stripped
 GameObject:
@@ -139,8 +146,8 @@ MonoBehaviour:
   verticalSpeed: 0.8
   rotationStrength: 30
   rotationSpeed: 0.8
---- !u!61 &-8960721651352475476
-BoxCollider2D:
+--- !u!70 &6796963668464178011
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -155,7 +162,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -173,15 +180,43 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.00013780594, y: 0.016131222}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.79, y: 3.02}
-    newSize: {x: 0.79, y: 3.02}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.83409786, y: 3.0452294}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: -0.3705616}
+  m_Size: {x: 0.7246065, y: 2.14809}
+  m_Direction: 0
+--- !u!70 &522310068707064421
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772657576514738935}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 1.0223596}
+  m_Size: {x: 0.28865147, y: 0.8880901}
+  m_Direction: 0

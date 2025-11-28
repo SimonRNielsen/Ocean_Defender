@@ -45,16 +45,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrashSpawner
   trashTypes:
-  - pool: {fileID: 0}
+  - pool: {fileID: 653625854613072170, guid: cca13924a7a3c254fb54bafe541c4c6b, type: 3}
     minDelay: 2
     maxDelay: 4
-  - pool: {fileID: 0}
+  - pool: {fileID: 3616711566811506363, guid: 03c54ae125265464f95654a819d01ee2, type: 3}
     minDelay: 3
     maxDelay: 6
-  - pool: {fileID: 0}
+  - pool: {fileID: 1134502769015093941, guid: 7f5c7a7578b69f047a2e00d50fbdb3be, type: 3}
     minDelay: 2
     maxDelay: 5
-  - pool: {fileID: 0}
+  - pool: {fileID: 5432793199877906016, guid: ade6e94e3bc8c204fa971417d1d0ec22, type: 3}
     minDelay: 4
     maxDelay: 8
   spawnArea: {x: 8, y: 6, z: 8}

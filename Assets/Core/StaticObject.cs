@@ -74,7 +74,7 @@ public class StaticObject : MonoBehaviour, IClickable
             spriteHeight = rbSprite.size.y * 0.15f;
 
             //Setting the position on top og the hole where it is planted
-            this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0.2f, (spriteHeight / 2) * 0.15f + 0.3f);
+            this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0.2f, (spriteHeight / 2) * 0.15f + .1f);
 
             go.tag = "Untagged";
 

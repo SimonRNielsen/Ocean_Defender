@@ -482,6 +482,7 @@ public class WebManagerScript : MonoBehaviour
                 userReturnDTO.Email = Decrypt(userReturnDTO.Email);
                 userReturnDTO.Name = Decrypt(userReturnDTO.Name);
                 currentUser = userReturnDTO;
+                Debug.Log($"User {userReturnDTO.Name} logged in with this email: {userReturnDTO.Email}");
                 break;
             case List<AchievementDTO> achievementDTOs when achievementDTOs.Count > 0:
                 if (own)

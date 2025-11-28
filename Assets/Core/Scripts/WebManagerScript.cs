@@ -174,7 +174,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Servers key for encrypting the message sent to it with its private key (RSA)
+    /// </summary>
     private static string ServerPublicKey
     {
 
@@ -195,7 +197,9 @@ public class WebManagerScript : MonoBehaviour
     /// </summary>
     public static bool ConnectionRunning { get => lastConnectionActive; }
 
-
+    /// <summary>
+    /// Datatransfer object for POSTing a highscore, queues request automatically
+    /// </summary>
     private static HighScoreDTO HighScore
     {
 
@@ -216,7 +220,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Datatransfer object for POSTing an achievement, queues request automatically
+    /// </summary>
     private static AchievementDTO Achievement
     {
 
@@ -237,7 +243,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Datatransfer object for POSTing a new user, queues request automatically
+    /// </summary>
     private static CreateUserDTO CreateUser
     {
 
@@ -258,7 +266,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Datatransfer object for POSTing a login request, queues request automatically
+    /// </summary>
     private static LoginDTO Login
     {
 
@@ -287,7 +297,9 @@ public class WebManagerScript : MonoBehaviour
     #endregion
     #region Methods
 
-
+    /// <summary>
+    /// Initiates service at startup
+    /// </summary>
     private async void Awake()
     {
 
@@ -308,7 +320,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Currently only used for testing
+    /// </summary>
     private void Start()
     {
 
@@ -316,6 +330,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Used for initating connection and reset subscriptions on SO
+    /// </summary>
     private void OnEnable()
     {
 
@@ -324,7 +341,9 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Used for shutting down safely
+    /// </summary>
     private void OnDisable()
     {
 
@@ -365,7 +384,10 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Handles running and dequeuing tasks
+    /// </summary>
+    /// <returns>Handled task</returns>
     private async Task TaskHandler()
     {
 
@@ -393,7 +415,7 @@ public class WebManagerScript : MonoBehaviour
 
                 object needsAttention = null;
 
-                switch (currentRequest)
+                switch (currentRequest) //State machine f
                 {
                     case WebRequest.Ping:
                         await PingServer();
@@ -449,7 +471,7 @@ public class WebManagerScript : MonoBehaviour
                 if (string.IsNullOrWhiteSpace(serverPublicKey) && currentRequest == WebRequest.Idle && !requests.Contains(WebRequest.GetKey))
                     Request = WebRequest.GetKey;
 
-                await Task.Delay(200);
+                await Task.Delay(200); //Ensures server and async runtime isn't swamped by requests
 
             }
             catch (Exception e)
@@ -463,7 +485,10 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Handles centralized logic for what to do with recieved reply from server dependant on what the reply is
+    /// </summary>
+    /// <param name="obj"></param>
     private void ObjectHandler(object obj)
     {
 
@@ -515,7 +540,11 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Decrypts a string formatted for transmission via Json/RESTful server
+    /// </summary>
+    /// <param name="input">Encrypted string from server</param>
+    /// <returns>Decrypted string</returns>
     private string Decrypt(string input)
     {
 
@@ -531,7 +560,11 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Encrypts and formats string for serialization into Json format to POSTing @ server
+    /// </summary>
+    /// <param name="input">String that must be encrypted using the servers public key</param>
+    /// <returns>Encrypted and formatted string</returns>
     private string Encrypt(string input)
     {
 

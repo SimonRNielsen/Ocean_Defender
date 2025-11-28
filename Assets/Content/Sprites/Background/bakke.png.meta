@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bf8af80cc513f304dbb2231df64539f0
+guid: d13491cb6ab43a74a9afbd8911ec1654
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1520512763418365247
-    second: Achievements_aalegraas_0
+      213: -5803301577904218721
+    second: bakke_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Achievements_aalegraas_0
+      name: bakke_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 742
-        height: 742
+        x: 335
+        y: 74
+        width: 1251
+        height: 932
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1c2300c92bd06eae0800000000000000
-      internalID: -1520512763418365247
+      spriteID: f9d1e8c46f7867fa0800000000000000
+      internalID: -5803301577904218721
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Achievements_aalegraas_0: -1520512763418365247
+      bakke_0: -5803301577904218721
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

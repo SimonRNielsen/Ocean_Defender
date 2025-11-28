@@ -127,11 +127,22 @@ public class LoginUIScript : MonoBehaviour
 
     public void OnSendLoginButtonClicked()
     {
-        Debug.Log($"Login in with: \nEmail: {loginEmailTextField.value} \nPassword: {loginPasswordTextField.value}");
-        //if(WebManagerScript.ConnectionRunning && (WebManagerScript.CurrentUser = null))
-        //{
-        //    WebManagerScript.RequestWithData<LoginDTO>(new LoginDTO(loginEmailTextField.value, loginPasswordTextField.value));
-        //}
+        if (WebManagerScript.ConnectionRunning)
+        {
+            if (WebManagerScript.CurrentUser == null)
+            {
+                WebManagerScript.RequestWithData<LoginDTO>(new LoginDTO(loginEmailTextField.value, loginPasswordTextField.value));
+                Debug.Log($"Login in with: \nEmail: {loginEmailTextField.value} \nPassword: {loginPasswordTextField.value}");
+            }
+            else
+            {
+                Debug.Log("A user is already logged in");
+            }
+        }
+        else
+        {
+            Debug.Log("Couldn't send login request: The connection wasn't running");
+        }
         loginScreen.style.display = DisplayStyle.None;
         loginScreen.SetEnabled(false);
         HideStartMenu(false);
@@ -141,11 +152,22 @@ public class LoginUIScript : MonoBehaviour
 
     public void OnSendCreateUserButtonClicked()
     {
-        Debug.Log($"Created user with: \nEmail: {createUserEmailTextField.value}\nUsername: {createUserUserNameTextField.value}\nPassword: {createUserPasswordTextField.value}");
-        //if (WebManagerScript.ConnectionRunning && (WebManager.CurrentUser = null))
-        //{
-        //    WebManagerScript.RequstWithData<CreateUserDTO>(new CreateUserDTO(createUserEmailTextField, createUserUserNameTextField, createUserPasswordTextField));
-        //}
+        if (WebManagerScript.ConnectionRunning)
+        {
+            if (WebManagerScript.CurrentUser == null)
+            {
+                WebManagerScript.RequestWithData<CreateUserDTO>(new CreateUserDTO(createUserEmailTextField.value, createUserUserNameTextField.value, createUserPasswordTextField.value));
+                Debug.Log($"Created user with: \nEmail: {createUserEmailTextField.value}\nUsername: {createUserUserNameTextField.value}\nPassword: {createUserPasswordTextField.value}");
+            }
+            else
+            {
+                Debug.Log("A user is already logged in");
+            }
+        }
+        else
+        {
+            Debug.Log("Couldn't send user creation request: Connection wasn't running");
+        }
 
         createUserScreen.style.display = DisplayStyle.None;
         createUserScreen.SetEnabled(false);

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22414962fb4249d429ae410d8ffed2cb, type: 3}
   m_Name: Question_CleanOcean_2
   m_EditorClassIdentifier: Assembly-CSharp::Question
-  questionText: "Udfyldningstekst til Sp\xF8rgsm\xE5l 2"
+  questionText: Hvor bruger man ikke teflon?
   answers:
-  - "Gr\xF8n"
-  - "Bl\xE5"
-  - Rigtig!!!
-  - Lilla
-  correctAnswerIndex: 2
+  - Rumfart
+  - "Tr\xE6 Ispind"
+  - Stegepander
+  - Kunstige Hjerteklapper
+  correctAnswerIndex: 1
+  factText: "Ispinden indeholder ikke teflon, men et organisk materiale og nedbrydes
+    p\xE5 10 \xE5r"

@@ -8,4 +8,7 @@ public class Question : ScriptableObject
 
     public string[] answers; //4 possible answers
     public int correctAnswerIndex; //Index for the correct answer
+
+    [TextArea]
+    public string factText; //Factbox after you have answered a question
 }

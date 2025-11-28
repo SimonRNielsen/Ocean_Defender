@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -123684870135785439, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: score
-      value: 500
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -123684870135785439, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: scoreCounter
@@ -69,9 +69,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3380310965225219088, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380310965225219088, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_Size.y
+      value: 2.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380310965225219088, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1021582734687559077, guid: a810db7c29331e74d9b0c3430636023d, type: 3}
+      objectReference: {fileID: -1833914499966934918, guid: 5b82392f0d660a84db956e983c1f9acc, type: 3}
+    - target: {fileID: 3380310965225219088, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4022597561578220288, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 1.02
@@ -130,7 +142,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -148,15 +160,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.002670288}
+  m_Offset: {x: 0.0020833611, y: -0.00026369095}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.02, y: 1.03}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.41, y: 2.78}
+    newSize: {x: 1.41, y: 2.78}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1161304, y: 1.104768}
+  m_Size: {x: 1.4279898, y: 2.8406215}
   m_EdgeRadius: 0

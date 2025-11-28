@@ -69,7 +69,7 @@ public class TimeoutWarning : MonoBehaviour
     private void OnDisable()
     {
 
-        if (!returningToStart)
+        if (!returningToStart && !RoundCountDownTimerScript.RoundOver)
             Time.timeScale = 1f;
 
         TimingsScript.WarningActive = false;

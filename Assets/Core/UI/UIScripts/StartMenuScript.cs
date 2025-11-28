@@ -32,7 +32,7 @@ public class StartMenuScript : MonoBehaviour
 
     private void Awake()
     {
-
+        ButtonScale = 0.7f;
         borderColor = new Color(borderRed, borderGreen, borderBlue, borderOpacity);
 
         AssignElements();
@@ -102,10 +102,11 @@ public class StartMenuScript : MonoBehaviour
             DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(buttonClickSound); //Sends audioclip to audio sources and plays it once
 
         Time.timeScale = 1f; //Unpause
-        if (sceneName != "Quiz_Stefanie")
-            yield return SceneManager.LoadSceneAsync(timerScene, LoadSceneMode.Additive);
 
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+        if (sceneName != "Quiz_Stefanie")
+            yield return SceneManager.LoadSceneAsync(timerScene, LoadSceneMode.Additive);
 
         yield return SceneManager.UnloadSceneAsync(gameObject.scene);
 

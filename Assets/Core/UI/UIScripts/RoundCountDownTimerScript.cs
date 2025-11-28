@@ -18,6 +18,10 @@ public class RoundCountDownTimerScript : MonoBehaviour
     [SerializeField] private HorizontalAlignment horizontalPlacement = HorizontalAlignment.Right;
     [SerializeField] private bool turnBarIntoLabel = false, displayText = true;
     [SerializeField] private Sprite roundOverSprite;
+    [SerializeField, Tooltip("The radius of the corners on the right side of outer bar")] int outerBarRightBorderRadius;
+    [SerializeField, Tooltip("The radius of the corners on the left side of outer bar")] int outerBarLeftBorderRadius;
+    [SerializeField, Tooltip("The radius of the corners on the right side of inner bar")] int innerBarRightBorderRadius;
+    [SerializeField, Tooltip("The radius of the corners on the left side of inner bar")] int innerBarLeftBorderRadius;
     [SerializeField, Space, Header("Scenes to open on exit")] private string[] returnScenes;
     private readonly float notOpaque = 1f;
     private readonly string roundOver = "RoundOver", buttonName = "OKButton", scoreLabelName = "ScoreLabel";
@@ -56,6 +60,11 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Bool for other mechanics to check if round is over
+    /// </summary>
+    public static bool RoundOver { get; private set; }
+
     #endregion
     #region Methods
 
@@ -88,6 +97,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
         RoundEnded = false;
         centre.visible = false;
         scoreSet = false;
+        RoundOver = false;
 
     }
 
@@ -179,8 +189,9 @@ public class RoundCountDownTimerScript : MonoBehaviour
             progressBar.lowValue = 0;
             progressBar.highValue = roundTime;
             progressBar.style.color = textColor;
-            progressBar.style.backgroundColor = backgroundColor;
-
+            /*progressBar.style.backgroundColor = backgroundColor; Doesn't access the right visual element. 
+              See under USS Classes: https://docs.unity3d.com/6000.2/Documentation/Manual/UIE-uxml-element-ProgressBar.html  
+             */
             progressBar.style.marginBottom = margin;
             progressBar.style.marginTop = margin;
             progressBar.style.marginLeft = margin;
@@ -188,6 +199,23 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
             placement.Add(progressBar);
 
+
+
+            //Acceses the visualelement respsponsible for the styling of the progress bar process, and changes color.
+            var progressBarVisualElement = placement.Q(className: "unity-progress-bar__progress");
+            progressBarVisualElement.style.backgroundColor = barColor;
+            progressBarVisualElement.style.borderBottomLeftRadius = innerBarLeftBorderRadius;
+            progressBarVisualElement.style.borderBottomRightRadius = innerBarRightBorderRadius;
+            progressBarVisualElement.style.borderTopLeftRadius = innerBarLeftBorderRadius;
+            progressBarVisualElement.style.borderTopRightRadius = innerBarRightBorderRadius;
+
+            //Acceses the visualelement respsponsible for the styling of the progress bar background, and changes color.
+            var progressBarBackgroundVisualElement = placement.Q(className: "unity-progress-bar__background");
+            progressBarBackgroundVisualElement.style.backgroundColor = backgroundColor;
+            progressBarBackgroundVisualElement.style.borderBottomLeftRadius = outerBarLeftBorderRadius;
+            progressBarBackgroundVisualElement.style.borderBottomRightRadius = outerBarRightBorderRadius;
+            progressBarBackgroundVisualElement.style.borderTopLeftRadius = outerBarLeftBorderRadius;
+            progressBarBackgroundVisualElement.style.borderTopRightRadius = outerBarRightBorderRadius;
         }
         else
         {
@@ -243,6 +271,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
             centre.visible = true;
 
             DataTransfer_SO.Instance.getScore?.Invoke();
+            RoundOver = true;
             Time.timeScale = 0f;
             button.clicked += ButtonAction;
 
@@ -257,7 +286,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
         }
 
         int displayedTime = centre.visible ? 0 : (int)RoundTimeRemaining + 1;
-        string text = displayText ? $"Time Remaining: {displayedTime}s" : string.Empty;
+        string text = displayText ? $"{displayedTime}s" : string.Empty;
 
         if (!turnBarIntoLabel)
         {
@@ -314,6 +343,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
         }
 
     }
+
 
     #endregion
 

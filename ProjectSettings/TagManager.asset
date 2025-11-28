@@ -7,6 +7,10 @@ TagManager:
   - Trash
   - TrashCan
   - AudioPlayer
+  - Hole
+  - EelgrassNail
+  - Nail
+  - Eelgrass
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - Fish and plants
   - Water
   - UI
-  - 
-  - 
+  - Trash
+  - EelgrassNailLayer
   - 
   - 
   - 

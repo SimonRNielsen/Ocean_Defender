@@ -888,6 +888,52 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &1872079182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1872079184}
+  - component: {fileID: 1872079183}
+  m_Layer: 5
+  m_Name: QuizLoaderHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1872079183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872079182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c204e5ea79580b4c9d86e8dfbf655c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  quizSceneName: Quiz_Stefanie
+  quizInterval: 5
+--- !u!4 &1872079184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872079182}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 444.5, y: 250, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1993654919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1693,6 +1739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoblerAnim
       objectReference: {fileID: 0}
+    - target: {fileID: 3533484100982642965, guid: a611812be2c1cbe4e9ad3afab5385733, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6405198121303882296, guid: a611812be2c1cbe4e9ad3afab5385733, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -1943,3 +1993,4 @@ SceneRoots:
   - {fileID: 2359492030616905270}
   - {fileID: 425360774809066508}
   - {fileID: 1516012408665624986}
+  - {fileID: 1872079184}

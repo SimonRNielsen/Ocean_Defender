@@ -694,6 +694,8 @@ MonoBehaviour:
   leftBorder: -12
   waitMin: 5
   waitMax: 10
+  waveAmplitude: 0.5
+  waveFrequency: 2
 --- !u!1001 &1631512624
 PrefabInstance:
   m_ObjectHideFlags: 0

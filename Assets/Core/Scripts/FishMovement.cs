@@ -1,6 +1,7 @@
+using System.Buffers.Text;
 using UnityEngine;
 
-public class FishMovement : MonoBehaviour
+public class FishMovement : MonoBehaviour, IClickable
 {
     [SerializeField] private float speed;
     [SerializeField] private float rightBorder = 10f;
@@ -8,15 +9,43 @@ public class FishMovement : MonoBehaviour
     [SerializeField] private float waitMin;
     [SerializeField] private float waitMax;
 
+    [SerializeField] private float waveAmplitude = 0.5f;   // hvor højt den gynger
+    [SerializeField] private float waveFrequency = 2f;     // hvor hurtigt den gynger
+    private float baseY;                                   // udgangspunkt for y-position
+
+
     private bool movingRight = true;
     private float waitTimer = 0f;
     private float direction;
 
+    // beregn ny vandret position
+    private float newX;
+
+    // beregn lodret bølge
+    private float newY;
+
     private SpriteRenderer sr;
+
+    public void OnPrimaryClick()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnPrimaryHold(Vector3 movement)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnPrimaryRelease()
+    {
+        throw new System.NotImplementedException();
+    }
 
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        baseY = transform.position.y;
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +53,7 @@ public class FishMovement : MonoBehaviour
     {
 
         waitTimer = Random.Range(waitMin,waitMax);
+        baseY = transform.position.y;
     }
 
     
@@ -38,9 +68,18 @@ public class FishMovement : MonoBehaviour
         }
 
         direction = movingRight ? 1f : -1f;
-        transform.Translate(Vector3.right * direction * speed * Time.deltaTime);
+        
+        // beregn ny vandret position
+        float newX = transform.position.x + direction * speed * Time.deltaTime;
 
-        if(movingRight && transform.position.x > rightBorder)
+        // beregn lodret bølge
+        float newY = baseY + Mathf.Sin(Time.time * waveFrequency) * waveAmplitude;
+
+        // opdater position
+        transform.position = new Vector3(newX, newY, transform.position.z);
+        //transform.Translate(Vector3.right * direction * speed * Time.deltaTime);
+
+        if (movingRight && transform.position.x > rightBorder)
         {
             movingRight = false;
             sr.flipX = !movingRight;

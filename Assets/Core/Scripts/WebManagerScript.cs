@@ -787,7 +787,7 @@ public class WebManagerScript : MonoBehaviour
             else
             {
 
-                Debug.LogWarning("From server: " + request.downloadHandler.text);
+                Debug.Log("From server: " + request.downloadHandler.text);
                 lastConnectionActive = true;
 
             }

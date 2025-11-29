@@ -50,9 +50,9 @@ public class WebManagerScript : MonoBehaviour
     private static readonly Dictionary<Endpoint, string> endpoints = new Dictionary<Endpoint, string>
         {
 
-            // { Endpoint.ClearUsers , "UserListing/clear" },
-            // { Endpoint.TestReadUsers , "UserListing/testreader" },
-            // { Endpoint.ClearScoresAndAchievements , "AchievementListing/clear" },
+            // { Endpoint.ClearUsers , "UserListing/clear" }, //DELETE endpoint - resets UserListings associated json-file
+            // { Endpoint.TestReadUsers , "UserListing/testreader" }, //GET endpoint - shows all users in servers users.json (List<CreateUserDTO>)
+            // { Endpoint.ClearScoresAndAchievements , "AchievementListing/clear" }, //DELETE endpoint - resets AchievementListings associated json-files for highscores and achievements
             { Endpoint.AddAchievement , "AchievementListing/addachievement" },
             { Endpoint.OwnAchievements , "AchievementListing/getownachievements" },
             { Endpoint.AchievementsEarned, "AchievementListing/achievementsearned" },

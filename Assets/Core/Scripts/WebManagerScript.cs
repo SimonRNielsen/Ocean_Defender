@@ -33,12 +33,9 @@ public class WebManagerScript : MonoBehaviour
 
     #region Fields
 
-    private static readonly float pingInterval = 60f;
+    private static readonly float pingInterval = 20f;
     private static readonly string baseURL = "https://odrestserver.onrender.com/";
-#pragma warning disable CS0414
-    private static bool lastConnectionActive = false;
-#pragma warning restore CS0414
-    private static bool loopRunning = false, own = false, approved = false, showHighScores = false, showAchievements = true, chatActive = false;
+    private static bool loopRunning = false, own = false, approved = false, showHighScores = false, showAchievements = true, chatActive = false, lastConnectionActive = false;
     private static float timeSinceLastConnectionAttempt;
     private static string serverPublicKey, clientPrivateKey, clientPublicKey;
     private static WebRequest currentRequest = WebRequest.GetKey;
@@ -50,7 +47,7 @@ public class WebManagerScript : MonoBehaviour
     private static AchievementDTO achievement = null;
     private static DataTransfer_SO events;
     private static readonly object transitionLock = new object();
-    private static Dictionary<Endpoint, string> endpoints = new Dictionary<Endpoint, string>
+    private static readonly Dictionary<Endpoint, string> endpoints = new Dictionary<Endpoint, string>
         {
 
             // { Endpoint.ClearUsers , "UserListing/clear" },
@@ -101,7 +98,8 @@ public class WebManagerScript : MonoBehaviour
             if (value != currentRequest)
             {
 
-                timeSinceLastConnectionAttempt = Time.unscaledTime;
+                if (value != WebRequest.Idle)
+                    timeSinceLastConnectionAttempt = Time.unscaledTime;
 
                 lock (transitionLock)
                     if (currentRequest == WebRequest.Idle || value == WebRequest.Idle)
@@ -406,16 +404,16 @@ public class WebManagerScript : MonoBehaviour
                     {
 
                         approved = true;
-                        Request = requests[0];
+                        Request = requests[0]; //Alternative combine with RemoveAt to a Queue<WebRequest> since that can't check or remove content other than next in line
                         requests.RemoveAt(0);
 
                     }
 
                 }
 
-                object needsAttention = null;
+                object needsAttention = null; //Used for generic object handling
 
-                switch (currentRequest) //State machine f
+                switch (currentRequest) //State machine for requests
                 {
                     case WebRequest.Ping:
                         await PingServer();
@@ -468,7 +466,7 @@ public class WebManagerScript : MonoBehaviour
                 if (needsAttention != null)
                     ObjectHandler(needsAttention);
 
-                if (string.IsNullOrWhiteSpace(serverPublicKey) && currentRequest == WebRequest.Idle && !requests.Contains(WebRequest.GetKey))
+                if (string.IsNullOrWhiteSpace(serverPublicKey) && currentRequest == WebRequest.Idle && !requests.Contains(WebRequest.GetKey)) //Backup in case encryption key isn't recieved
                     Request = WebRequest.GetKey;
 
                 await Task.Delay(200); //Ensures server and async runtime isn't swamped by requests
@@ -488,7 +486,7 @@ public class WebManagerScript : MonoBehaviour
     /// <summary>
     /// Handles centralized logic for what to do with recieved reply from server dependant on what the reply is
     /// </summary>
-    /// <param name="obj"></param>
+    /// <param name="obj">Generic object for polymorphism</param>
     private void ObjectHandler(object obj)
     {
 
@@ -503,10 +501,11 @@ public class WebManagerScript : MonoBehaviour
             case HighScoreDTO ownScore when ownScore.Score > 0:
                 events.transmitScore?.Invoke(ownScore);
                 break;
-            case UserReturnDTO userReturnDTO:
+            case UserReturnDTO userReturnDTO when !(string.IsNullOrEmpty(userReturnDTO.Name) || string.IsNullOrEmpty(userReturnDTO.Email)):
                 userReturnDTO.Email = Decrypt(userReturnDTO.Email);
                 userReturnDTO.Name = Decrypt(userReturnDTO.Name);
                 currentUser = userReturnDTO;
+                Debug.Log($"User: {currentUser.Name}. With email: {currentUser.Email} has been logged in");
                 break;
             case List<AchievementDTO> achievementDTOs when achievementDTOs.Count > 0:
                 if (own)
@@ -519,8 +518,12 @@ public class WebManagerScript : MonoBehaviour
                 else
                     events.transmitAchievements?.Invoke(achievementDTOs);
                 break;
+            case List<HighScoreDTO> emptyHighscores when emptyHighscores.Count == 0:
+            case List<AchievementDTO> emptyAchievements when emptyAchievements.Count == 0:
+                Debug.LogWarning("Request recieved empty list");
+                break;
             default:
-                Debug.LogError("Unknown DTO in ObjectHandler");
+                Debug.LogError($"DTO with invalid data caught in ObjectHandler {obj}");
                 break;
         }
 
@@ -583,7 +586,10 @@ public class WebManagerScript : MonoBehaviour
 
     #region Tasks
 
-
+    /// <summary>
+    /// Sends a GET request for servers public RSA encryption key used for asyncronous secure transmission of password (even though HTTPS already does this, allows somewhat safe deployment on HTTP though)
+    /// </summary>
+    /// <returns>Public RSA key from server</returns>
     private async Task<string> GetPublicKey()
     {
 
@@ -597,17 +603,29 @@ public class WebManagerScript : MonoBehaviour
             return request.downloadHandler.text;
 
         }
-        else
+        else if (request.result == UnityWebRequest.Result.ConnectionError)
         {
 
             lastConnectionActive = false;
-            return null;
+            Debug.LogError("No connection to server");
+
+        }
+        else
+        {
+
+            Debug.LogWarning("Error getting key");
+            lastConnectionActive = true;
 
         }
 
+        return null;
+
     }
 
-
+    /// <summary>
+    /// Regular ping method to ensure there's a stable and valid connection to server send as a HEAD (also used by monitoring site)
+    /// </summary>
+    /// <returns>Only possible reply is a "Ok" status from server</returns>
     private async Task PingServer()
     {
 
@@ -623,7 +641,10 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     private async Task CreateUserPost()
     {
 
@@ -649,18 +670,18 @@ public class WebManagerScript : MonoBehaviour
 
             await request.SendWebRequest();
 
-            if (request.result == UnityWebRequest.Result.Success)
+            if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                lastConnectionActive = true;
-                Debug.Log(request.downloadHandler.text);
+                Debug.LogError("No connection to server");
+                lastConnectionActive = false;
 
             }
             else
             {
 
-                Debug.LogError("Error creating user");
-                lastConnectionActive = false;
+                Debug.Log("From server: " + request.downloadHandler.text);
+                lastConnectionActive = true;
 
             }
 
@@ -670,7 +691,10 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Handles a login via a POST request (post sends a LoginDTO)
+    /// </summary>
+    /// <returns>Returns a UserReturnDTO if successful</returns>
     private async Task<UserReturnDTO> PostLogin()
     {
 
@@ -687,6 +711,7 @@ public class WebManagerScript : MonoBehaviour
 
         string json = JsonConvert.SerializeObject(login);
         login = null;
+        Request = WebRequest.Idle;
         byte[] jsonBytes = Encoding.UTF8.GetBytes(json);
 
         using (UnityWebRequest request = new UnityWebRequest(baseURL + endpoints[Endpoint.Login], "POST"))
@@ -701,27 +726,34 @@ public class WebManagerScript : MonoBehaviour
             {
 
                 lastConnectionActive = true;
-                Debug.Log(request.downloadHandler.text);
-                Request = WebRequest.Idle;
                 return JsonConvert.DeserializeObject<UserReturnDTO>(request.downloadHandler.text);
+
+            }
+            else if (request.result == UnityWebRequest.Result.ConnectionError)
+            {
+
+                Debug.LogError("No connection to server");
+                lastConnectionActive = false;
 
             }
             else
             {
 
-                Debug.LogError("Login Error");
-                lastConnectionActive = false;
+                Debug.LogWarning("From server: " + request.downloadHandler.text);
+                lastConnectionActive = true;
 
             }
 
         }
 
-        Request = WebRequest.Idle;
         return null;
 
     }
 
-
+    /// <summary>
+    /// Sends a POST request to server with a HighscoreDTO
+    /// </summary>
+    /// <returns></returns>
     private async Task PostHighscore()
     {
 
@@ -745,18 +777,18 @@ public class WebManagerScript : MonoBehaviour
 
             await request.SendWebRequest();
 
-            if (request.result == UnityWebRequest.Result.Success)
+            if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                lastConnectionActive = true;
-                Debug.Log(request.downloadHandler.text);
+                Debug.LogError("No connection to server");
+                lastConnectionActive = false;
 
             }
             else
             {
 
-                Debug.LogError("Error posting highscore");
-                lastConnectionActive = false;
+                Debug.LogWarning("From server: " + request.downloadHandler.text);
+                lastConnectionActive = true;
 
             }
 
@@ -766,7 +798,10 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Sends a POST request to server with a AchievementDTO
+    /// </summary>
+    /// <returns>Message -> debug, from server if successful</returns>
     private async Task PostAchievement()
     {
 
@@ -790,18 +825,18 @@ public class WebManagerScript : MonoBehaviour
 
             await request.SendWebRequest();
 
-            if (request.result == UnityWebRequest.Result.Success)
+            if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                lastConnectionActive = true;
-                Debug.Log(request.downloadHandler.text);
+                Debug.LogError("No connection to server");
+                lastConnectionActive = false;
 
             }
             else
             {
 
-                Debug.LogError("Error posting achievement");
-                lastConnectionActive = false;
+                Debug.Log("From server: " + request.downloadHandler.text);
+                lastConnectionActive = true;
 
             }
 
@@ -811,7 +846,10 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Sends a POST request with current users info that gets a List of logged in users own achievements
+    /// </summary>
+    /// <returns>Returns a List of AchievementDTO on a success</returns>
     private async Task<List<AchievementDTO>> PostGetOwnAchievement()
     {
 
@@ -836,32 +874,40 @@ public class WebManagerScript : MonoBehaviour
             await request.SendWebRequest();
 
             own = true;
+            Request = WebRequest.Idle;
 
             if (request.result == UnityWebRequest.Result.Success)
             {
 
                 lastConnectionActive = true;
-                Debug.Log(request.downloadHandler.text);
-                Request = WebRequest.Idle;
                 return JsonConvert.DeserializeObject<List<AchievementDTO>>(request.downloadHandler.text);
+
+            }
+            else if (request.result == UnityWebRequest.Result.ConnectionError)
+            {
+
+                Debug.LogError("No connection to server");
+                lastConnectionActive = false;
 
             }
             else
             {
 
-                Debug.LogError("Error getting own achievements");
-                lastConnectionActive = false;
+                Debug.LogWarning("From server: " + request.downloadHandler.text);
+                lastConnectionActive = true;
 
             }
 
         }
 
-        Request = WebRequest.Idle;
         return null;
 
     }
 
-
+    /// <summary>
+    /// Sends at GET request to server for the 10 last earned achievements globally
+    /// </summary>
+    /// <returns>Returns a List of AchievementDTOs on success</returns>
     private async Task<List<AchievementDTO>> GetLastAchievements()
     {
 
@@ -877,17 +923,29 @@ public class WebManagerScript : MonoBehaviour
             return JsonConvert.DeserializeObject<List<AchievementDTO>>(request.downloadHandler.text);
 
         }
+        else if (request.result == UnityWebRequest.Result.ConnectionError)
+        {
+
+            Debug.LogError("No connection to server");
+            lastConnectionActive = false;
+
+        }
         else
         {
 
-            lastConnectionActive = false;
-            return null;
+            Debug.LogWarning("From server: " + request.downloadHandler.text);
+            lastConnectionActive = true;
 
         }
 
+        return null;
+
     }
 
-
+    /// <summary>
+    /// Sends a POST request with current users information that gets users highscore
+    /// </summary>
+    /// <returns>Returns a single HighScoreDTO on success</returns>
     private async Task<HighScoreDTO> PostGetOwnHighscore()
     {
 
@@ -910,32 +968,40 @@ public class WebManagerScript : MonoBehaviour
             request.downloadHandler = new DownloadHandlerBuffer();
 
             await request.SendWebRequest();
+            Request = WebRequest.Idle;
 
             if (request.result == UnityWebRequest.Result.Success)
             {
 
                 lastConnectionActive = true;
-                Debug.Log(request.downloadHandler.text);
-                Request = WebRequest.Idle;
                 return JsonConvert.DeserializeObject<HighScoreDTO>(request.downloadHandler.text);
+
+            }
+            else if (request.result == UnityWebRequest.Result.ConnectionError)
+            {
+
+                Debug.LogError("No connection to server");
+                lastConnectionActive = false;
 
             }
             else
             {
 
-                Debug.LogError("Error getting own highscore");
+                Debug.LogWarning("From server: " + request.downloadHandler.text);
                 lastConnectionActive = false;
 
             }
 
         }
 
-        Request = WebRequest.Idle;
         return null;
 
     }
 
-
+    /// <summary>
+    /// Sends a GET request to server that returns the highscore-leaderboard (Top 10 global scores)
+    /// </summary>
+    /// <returns>Returns a List of HighScoreDTOs on success</returns>
     private async Task<List<HighScoreDTO>> GetLeaderboard()
     {
 
@@ -951,13 +1017,22 @@ public class WebManagerScript : MonoBehaviour
             return JsonConvert.DeserializeObject<List<HighScoreDTO>>(request.downloadHandler.text);
 
         }
+        else if (request.result == UnityWebRequest.Result.ConnectionError)
+        {
+
+            Debug.LogError("No connection to server");
+            lastConnectionActive = false;
+
+        }
         else
         {
 
-            lastConnectionActive = false;
-            return null;
+            Debug.LogWarning("From server: " + request.downloadHandler.text);
+            lastConnectionActive = true;
 
         }
+
+        return null;
 
     }
 

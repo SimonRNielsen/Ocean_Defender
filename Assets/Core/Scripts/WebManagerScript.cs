@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -46,6 +47,7 @@ public class WebManagerScript : MonoBehaviour
     private static HighScoreDTO highScore = null;
     private static AchievementDTO achievement = null;
     private static DataTransfer_SO events;
+    private static WebManagerScript webManager;
     private static readonly object transitionLock = new object();
     private static readonly Dictionary<Endpoint, string> endpoints = new Dictionary<Endpoint, string>
         {
@@ -303,6 +305,8 @@ public class WebManagerScript : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
+        webManager = this;
+
         timeSinceLastConnectionAttempt = Time.unscaledTime;
 
         using (RSA rsa = RSA.Create())
@@ -355,7 +359,7 @@ public class WebManagerScript : MonoBehaviour
     /// </summary>
     /// <typeparam name="T">Generic object type</typeparam>
     /// <param name="obj">Object needed for sending requests</param>
-    public static void RequestWithData<T>(T obj) where T : ISendableDTO
+    public static void RequestWithData<T>(T obj)
     {
 
         switch (obj)
@@ -374,6 +378,12 @@ public class WebManagerScript : MonoBehaviour
             case HighScoreDTO highScoreDTO when !string.IsNullOrWhiteSpace(highScoreDTO.UserName) && !string.IsNullOrWhiteSpace(highScoreDTO.UserEmail) && highScoreDTO.Score > 0:
                 highScoreDTO.Date = DateTime.UtcNow;
                 HighScore = highScoreDTO;
+                break;
+            case List<AchievementDTO> achievements when achievements.Count > 0:
+                achievements.RemoveAll(x => string.IsNullOrWhiteSpace(x.UserEmail) || string.IsNullOrWhiteSpace(x.UserName));
+                foreach (AchievementDTO achievement in achievements)
+                    achievement.Date = DateTime.UtcNow;
+                webManager.StartCoroutine(SendMultipleAchievements(achievements));
                 break;
             default:
                 Debug.LogError("RequestWithData object contained/was null data, or missing handle logic");
@@ -469,7 +479,7 @@ public class WebManagerScript : MonoBehaviour
                 if (string.IsNullOrWhiteSpace(serverPublicKey) && currentRequest == WebRequest.Idle && !requests.Contains(WebRequest.GetKey)) //Backup in case encryption key isn't recieved
                     Request = WebRequest.GetKey;
 
-                await Task.Delay(200); //Ensures server and async runtime isn't swamped by requests
+                await Task.Delay(50); //Ensures server and async runtime isn't swamped by requests
 
             }
             catch (Exception e)
@@ -1033,6 +1043,36 @@ public class WebManagerScript : MonoBehaviour
         }
 
         return null;
+
+    }
+
+
+    private static IEnumerator SendMultipleAchievements(List<AchievementDTO> achievements)
+    {
+
+        foreach (var achievement in achievements)
+        {
+
+            float startTime = Time.unscaledTime;
+
+            RequestWithData(achievement);
+
+            while (requests.Contains(WebRequest.AddAchievement) || currentRequest == WebRequest.AddAchievement)
+            {
+
+                if (Time.unscaledTime - startTime > 10f)
+                {
+
+                    Debug.LogWarning("SendMultipleAchievements timed out for one request");
+                    break;
+
+                }
+
+                yield return new WaitForSecondsRealtime(0.01f);
+
+            }
+
+        }
 
     }
 

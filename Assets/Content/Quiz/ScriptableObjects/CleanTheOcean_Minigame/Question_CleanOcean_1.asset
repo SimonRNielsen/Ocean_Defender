@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22414962fb4249d429ae410d8ffed2cb, type: 3}
   m_Name: Question_CleanOcean_1
   m_EditorClassIdentifier: Assembly-CSharp::Question
-  questionText: "Udfyldningstekst til Sp\xF8rgsm\xE5l 1"
+  questionText: Hvor lang tid er nedbrydningstiden for en glasflaske?
   answers:
-  - Blu
-  - Bla
-  - Blo
-  - Rigtig!
+  - "1 \xE5r"
+  - "100 \xE5r"
+  - "1.000 \xE5r"
+  - "1.000.000 \xE5r"
   correctAnswerIndex: 3
+  factText: "Det tager 1 million \xE5r at nedbryde en glasflaske i naturen"

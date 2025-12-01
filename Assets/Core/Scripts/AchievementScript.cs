@@ -18,6 +18,9 @@ public class AchievementScript : MonoBehaviour, IClickable
 
     #region Field
     private float timeLeft;
+
+    [SerializeField, Tooltip("Is the achievement a FISKEVISKER")]
+    public bool fiskeVisker = false;
     [SerializeField] private Achievements id;
     #endregion
 
@@ -58,7 +61,7 @@ public class AchievementScript : MonoBehaviour, IClickable
         transform.position = new Vector3(8, 2, 0);
         transform.localScale = Vector3.one / 4;
 
-        if (transform.gameObject.tag == "Trash")
+        if (fiskeVisker == true)
         {
             transform.position = new Vector3(8, 0, 0);
 

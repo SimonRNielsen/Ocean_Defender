@@ -11,6 +11,7 @@ TagManager:
   - EelgrassNail
   - Nail
   - Eelgrass
+  - Achievement
   layers:
   - Default
   - TransparentFX

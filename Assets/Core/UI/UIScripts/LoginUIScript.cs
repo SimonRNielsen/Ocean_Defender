@@ -11,6 +11,7 @@ public class LoginUIScript : MonoBehaviour
     private Button loginButton;
     private Button createUserButton;
     private Button logOutButton;
+    private Button showHighscoreButton;
 
     //LoginScreen Fields
     private Button closeLoginButton;
@@ -40,6 +41,7 @@ public class LoginUIScript : MonoBehaviour
         loginButton = root.Q<Button>("LoginButton");
         createUserButton = root.Q<Button>("CreateUserButton");
         logOutButton = root.Q<Button>("LogOutButton");
+        showHighscoreButton = root.Q<Button>("ShowHighscoreButton");
 
         //Login elements
         sendLoginButton = root.Q<Button>("SendLoginButton");
@@ -66,6 +68,7 @@ public class LoginUIScript : MonoBehaviour
         closeLoginButton.clicked += OnCloseLoginButtonClicked;
         sendCreateUserButton.clicked += OnSendCreateUserButtonClicked;
         closeCreateUserButton.clicked += OnCloseCreateUserButtonClicked;
+        showHighscoreButton.clicked += OnShowHighscoreButtonClicked;
 
     }
 
@@ -79,6 +82,7 @@ public class LoginUIScript : MonoBehaviour
         closeLoginButton.clicked -= OnCloseLoginButtonClicked;
         sendCreateUserButton.clicked -= OnSendCreateUserButtonClicked;
         closeCreateUserButton.clicked -= OnCloseCreateUserButtonClicked;
+        showHighscoreButton.clicked -= OnShowHighscoreButtonClicked;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -108,23 +112,43 @@ public class LoginUIScript : MonoBehaviour
                 loginButton.style.display = DisplayStyle.None;
                 loginButton.SetEnabled(false);
             }
+            if(createUserButton.enabledInHierarchy == true)
+            {
+                createUserButton.style.display = DisplayStyle.None;
+                createUserButton.SetEnabled(false);
+            }
             if(logOutButton.enabledInHierarchy == false)
             {
                 logOutButton.SetEnabled(true);
                 logOutButton.style.display= DisplayStyle.Flex;
+            }
+            if(showHighscoreButton.enabledInHierarchy == false)
+            {
+                showHighscoreButton.SetEnabled(true);
+                showHighscoreButton.style.display= DisplayStyle.Flex;
             }
         }
         else
         {
             if(loginButton.enabledInHierarchy == false)
             {
-                loginButton.style.display= DisplayStyle.Flex;
                 loginButton.SetEnabled(true);
+                loginButton.style.display= DisplayStyle.Flex;
+            }
+            if (createUserButton.enabledInHierarchy == false)
+            {
+                createUserButton.SetEnabled(true);
+                createUserButton.style.display = DisplayStyle.Flex;
             }
             if(logOutButton.enabledInHierarchy == true)
             {
                 logOutButton.style.display = DisplayStyle.None;
                 logOutButton.SetEnabled(false);
+            }
+            if(showHighscoreButton.enabledInHierarchy == true)
+            {
+                showHighscoreButton.style.display = DisplayStyle.None;
+                showHighscoreButton.SetEnabled(false);
             }
         }
     }
@@ -183,6 +207,11 @@ public class LoginUIScript : MonoBehaviour
             }
         }
         else { Debug.Log("Failed to log out: Connection to server is not running"); }
+    }
+
+    private void OnShowHighscoreButtonClicked()
+    {
+
     }
 
     public void OnSendLoginButtonClicked()

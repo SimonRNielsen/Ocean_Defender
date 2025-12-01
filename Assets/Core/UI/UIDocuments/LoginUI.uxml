@@ -17,6 +17,7 @@
             <ui:Button text="Opret bruger" name="SendCreateUserButton" class="button" style="top: 0; margin-top: 10px;" />
         </ui:VisualElement>
         <ui:VisualElement name="ButtonsContainer" style="flex-grow: 1; align-items: flex-start; justify-content: center; margin-left: 50px; margin-bottom: 50px; align-content: center; padding-top: 0; width: 300px; height: 100px; max-height: 100px; bottom: 0; left: 0; align-self: flex-start;">
+            <ui:Button text="Highscore" name="ShowHighscoreButton" enabled="false" class="button" style="margin-bottom: 5px; display: none;" />
             <ui:Button text="Log ud" enabled="false" name="LogOutButton" class="button" style="display: none; margin-bottom: 5px;" />
             <ui:Button text="Login&#10;" name="LoginButton" class="button" style="margin-bottom: 5px;" />
             <ui:Button text="Opret bruger&#10;" name="CreateUserButton" class="button" />

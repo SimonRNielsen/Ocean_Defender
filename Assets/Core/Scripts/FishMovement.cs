@@ -1,5 +1,6 @@
 using System.Buffers.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FishMovement : MonoBehaviour, IClickable
 {
@@ -17,6 +18,7 @@ public class FishMovement : MonoBehaviour, IClickable
     private bool movingRight = true;
     private float waitTimer = 0f;
     private float direction;
+    private float delayStart = 0f;
 
     // beregn ny vandret position
     private float newX;
@@ -77,9 +79,17 @@ public class FishMovement : MonoBehaviour, IClickable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
 
-        waitTimer = Random.Range(waitMin,waitMax);
+        if (currentScene.name == "Test_Rikke")
+        {
+            delayStart = 5f;
+        }
+
+        //waitTimer = Random.Range(waitMin+delayStart, waitMax);
+        RandomTime();
         baseY = transform.position.y;
+
     }
 
     
@@ -87,11 +97,13 @@ public class FishMovement : MonoBehaviour, IClickable
     // Update is called once per frame
     void Update()
     {
+
         if(waitTimer > 0)
         {
             waitTimer -= Time.deltaTime;
             return;
         }
+
 
         direction = movingRight ? 1f : -1f;
         
@@ -109,16 +121,21 @@ public class FishMovement : MonoBehaviour, IClickable
         {
             movingRight = false;
             sr.flipX = !movingRight;
-            waitTimer = Random.Range(waitMin,waitMax); 
+            //waitTimer = Random.Range(waitMin+delayStart, waitMax);
+            RandomTime();
         }
         else if(!movingRight && transform.position.x < leftBorder)
         {
             movingRight = true;
             sr.flipX = !movingRight;
-            waitTimer = Random.Range(waitMin, waitMax);
+            //waitTimer = Random.Range(waitMin+delayStart, waitMax);
+            RandomTime();
         }
 
     }
 
-   
+    public void RandomTime()
+    {
+        waitTimer = Random.Range(waitMin + delayStart, waitMax);
+    }
 }

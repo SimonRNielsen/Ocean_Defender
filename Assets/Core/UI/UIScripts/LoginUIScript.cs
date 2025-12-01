@@ -10,6 +10,7 @@ public class LoginUIScript : MonoBehaviour
     //Buttons for openeing screens
     private Button loginButton;
     private Button createUserButton;
+    private Button logOutButton;
 
     //LoginScreen Fields
     private Button closeLoginButton;
@@ -26,6 +27,7 @@ public class LoginUIScript : MonoBehaviour
     private TextField createUserUserNameTextField;
     private VisualElement createUserScreen;
 
+    private bool loggedIn = false;
     #endregion
 
 
@@ -37,6 +39,7 @@ public class LoginUIScript : MonoBehaviour
         //Buttons to upon screens
         loginButton = root.Q<Button>("LoginButton");
         createUserButton = root.Q<Button>("CreateUserButton");
+        logOutButton = root.Q<Button>("LogOutButton");
 
         //Login elements
         sendLoginButton = root.Q<Button>("SendLoginButton");
@@ -58,6 +61,7 @@ public class LoginUIScript : MonoBehaviour
     {
         loginButton.clicked += OnLoginButtonClicked;
         createUserButton.clicked += OnCreateUserButtonClicked;
+        logOutButton.clicked += OnLogOutButtonClicked;
         sendLoginButton.clicked += OnSendLoginButtonClicked;
         closeLoginButton.clicked += OnCloseLoginButtonClicked;
         sendCreateUserButton.clicked += OnSendCreateUserButtonClicked;
@@ -70,7 +74,9 @@ public class LoginUIScript : MonoBehaviour
     {
         loginButton.clicked -= OnLoginButtonClicked;
         createUserButton.clicked -= OnCreateUserButtonClicked;
+        logOutButton.clicked -= OnLogOutButtonClicked;
         sendLoginButton.clicked -= OnSendLoginButtonClicked;
+        closeLoginButton.clicked -= OnCloseLoginButtonClicked;
         sendCreateUserButton.clicked -= OnSendCreateUserButtonClicked;
         closeCreateUserButton.clicked -= OnCloseCreateUserButtonClicked;
     }
@@ -84,7 +90,43 @@ public class LoginUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Checks whether the a user is logged in an sets loggedIn bool accordingly
+        if (WebManagerScript.CurrentUser == null && loggedIn)
+        {
+            loggedIn = false;
+        }
+        else if (WebManagerScript.CurrentUser != null && !loggedIn)
+        {
+            loggedIn = true;
+        }
 
+        //Uses loggedIn bool to set wheter login or logout button shoult be displayed.
+        if (loggedIn)
+        {
+            if (loginButton.enabledInHierarchy == true)
+            {
+                loginButton.style.display = DisplayStyle.None;
+                loginButton.SetEnabled(false);
+            }
+            if(logOutButton.enabledInHierarchy == false)
+            {
+                logOutButton.SetEnabled(true);
+                logOutButton.style.display= DisplayStyle.Flex;
+            }
+        }
+        else
+        {
+            if(loginButton.enabledInHierarchy == false)
+            {
+                loginButton.style.display= DisplayStyle.Flex;
+                loginButton.SetEnabled(true);
+            }
+            if(logOutButton.enabledInHierarchy == true)
+            {
+                logOutButton.style.display = DisplayStyle.None;
+                logOutButton.SetEnabled(false);
+            }
+        }
     }
 
     private void OnCloseLoginButtonClicked()
@@ -123,6 +165,24 @@ public class LoginUIScript : MonoBehaviour
         HideStartMenu(true);
         loginScreen.SetEnabled(true);
         loginScreen.style.display = DisplayStyle.Flex;
+    }
+
+    private void OnLogOutButtonClicked()
+    {
+        if (WebManagerScript.ConnectionRunning)
+        {
+            if (WebManagerScript.CurrentUser != null)
+            {
+                DataTransfer_SO.Instance.resetEvent?.Invoke(); //Resets DataTransfer eg. Logs out among other stuff.
+                logOutButton.style.display = DisplayStyle.None;
+                logOutButton.SetEnabled(false);
+            }
+            else
+            {
+                Debug.Log("Failed to log out: No user logged in.");
+            }
+        }
+        else { Debug.Log("Failed to log out: Connection to server is not running"); }
     }
 
     public void OnSendLoginButtonClicked()

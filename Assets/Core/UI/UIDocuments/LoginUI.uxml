@@ -1,6 +1,18 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Core/UI/UIStyleSheets/LoginUIStyleSheet.uss?fileID=7433441132597879392&amp;guid=4c83440c99bc1714ea75d0ef10beb97c&amp;type=3#LoginUIStyleSheet" />
     <ui:VisualElement enabled="true" picking-mode="Ignore" style="flex-grow: 1; width: 1280px; height: 720px; min-width: 1280px; min-height: 720px; max-width: 1280px; max-height: 720px; align-content: center; align-items: stretch; justify-content: flex-end; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0;">
+        <ui:VisualElement name="HighscoreScreen" enabled="false" class="scoreScreen userScreen" style="display: none; padding-top: 90px;">
+            <ui:Button text="X" name="CloseHighscoreButton" class="closeButton" />
+            <ui:Label text="Highscores:" name="HighScoreTitleLabel" style="align-items: auto; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Anton.ttf?fileID=12800000&amp;guid=997a43b767814dd0a7642ec9b78cba41&amp;type=3#Anton&quot;); font-size: 30px; margin-top: 10px;" />
+            <ui:Label text="Label" name="HighScoreContentLabel" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Roboto-Bold.ttf?fileID=12800000&amp;guid=4beb055f07aaff244873dec698d0363e&amp;type=3#Roboto-Bold&quot;); -unity-text-align: upper-center; width: 80%; height: 55%;" />
+            <ui:Button text="Achievements" name="SwitchToAchievementButton" class="button" style="padding-right: 2px; padding-left: 2px; padding-bottom: 5px; padding-top: 5px; margin-left: 4px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="AchievementScreen" enabled="false" class="userScreen scoreScreen" style="flex-grow: 1; display: none; padding-top: 90px;">
+            <ui:Button text="X" name="CloseAchievementButton" class="closeButton" />
+            <ui:Label text="Achievements" name="AchievementTitleLabel" style="align-items: auto; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Anton.ttf?fileID=12800000&amp;guid=997a43b767814dd0a7642ec9b78cba41&amp;type=3#Anton&quot;); font-size: 30px; margin-top: 10px;" />
+            <ui:Label text="Label" name="HighScoreContentLabel" style="-unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Roboto-Bold.ttf?fileID=12800000&amp;guid=4beb055f07aaff244873dec698d0363e&amp;type=3#Roboto-Bold&quot;); -unity-text-align: upper-center; width: 80%; height: 55%;" />
+            <ui:Button text="Highscores" name="SwitchToHighscoreButton" class="button" style="padding-right: 2px; padding-left: 2px; padding-bottom: 5px; padding-top: 5px; margin-left: 4px;" />
+        </ui:VisualElement>
         <ui:VisualElement name="LoginScreen" enabled="false" class="userScreen" style="justify-content: center; align-items: center; align-content: center; display: none;">
             <ui:Button text="X" name="CloseLoginButton" class="closeButton" />
             <ui:Label text="Login&#10;" name="LoginLabel" style="font-size: 40px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Bangers.ttf?fileID=12800000&amp;guid=5dd49b3eacc540408c98eee0de38e0f1&amp;type=3#Bangers&quot;); top: 0; margin-top: 5px;" />

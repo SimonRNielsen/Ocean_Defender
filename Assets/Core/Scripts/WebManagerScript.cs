@@ -47,14 +47,11 @@ public class WebManagerScript : MonoBehaviour
     private static HighScoreDTO highScore = null;
     private static AchievementDTO achievement = null;
     private static DataTransfer_SO events;
-    private static WebManagerScript webManager;
+    private static Queue<AchievementDTO> achievementPostQueue = new Queue<AchievementDTO>();
     private static readonly object transitionLock = new object();
     private static readonly Dictionary<Endpoint, string> endpoints = new Dictionary<Endpoint, string>
         {
 
-            // { Endpoint.ClearUsers , "UserListing/clear" }, //DELETE endpoint - resets UserListings associated json-file
-            // { Endpoint.TestReadUsers , "UserListing/testreader" }, //GET endpoint - shows all users in servers users.json (List<CreateUserDTO>)
-            // { Endpoint.ClearScoresAndAchievements , "AchievementListing/clear" }, //DELETE endpoint - resets AchievementListings associated json-files for highscores and achievements
             { Endpoint.AddAchievement , "AchievementListing/addachievement" },
             { Endpoint.OwnAchievements , "AchievementListing/getownachievements" },
             { Endpoint.AchievementsEarned, "AchievementListing/achievementsearned" },
@@ -305,8 +302,6 @@ public class WebManagerScript : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        webManager = this;
-
         timeSinceLastConnectionAttempt = Time.unscaledTime;
 
         using (RSA rsa = RSA.Create())
@@ -319,16 +314,6 @@ public class WebManagerScript : MonoBehaviour
 
         if (!loopRunning)
             await TaskHandler();
-
-    }
-
-    /// <summary>
-    /// Currently only used for testing
-    /// </summary>
-    private void Start()
-    {
-
-        //string name = "OceanDefenderUnityProgram", mail = "oceandefender@oceandefender.dk", password = "MortenErSejereEndDinMor"; //Testing strings
 
     }
 
@@ -382,8 +367,13 @@ public class WebManagerScript : MonoBehaviour
             case List<AchievementDTO> achievements when achievements.Count > 0:
                 achievements.RemoveAll(x => string.IsNullOrWhiteSpace(x.UserEmail) || string.IsNullOrWhiteSpace(x.UserName));
                 foreach (AchievementDTO achievement in achievements)
+                {
+
                     achievement.Date = DateTime.UtcNow;
-                webManager.StartCoroutine(SendMultipleAchievements(achievements));
+                    achievementPostQueue.Enqueue(achievement);
+
+                }
+                Achievement = achievementPostQueue.Dequeue();
                 break;
             default:
                 Debug.LogError("RequestWithData object contained/was null data, or missing handle logic");
@@ -850,7 +840,14 @@ public class WebManagerScript : MonoBehaviour
 
             }
 
-            Request = WebRequest.Idle;
+            if (achievementPostQueue.Count > 0)
+            {
+
+                achievement = achievementPostQueue.Dequeue();
+
+            }
+            else
+                Request = WebRequest.Idle;
 
         }
 
@@ -1043,36 +1040,6 @@ public class WebManagerScript : MonoBehaviour
         }
 
         return null;
-
-    }
-
-
-    private static IEnumerator SendMultipleAchievements(List<AchievementDTO> achievements)
-    {
-
-        foreach (var achievement in achievements)
-        {
-
-            float startTime = Time.unscaledTime;
-
-            RequestWithData(achievement);
-
-            while (requests.Contains(WebRequest.AddAchievement) || currentRequest == WebRequest.AddAchievement)
-            {
-
-                if (Time.unscaledTime - startTime > 10f)
-                {
-
-                    Debug.LogWarning("SendMultipleAchievements timed out for one request");
-                    break;
-
-                }
-
-                yield return new WaitForSecondsRealtime(0.01f);
-
-            }
-
-        }
 
     }
 

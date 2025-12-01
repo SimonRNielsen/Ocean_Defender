@@ -57,6 +57,10 @@ PrefabInstance:
       value: FishAchievement
       objectReference: {fileID: 0}
     - target: {fileID: 4849173009468229747, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849173009468229747, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
       propertyPath: m_TagString
       value: Achievement
       objectReference: {fileID: 0}

@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -34,6 +33,7 @@ public class WebManagerScript : MonoBehaviour
 
     #region Fields
 
+    [SerializeField] private string achievementTag;
     private static readonly float pingInterval = 20f;
     private static readonly string baseURL = "https://odrestserver.onrender.com/";
     private static bool loopRunning = false, own = false, approved = false, showHighScores = false, showAchievements = true, chatActive = false, lastConnectionActive = false;
@@ -73,6 +73,7 @@ public class WebManagerScript : MonoBehaviour
         WebRequest.AddAchievement,
 
     };
+
 
     #endregion
     #region Properties
@@ -365,10 +366,12 @@ public class WebManagerScript : MonoBehaviour
                 HighScore = highScoreDTO;
                 break;
             case List<AchievementDTO> achievements when achievements.Count > 0:
-                achievements.RemoveAll(x => string.IsNullOrWhiteSpace(x.UserEmail) || string.IsNullOrWhiteSpace(x.UserName));
+                if (currentUser == null) break;
                 foreach (AchievementDTO achievement in achievements)
                 {
 
+                    achievement.UserName = currentUser.Name;
+                    achievement.UserEmail = currentUser.Email;
                     achievement.Date = DateTime.UtcNow;
                     achievementPostQueue.Enqueue(achievement);
 
@@ -582,7 +585,6 @@ public class WebManagerScript : MonoBehaviour
         }
 
     }
-
 
     #region Tasks
 

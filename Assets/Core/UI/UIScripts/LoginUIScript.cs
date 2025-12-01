@@ -190,5 +190,16 @@ public class LoginUIScript : MonoBehaviour
         }
 
     }
+
+
+    private void PublishHighscoreAndAchievements()
+    {
+
+        if (!WebManagerScript.ConnectionRunning || WebManagerScript.CurrentUser == null) return;
+
+        WebManagerScript.RequestWithData(new HighScoreDTO(WebManagerScript.CurrentUser.Name, WebManagerScript.CurrentUser.Email, DataTransfer_SO.Instance.RoundScore));
+        WebManagerScript.RequestWithData(DataTransfer_SO.Instance.EarnedAchievements);
+
+    }
     #endregion
 }

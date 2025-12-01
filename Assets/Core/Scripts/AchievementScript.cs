@@ -7,7 +7,6 @@ public class AchievementScript : MonoBehaviour, IClickable
 
     #region Field
     private float timeLeft;
-
     #endregion
 
 
@@ -26,6 +25,12 @@ public class AchievementScript : MonoBehaviour, IClickable
         {
             transform.position = new Vector3(5, 0, 0);
             transform.localScale = Vector3.one;
+
+            if (transform.gameObject.tag == "Trash")
+            {
+                transform.position = new Vector3(-5, 0, 0);
+
+            }
         }
     }
 
@@ -34,6 +39,12 @@ public class AchievementScript : MonoBehaviour, IClickable
         //Moving the achievement to the rigth side of the screen to be seen through the rest of the game
         transform.position = new Vector3(8, 2, 0);
         transform.localScale = Vector3.one / 4;
+
+        if (transform.gameObject.tag == "Trash")
+        {
+            transform.position = new Vector3(8, 0, 0);
+
+        }
     }
 
     public void OnPrimaryHold(Vector3 movement)

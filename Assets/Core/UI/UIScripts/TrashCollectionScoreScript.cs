@@ -40,4 +40,6 @@ public class TrashCollectionScoreScript : MonoBehaviour
         scoreAmountLabel.SetEnabled(false);
         scoreAmountLabel.text = "";
     }
+
+ 
 }

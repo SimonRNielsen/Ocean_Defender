@@ -71,10 +71,8 @@ public class TimingsScript : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-
         timeSinceLastCheck = Time.unscaledTime;
         lastActivityTime = Time.unscaledTime;
-
     }
 
     /// <summary>
@@ -95,9 +93,12 @@ public class TimingsScript : MonoBehaviour
                 {
 
                     lastActivityTime = Time.unscaledTime;
-                    if (!warningActive)
-                        StartCoroutine(LoadWarning());
+                    /*if (!warningActive)
+                        StartCoroutine(LoadWarning());  - We have decided not to use this feature. 
+                    */
 
+                    //Returns to start if inactivty is over inactivity levlel
+                    ReturnToStartMenu();
                 }
 
             }
@@ -106,8 +107,8 @@ public class TimingsScript : MonoBehaviour
 
         }
 
-        if (inputDetected && warningActive)
-            StartCoroutine(UnloadWarning());
+        //if (inputDetected && warningActive)
+        //    StartCoroutine(UnloadWarning());
 
         inputDetected = false;
 
@@ -154,6 +155,16 @@ public class TimingsScript : MonoBehaviour
 
         warningActive = false;
 
+    }
+
+    /// <summary>
+    /// Closes all other scenes and loads start menu
+    /// </summary>
+    private void ReturnToStartMenu()
+    {
+        DataTransfer_SO.Instance.resetEvent?.Invoke();
+        Debug.Log("Returning to start");
+        SceneManager.LoadScene(startMenu, LoadSceneMode.Single);
     }
 
     #endregion

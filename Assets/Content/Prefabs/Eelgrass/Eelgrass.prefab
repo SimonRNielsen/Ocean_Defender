@@ -10,23 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4146244694923159622, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 24.17689
+      value: 4.14
       objectReference: {fileID: 0}
     - target: {fileID: -4146244694923159622, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 18.900002
+      value: 3.46
       objectReference: {fileID: 0}
     - target: {fileID: 930430788494925234, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
       propertyPath: m_Name
       value: Eelgrass
       objectReference: {fileID: 0}
+    - target: {fileID: 930430788494925234, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
+      propertyPath: m_TagString
+      value: Eelgrass
+      objectReference: {fileID: 0}
     - target: {fileID: 3014568933018773114, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3014568933018773114, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3014568933018773114, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 4847232884818997111, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -242161800726707273, guid: 616fbc356882b764b9356ab9dbb6cf4f, type: 3}
+      objectReference: {fileID: -7835325002276563497, guid: 0cadc3a677657fe46b8f8b3c6110ce67, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

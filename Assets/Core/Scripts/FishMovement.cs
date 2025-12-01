@@ -13,7 +13,6 @@ public class FishMovement : MonoBehaviour, IClickable
     [SerializeField] private float waveAmplitude = 0.5f;   // hvor højt den gynger
     [SerializeField] private float waveFrequency = 2f;     // hvor hurtigt den gynger
     private float baseY;                                   // udgangspunkt for y-position
-    public bool clickedAchievement = false;
 
     private bool movingRight = true;
     private float waitTimer = 0f;
@@ -28,6 +27,12 @@ public class FishMovement : MonoBehaviour, IClickable
 
     private SpriteRenderer sr;
 
+
+    //Achievement
+    //public bool clickedAchievement = false;
+    [SerializeField, Tooltip("The achievement which needs to be in the scene")]
+    public GameObject achievement;
+
     public void OnPrimaryClick()
     {
         //// Sæt achievement flag
@@ -39,7 +44,13 @@ public class FishMovement : MonoBehaviour, IClickable
         //// eller Destroy(gameObject); hvis den skal fjernes permanent
         //Debug.Log("click");
         //sr.color = new Color(19f, 146f, 79f);
-        sr.color = Color.yellowGreen;
+        //sr.color = Color.yellowGreen;
+
+        //Setting the achievement as active
+        achievement.SetActive(true);
+
+        //Setting this object to not active
+        this.gameObject.SetActive(false);
 
     }
 
@@ -54,15 +65,17 @@ public class FishMovement : MonoBehaviour, IClickable
         //// eller Destroy(gameObject); hvis den skal fjernes permanent
         //Debug.Log("hold");
 
+        
+
     }
 
     public void OnPrimaryRelease()
     {
         // Sæt achievement flag
-        clickedAchievement = true;
+        //clickedAchievement = true;
 
         // Fjern fisken
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         //Destroy(gameObject);
         // eller Destroy(gameObject); hvis den skal fjernes permanent
 

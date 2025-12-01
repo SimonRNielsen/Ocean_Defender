@@ -277,6 +277,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
             RoundOver = true;
             Time.timeScale = 0f;
             button.clicked += ButtonAction;
+            LoginUIScript.UpdatedScores = true;
 
         }
 
@@ -345,7 +346,9 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// Locates earned achievements and logs them for potential posting
+    /// </summary>
     private void FindAchievementsEarned()
     {
 

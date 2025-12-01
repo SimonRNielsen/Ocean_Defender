@@ -90,7 +90,7 @@ public class WebManagerScript : MonoBehaviour
             if ((requiresData.Contains(value) && !approved) || (currentUser == null && (value == WebRequest.OwnAchievements || value == WebRequest.OwnHighscore)))
             {
 
-                Debug.LogError("Invalid request added, needs data");
+                Debug.LogWarning("Invalid request added, needs data");
                 return;
 
             }
@@ -379,7 +379,7 @@ public class WebManagerScript : MonoBehaviour
                 Achievement = achievementPostQueue.Dequeue();
                 break;
             default:
-                Debug.LogError("RequestWithData object contained/was null data, or missing handle logic");
+                Debug.LogWarning("RequestWithData object contained/was null data, or missing handle logic");
                 break;
         }
 
@@ -476,9 +476,9 @@ public class WebManagerScript : MonoBehaviour
 
             }
             catch (Exception e)
-            {
+            {   
 
-                Debug.LogError(e);
+                Debug.LogWarning(e);
 
             }
 
@@ -526,7 +526,7 @@ public class WebManagerScript : MonoBehaviour
                 Debug.LogWarning("Request recieved empty list");
                 break;
             default:
-                Debug.LogError($"DTO with invalid data caught in ObjectHandler {obj}");
+                Debug.LogWarning($"DTO with invalid data caught in ObjectHandler {obj}");
                 break;
         }
 
@@ -609,7 +609,7 @@ public class WebManagerScript : MonoBehaviour
         {
 
             lastConnectionActive = false;
-            Debug.LogError("No connection to server");
+            Debug.LogWarning("No connection to server");
 
         }
         else
@@ -675,7 +675,7 @@ public class WebManagerScript : MonoBehaviour
             if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -734,7 +734,7 @@ public class WebManagerScript : MonoBehaviour
             else if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -782,7 +782,7 @@ public class WebManagerScript : MonoBehaviour
             if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -830,7 +830,7 @@ public class WebManagerScript : MonoBehaviour
             if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -895,7 +895,7 @@ public class WebManagerScript : MonoBehaviour
             else if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -935,7 +935,7 @@ public class WebManagerScript : MonoBehaviour
         else if (request.result == UnityWebRequest.Result.ConnectionError)
         {
 
-            Debug.LogError("No connection to server");
+            Debug.LogWarning("No connection to server");
             lastConnectionActive = false;
 
         }
@@ -989,7 +989,7 @@ public class WebManagerScript : MonoBehaviour
             else if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -1029,7 +1029,7 @@ public class WebManagerScript : MonoBehaviour
         else if (request.result == UnityWebRequest.Result.ConnectionError)
         {
 
-            Debug.LogError("No connection to server");
+            Debug.LogWarning("No connection to server");
             lastConnectionActive = false;
 
         }

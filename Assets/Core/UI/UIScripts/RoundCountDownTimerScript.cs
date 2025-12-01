@@ -318,8 +318,6 @@ public class RoundCountDownTimerScript : MonoBehaviour
             if (sceneNamesToUnload[i] != gameObject.scene.name)
                 yield return SceneManager.UnloadSceneAsync(sceneNamesToUnload[i]);
 
-        DataTransfer_SO.Instance.resetEvent?.Invoke();
-
         for (int i = 0; i < sceneNames.Length; i++)
             yield return SceneManager.LoadSceneAsync(sceneNames[i], LoadSceneMode.Additive);
 

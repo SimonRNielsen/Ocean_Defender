@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class BucketScript : MonoBehaviour, IClickable
 {
+    [SerializeField, Tooltip("The gameobject which is goind to be instantiate ")]
     public GameObject eelgrassNail;
-    private SpriteRenderer sr;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,26 +14,23 @@ public class BucketScript : MonoBehaviour, IClickable
     // Update is called once per frame
     void Update()
     {
-        sr = GetComponent<SpriteRenderer>();
+
     }
 
 
     public void OnPrimaryClick()
     {
-
-
-        eelgrassNail.transform.position = (Vector2)this.transform.position + new Vector2(0, 2);
-
+        //Instantiate a new eelgrassNail gameobject
+        eelgrassNail.transform.position = Vector3.zero;
         Instantiate(eelgrassNail);
 
     }
 
     public void OnPrimaryHold(Vector3 movement)
     {
-        //throw new System.NotImplementedException();
-        movement = Vector3.zero;
+        //It throw Exception if movement was set to Vector3.zero
+        movement = Vector3.zero; 
 
-        //rb.position += (Vector2)movement;
     }
 
     public void OnPrimaryRelease()

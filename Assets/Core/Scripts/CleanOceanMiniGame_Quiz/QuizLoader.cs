@@ -8,6 +8,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public string quizSceneName = "Quiz_Stefanie";
     public float quizInterval = 5f;
 
+    public QuestionList questionListToUse;
+
     private bool quizActive = false;
     #endregion
 
@@ -22,9 +24,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(quizInterval);
+            yield return new WaitForSecondsRealtime(quizInterval);
 
-            if (!quizActive)
+            if (!quizActive && !SceneManager.GetSceneByName(quizSceneName).isLoaded)
             {
                 StartCoroutine(LoadQuiz());
             }
@@ -34,7 +36,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
     IEnumerator LoadQuiz()
     {
         quizActive = true;
-        Time.timeScale = 0f;
 
         //Load quiz scene on top (Additive)
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(quizSceneName, LoadSceneMode.Additive);
@@ -59,8 +60,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (controller != null)
         {
-            controller.quizManager.StartQuiz();
-            controller.quizManager.quizController = controller;
+            controller.quizManager.quizController = controller; //Set the controller
+            controller.quizManager.quizData = questionListToUse; //Set the question list
+            controller.quizManager.StartQuiz(); //Start quiz
         }
         else
         {
@@ -82,14 +84,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         Time.timeScale = 1f;
         quizActive = false;
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     #endregion
 }

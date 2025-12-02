@@ -33,6 +33,7 @@ public class WebManagerScript : MonoBehaviour
 
     #region Fields
 
+    [SerializeField] private string achievementTag;
     private static readonly float pingInterval = 20f;
     private static readonly string baseURL = "https://odrestserver.onrender.com/";
     private static bool loopRunning = false, own = false, approved = false, showHighScores = false, showAchievements = true, chatActive = false, lastConnectionActive = false;
@@ -46,13 +47,11 @@ public class WebManagerScript : MonoBehaviour
     private static HighScoreDTO highScore = null;
     private static AchievementDTO achievement = null;
     private static DataTransfer_SO events;
+    private static Queue<AchievementDTO> achievementPostQueue = new Queue<AchievementDTO>();
     private static readonly object transitionLock = new object();
     private static readonly Dictionary<Endpoint, string> endpoints = new Dictionary<Endpoint, string>
         {
 
-            // { Endpoint.ClearUsers , "UserListing/clear" }, //DELETE endpoint - resets UserListings associated json-file
-            // { Endpoint.TestReadUsers , "UserListing/testreader" }, //GET endpoint - shows all users in servers users.json (List<CreateUserDTO>)
-            // { Endpoint.ClearScoresAndAchievements , "AchievementListing/clear" }, //DELETE endpoint - resets AchievementListings associated json-files for highscores and achievements
             { Endpoint.AddAchievement , "AchievementListing/addachievement" },
             { Endpoint.OwnAchievements , "AchievementListing/getownachievements" },
             { Endpoint.AchievementsEarned, "AchievementListing/achievementsearned" },
@@ -75,6 +74,7 @@ public class WebManagerScript : MonoBehaviour
 
     };
 
+
     #endregion
     #region Properties
 
@@ -90,7 +90,7 @@ public class WebManagerScript : MonoBehaviour
             if ((requiresData.Contains(value) && !approved) || (currentUser == null && (value == WebRequest.OwnAchievements || value == WebRequest.OwnHighscore)))
             {
 
-                Debug.LogError("Invalid request added, needs data");
+                Debug.LogWarning("Invalid request added, needs data");
                 return;
 
             }
@@ -319,16 +319,6 @@ public class WebManagerScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Currently only used for testing
-    /// </summary>
-    private void Start()
-    {
-
-        //string name = "OceanDefenderUnityProgram", mail = "oceandefender@oceandefender.dk", password = "MortenErSejereEndDinMor"; //Testing strings
-
-    }
-
-    /// <summary>
     /// Used for initating connection and reset subscriptions on SO
     /// </summary>
     private void OnEnable()
@@ -355,7 +345,7 @@ public class WebManagerScript : MonoBehaviour
     /// </summary>
     /// <typeparam name="T">Generic object type</typeparam>
     /// <param name="obj">Object needed for sending requests</param>
-    public static void RequestWithData<T>(T obj) where T : ISendableDTO
+    public static void RequestWithData<T>(T obj)
     {
 
         switch (obj)
@@ -375,8 +365,21 @@ public class WebManagerScript : MonoBehaviour
                 highScoreDTO.Date = DateTime.UtcNow;
                 HighScore = highScoreDTO;
                 break;
+            case List<AchievementDTO> achievements when achievements.Count > 0:
+                if (currentUser == null) break;
+                foreach (AchievementDTO achievement in achievements)
+                {
+
+                    achievement.UserName = currentUser.Name;
+                    achievement.UserEmail = currentUser.Email;
+                    achievement.Date = DateTime.UtcNow;
+                    achievementPostQueue.Enqueue(achievement);
+
+                }
+                Achievement = achievementPostQueue.Dequeue();
+                break;
             default:
-                Debug.LogError("RequestWithData object contained/was null data, or missing handle logic");
+                Debug.LogWarning("RequestWithData object contained/was null data, or missing handle logic");
                 break;
         }
 
@@ -469,13 +472,13 @@ public class WebManagerScript : MonoBehaviour
                 if (string.IsNullOrWhiteSpace(serverPublicKey) && currentRequest == WebRequest.Idle && !requests.Contains(WebRequest.GetKey)) //Backup in case encryption key isn't recieved
                     Request = WebRequest.GetKey;
 
-                await Task.Delay(200); //Ensures server and async runtime isn't swamped by requests
+                await Task.Delay(50); //Ensures server and async runtime isn't swamped by requests
 
             }
             catch (Exception e)
-            {
+            {   
 
-                Debug.LogError(e);
+                Debug.LogWarning(e);
 
             }
 
@@ -523,7 +526,7 @@ public class WebManagerScript : MonoBehaviour
                 Debug.LogWarning("Request recieved empty list");
                 break;
             default:
-                Debug.LogError($"DTO with invalid data caught in ObjectHandler {obj}");
+                Debug.LogWarning($"DTO with invalid data caught in ObjectHandler {obj}");
                 break;
         }
 
@@ -583,7 +586,6 @@ public class WebManagerScript : MonoBehaviour
 
     }
 
-
     #region Tasks
 
     /// <summary>
@@ -607,7 +609,7 @@ public class WebManagerScript : MonoBehaviour
         {
 
             lastConnectionActive = false;
-            Debug.LogError("No connection to server");
+            Debug.LogWarning("No connection to server");
 
         }
         else
@@ -673,7 +675,7 @@ public class WebManagerScript : MonoBehaviour
             if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -732,7 +734,7 @@ public class WebManagerScript : MonoBehaviour
             else if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -780,7 +782,7 @@ public class WebManagerScript : MonoBehaviour
             if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -828,7 +830,7 @@ public class WebManagerScript : MonoBehaviour
             if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -840,7 +842,14 @@ public class WebManagerScript : MonoBehaviour
 
             }
 
-            Request = WebRequest.Idle;
+            if (achievementPostQueue.Count > 0)
+            {
+
+                achievement = achievementPostQueue.Dequeue();
+
+            }
+            else
+                Request = WebRequest.Idle;
 
         }
 
@@ -886,7 +895,7 @@ public class WebManagerScript : MonoBehaviour
             else if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -926,7 +935,7 @@ public class WebManagerScript : MonoBehaviour
         else if (request.result == UnityWebRequest.Result.ConnectionError)
         {
 
-            Debug.LogError("No connection to server");
+            Debug.LogWarning("No connection to server");
             lastConnectionActive = false;
 
         }
@@ -980,7 +989,7 @@ public class WebManagerScript : MonoBehaviour
             else if (request.result == UnityWebRequest.Result.ConnectionError)
             {
 
-                Debug.LogError("No connection to server");
+                Debug.LogWarning("No connection to server");
                 lastConnectionActive = false;
 
             }
@@ -1020,7 +1029,7 @@ public class WebManagerScript : MonoBehaviour
         else if (request.result == UnityWebRequest.Result.ConnectionError)
         {
 
-            Debug.LogError("No connection to server");
+            Debug.LogWarning("No connection to server");
             lastConnectionActive = false;
 
         }

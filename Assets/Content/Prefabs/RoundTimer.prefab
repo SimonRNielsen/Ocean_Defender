@@ -82,5 +82,10 @@ MonoBehaviour:
   turnBarIntoLabel: 0
   displayText: 1
   roundOverSprite: {fileID: 0}
+  outerBarRightBorderRadius: 0
+  outerBarLeftBorderRadius: 0
+  innerBarRightBorderRadius: 0
+  innerBarLeftBorderRadius: 0
   returnScenes:
   - StartMenu
+  achievementTag: Achievement

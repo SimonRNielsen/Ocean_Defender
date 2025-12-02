@@ -2,6 +2,17 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SocialPlatforms.Impl;
 
+public enum Achievements
+{
+
+    Fiskeviskeren,
+    KlogeMaage,
+    Oprydning,
+    Bundtrawl,
+    Aalegraes
+
+}
+
 public class AchievementScript : MonoBehaviour, IClickable
 {
 
@@ -14,6 +25,13 @@ public class AchievementScript : MonoBehaviour, IClickable
     public bool klogemaage = false;
 
     private float moveTimer = 0;
+    [SerializeField] private Achievements id;
+    #endregion
+
+    #region Properties
+
+    public int ID { get => (int)id; }
+
     #endregion
 
 

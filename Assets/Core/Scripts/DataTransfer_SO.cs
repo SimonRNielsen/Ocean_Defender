@@ -75,6 +75,12 @@ public class DataTransfer_SO : ScriptableObject
 
 
     public float roundTimeRemaining;
+
+    Dictionary<Enum, string> dansk = new Dictionary<Enum, string>();
+    Dictionary<Enum, string> tysk = new Dictionary<Enum, string>();
+    Dictionary<Enum, string> engelsk = new Dictionary<Enum, string>();
+    Dictionary<Enum, string> selectedLanguage = new Dictionary<Enum, string>();
+
     #endregion
     #region Methods
 
@@ -83,7 +89,6 @@ public class DataTransfer_SO : ScriptableObject
     /// </summary>
     private void OnEnable()
     {
-
         oneShotSoundEvent = null;
         loopingSoundEvent = null;
         playSoundEvent = null;
@@ -98,7 +103,6 @@ public class DataTransfer_SO : ScriptableObject
         resetEvent += ResetWhileRunning;
 
         roundTimeRemaining = 0;
-
     }
 
     /// <summary>
@@ -111,6 +115,32 @@ public class DataTransfer_SO : ScriptableObject
 
     }
 
+
+    #region SPROG
+    [Serializable]
+    public class LanguageStringArray
+    {
+
+        [Tooltip("Name of the field or button")] public string tag;
+        [SerializeField, Tooltip("Danish version")] private string danish;
+        [SerializeField, Tooltip("English version")] private string english;
+        [SerializeField, Tooltip("German version")] private string german;
+
+
+        public string[] Strings
+        {
+
+            get
+            {
+
+                return new string[] { danish, english, german };
+
+            }
+
+        }
+
+    }
+    #endregion
     #endregion
 
 }

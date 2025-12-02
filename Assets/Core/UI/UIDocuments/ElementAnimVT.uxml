@@ -1,0 +1,4 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/arrowStyle.uss?fileID=7433441132597879392&amp;guid=bd9c36cb8fda9d743a27a829fdad2975&amp;type=3#arrowStyle" />
+    <ui:VisualElement name="Arrow" class="arrow" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Content/Sprites/Menu/pil.png?fileID=2800000&amp;guid=cfadf00e038aaf44eb5505926222fc00&amp;type=3#pil&quot;); background-size: 20% 22%; align-items: flex-start;" />
+</ui:UXML>

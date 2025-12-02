@@ -24,8 +24,15 @@ public class StartMenuScript : MonoBehaviour
     private static float buttonScale = 1f;
     private readonly string timerScene = "RoundTimer";
 
+    //Settings
     private VisualElement settingBox;
     private Slider volumenSlider;
+    [SerializeField] private AudioSource audioSource;
+    //private VisualElement volumenIcon;
+    private Button dansk;
+    private Button engelsk;
+    private Button tysk;
+    private Button exitButton;
 
     /// <summary>
     /// Set to adjust scaling of buttons (before runtime)
@@ -76,6 +83,15 @@ public class StartMenuScript : MonoBehaviour
         if (settingButton != null)
             settingButton.clicked += StartSetting;
 
+        if (exitButton != null)
+        {
+            exitButton.clicked += CloseSetting;
+        }
+
+        if (volumenSlider != null)
+        {
+            volumenSlider.RegisterValueChangedCallback(OnVolumeChanged);
+        }
     }
 
     /// <summary>
@@ -93,6 +109,15 @@ public class StartMenuScript : MonoBehaviour
             settingButton.clicked -= StartSetting;
         }
 
+        if (exitButton != null)
+        {
+            exitButton.clicked -= CloseSetting;
+        }
+
+        if (volumenSlider != null)
+        {
+            volumenSlider.UnregisterValueChangedCallback(OnVolumeChanged);
+        }
     }
 
     /// <summary>
@@ -148,6 +173,8 @@ public class StartMenuScript : MonoBehaviour
             settingButtonContainer = root.Q<VisualElement>("SettingButtonContainer");
             settingBox = root.Q<VisualElement>("SettingBox");
             volumenSlider = (Slider)root.Q<VisualElement>("VolumenSlider");
+            //volumenIcon = root.Q<VisualElement>("VolumIkon");
+            exitButton = (Button)root.Q<VisualElement>("ExitButton");
         }
 
     }
@@ -306,12 +333,10 @@ public class StartMenuScript : MonoBehaviour
     {
         Debug.LogWarning("Setting");
 
-        //Showing settingBox & volumenSlider
+        //Showing settingBox 
         settingBox.SetEnabled(true);
         settingBox.style.display = DisplayStyle.Flex;
 
-        volumenSlider.SetEnabled(true);
-        volumenSlider.style.display = DisplayStyle.Flex;
 
         //Shutting Visuelelements and setting button down
         header.SetEnabled(false);
@@ -320,6 +345,32 @@ public class StartMenuScript : MonoBehaviour
         buttonContainer.style.display = DisplayStyle.None;
         settingButton.SetEnabled(false);
         settingButton.style.display = DisplayStyle.None;
+    }
+
+    private void CloseSetting()
+    {
+        Debug.LogWarning("Setting off");
+
+        //Enable settingBox 
+        settingBox.SetEnabled(false);
+        settingBox.style.display = DisplayStyle.None;
+
+
+        //Unenable
+        header.SetEnabled(true);
+        header.style.display = DisplayStyle.Flex;
+        buttonContainer.SetEnabled(true);
+        buttonContainer.style.display = DisplayStyle.Flex;
+        settingButton.SetEnabled(true);
+        settingButton.style.display = DisplayStyle.Flex;
+    }
+
+    private void OnVolumeChanged(ChangeEvent<float> evt)
+    {
+        if (audioSource != null)
+        {
+            audioSource.volume = evt.newValue;
+        }
     }
 }
 

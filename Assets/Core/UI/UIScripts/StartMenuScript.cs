@@ -17,12 +17,15 @@ public class StartMenuScript : MonoBehaviour
     [SerializeField, Range(0, 1)] private float borderOpacity = 1;
     [Space, SerializeField] private List<SceneSelection> scenes;
     private VisualElement header, background, buttonContainer, settingButtonContainer;
-    private Button setting;
+    private Button settingButton;
     private List<(Button Button, Action CoRoutine)> buttons = new List<(Button Button, Action CoRoutine)>();
     private Color borderColor;
     private bool buttonsAdded = false;
     private static float buttonScale = 1f;
     private readonly string timerScene = "RoundTimer";
+
+    private VisualElement settingBox;
+    private Slider volumenSlider;
 
     /// <summary>
     /// Set to adjust scaling of buttons (before runtime)
@@ -70,8 +73,8 @@ public class StartMenuScript : MonoBehaviour
             foreach (var entry in buttons)
                 entry.Button.clicked += entry.CoRoutine;
 
-        if (setting != null)
-            setting.clicked += Quit;
+        if (settingButton != null)
+            settingButton.clicked += StartSetting;
 
     }
 
@@ -85,10 +88,9 @@ public class StartMenuScript : MonoBehaviour
             foreach (var entry in buttons)
                 entry.Button.clicked -= entry.CoRoutine;
 
-        if (setting != null)
+        if (settingButton != null)
         {
-            Debug.LogWarning("Setting");
-            setting.clicked -= Quit;
+            settingButton.clicked -= StartSetting;
         }
 
     }
@@ -144,7 +146,8 @@ public class StartMenuScript : MonoBehaviour
             background = root.Q<VisualElement>("Background");
             buttonContainer = root.Q<VisualElement>("ButtonContainer");
             settingButtonContainer = root.Q<VisualElement>("SettingButtonContainer");
-
+            settingBox = root.Q<VisualElement>("SettingBox");
+            volumenSlider = (Slider)root.Q<VisualElement>("VolumenSlider");
         }
 
     }
@@ -214,9 +217,9 @@ public class StartMenuScript : MonoBehaviour
 
                 ChangeVisualElementSettings(settingButtonContainer, false);
 
-                setting = new Button();
-                ChangeButtonSettings(setting, closeButtonSprite);
-                settingButtonContainer.Add(setting);
+                settingButton = new Button();
+                ChangeButtonSettings(settingButton, closeButtonSprite);
+                settingButtonContainer.Add(settingButton);
 
             }
 
@@ -298,6 +301,26 @@ public class StartMenuScript : MonoBehaviour
 
     }
 
+
+    private void StartSetting()
+    {
+        Debug.LogWarning("Setting");
+
+        //Showing settingBox & volumenSlider
+        settingBox.SetEnabled(true);
+        settingBox.style.display = DisplayStyle.Flex;
+
+        volumenSlider.SetEnabled(true);
+        volumenSlider.style.display = DisplayStyle.Flex;
+
+        //Shutting Visuelelements and setting button down
+        header.SetEnabled(false);
+        header.style.display = DisplayStyle.None;
+        buttonContainer.SetEnabled(false);
+        buttonContainer.style.display = DisplayStyle.None;
+        settingButton.SetEnabled(false);
+        settingButton.style.display = DisplayStyle.None;
+    }
 }
 
 

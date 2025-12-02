@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1864708990153752200
+--- !u!1001 &565987852588100644
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,22 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -4806348817402309457, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
-      propertyPath: m_Radius
-      value: 2.402383
-      objectReference: {fileID: 0}
-    - target: {fileID: -4806348817402309457, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.0042188168
-      objectReference: {fileID: 0}
-    - target: {fileID: -2300230331068662812, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 4.78
-      objectReference: {fileID: 0}
-    - target: {fileID: -2300230331068662812, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 4.75
-      objectReference: {fileID: 0}
     - target: {fileID: 2669156695628209031, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -65,17 +49,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4720495744386002954, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
-      propertyPath: id
-      value: 2
+      propertyPath: fiskeVisker
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4849173009468229747, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
       propertyPath: m_Name
-      value: TrashAchievement
+      value: FishAchievement
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849173009468229747, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849173009468229747, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
+      propertyPath: m_TagString
+      value: Achievement
       objectReference: {fileID: 0}
     - target: {fileID: 7663489181192434790, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -3047807121591678487, guid: f8216719097bf604296dba5b8aa72a9a, type: 3}
+      objectReference: {fileID: -6255794092153362195, guid: 936c9878ade02eb4bbba63c47e622a00, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

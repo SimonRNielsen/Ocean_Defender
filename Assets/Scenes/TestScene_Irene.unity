@@ -616,6 +616,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6497318454287862706, guid: 10a66ce2f72a2de4db66bfe2a7b4e496, type: 3}
+      propertyPath: achievement
+      value: 
+      objectReference: {fileID: 1638299815}
     - target: {fileID: 3594803031695339822, guid: 10a66ce2f72a2de4db66bfe2a7b4e496, type: 3}
       propertyPath: m_Name
       value: stribetFisk
@@ -734,6 +738,72 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a04dae83b36c03b4f9a32c6094eba691, type: 3}
+--- !u!1001 &1638299814
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2508633821876156323, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.70703
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508633821876156323, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01583
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508633821876156323, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508633821876156323, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508633821876156323, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508633821876156323, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508633821876156323, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508633821876156323, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508633821876156323, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508633821876156323, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940857659218142295, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_Name
+      value: FishAchievement
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940857659218142295, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+--- !u!1 &1638299815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4940857659218142295, guid: ab9cf2c41075f3f4f897ef59890dab30, type: 3}
+  m_PrefabInstance: {fileID: 1638299814}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1823303790
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,7 +974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1872079183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1988,10 +2058,11 @@ SceneRoots:
   - {fileID: 925913910}
   - {fileID: 411236283}
   - {fileID: 534172762}
-  - {fileID: 1481037994}
   - {fileID: 1631512624}
   - {fileID: 6058250883591712964}
   - {fileID: 2359492030616905270}
   - {fileID: 425360774809066508}
   - {fileID: 1516012408665624986}
   - {fileID: 1872079184}
+  - {fileID: 1481037994}
+  - {fileID: 1638299814}

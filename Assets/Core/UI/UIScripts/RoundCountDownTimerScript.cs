@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -23,6 +24,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
     [SerializeField, Tooltip("The radius of the corners on the right side of inner bar")] int innerBarRightBorderRadius;
     [SerializeField, Tooltip("The radius of the corners on the left side of inner bar")] int innerBarLeftBorderRadius;
     [SerializeField, Space, Header("Scenes to open on exit")] private string[] returnScenes;
+    [SerializeField, Space, Header("Tag for achievements")] private string achievementTag;
     private readonly float notOpaque = 1f;
     private readonly string roundOver = "RoundOver", buttonName = "OKButton", scoreLabelName = "ScoreLabel";
     private ProgressBar progressBar;
@@ -271,9 +273,11 @@ public class RoundCountDownTimerScript : MonoBehaviour
             centre.visible = true;
 
             DataTransfer_SO.Instance.getScore?.Invoke();
+            FindAchievementsEarned();
             RoundOver = true;
             Time.timeScale = 0f;
             button.clicked += ButtonAction;
+            LoginUIScript.UpdatedScores = true;
 
         }
 
@@ -318,8 +322,6 @@ public class RoundCountDownTimerScript : MonoBehaviour
             if (sceneNamesToUnload[i] != gameObject.scene.name)
                 yield return SceneManager.UnloadSceneAsync(sceneNamesToUnload[i]);
 
-        DataTransfer_SO.Instance.resetEvent?.Invoke();
-
         for (int i = 0; i < sceneNames.Length; i++)
             yield return SceneManager.LoadSceneAsync(sceneNames[i], LoadSceneMode.Additive);
 
@@ -344,6 +346,39 @@ public class RoundCountDownTimerScript : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Locates earned achievements and logs them for potential posting
+    /// </summary>
+    private void FindAchievementsEarned()
+    {
+
+        List<GameObject> list = new List<GameObject>();
+        GameObject.FindGameObjectsWithTag(achievementTag, list);
+        List<AchievementDTO> earnedAchievements = new List<AchievementDTO>();
+
+        foreach (GameObject obj in list)
+        {
+
+            AchievementScript achievementScript = obj.GetComponent<AchievementScript>();
+
+            earnedAchievements.Add(new AchievementDTO(string.Empty, string.Empty, achievementScript.ID));
+
+        }
+
+        if (earnedAchievements.Count > 0)
+        {
+
+            foreach (AchievementDTO item in earnedAchievements)
+            {
+
+                if (!DataTransfer_SO.Instance.EarnedAchievements.Any(x => x.AchievementID == item.AchievementID))
+                    DataTransfer_SO.Instance.EarnedAchievements.Add(item);
+
+            }
+
+        }
+
+    }
 
     #endregion
 

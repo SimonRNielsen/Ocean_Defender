@@ -12,6 +12,8 @@ public class StaticObject : MonoBehaviour, IClickable
 
     //The GameObject of the collision
     private GameObject go;
+    //Temp GameObject when there isn't no more collision
+    //private GameObject tmpGo = new GameObject();
 
     [SerializeField, Tooltip("The sprite for when the eelgrass is planted")]
     public Sprite plantedEelgrass;
@@ -58,6 +60,7 @@ public class StaticObject : MonoBehaviour, IClickable
         if (rbSprite.sprite != plantedEelgrass)
         {
             rb.position += (Vector2)movement;
+            //rb.MovePosition(rb.position + (Vector2)movement);
         }
     }
 
@@ -74,8 +77,9 @@ public class StaticObject : MonoBehaviour, IClickable
             spriteHeight = rbSprite.size.y * 0.15f;
 
             //Setting the position on top og the hole where it is planted
-            this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0.2f, (spriteHeight / 2) * 0.15f + .1f);
+            this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0.2f, (spriteHeight / 2) * 0.15f + .1f) + new Vector2(-1.42091f + 1.18f, 0.9648225f - 0.84f);
 
+            //Changing the collision tag so there can't be planted another Eelgrass in the same Hole
             go.tag = "Untagged";
 
             score++;
@@ -90,15 +94,17 @@ public class StaticObject : MonoBehaviour, IClickable
             go = collision.gameObject;
             canPlant = true;
 
-            //Changing the collision tag so there can't be planted another Eelgrass in the same Hole
-            collision.gameObject.tag = "Untagged";
         }
     }
 
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        canPlant = false;
+        if (collision.CompareTag("Hole"))
+        {
+            canPlant = false;
+        }
+        //go = tmpGo;
     }
 
     private void isPlanted()

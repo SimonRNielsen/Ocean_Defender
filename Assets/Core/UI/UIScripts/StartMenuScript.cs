@@ -16,8 +16,8 @@ public class StartMenuScript : MonoBehaviour
     [SerializeField, Range(0, 255)] private float borderRed = 0, borderGreen = 0, borderBlue = 0;
     [SerializeField, Range(0, 1)] private float borderOpacity = 1;
     [Space, SerializeField] private List<SceneSelection> scenes;
-    private VisualElement header, background, buttonContainer, closeButtonContainer;
-    private Button close;
+    private VisualElement header, background, buttonContainer, settingButtonContainer;
+    private Button setting;
     private List<(Button Button, Action CoRoutine)> buttons = new List<(Button Button, Action CoRoutine)>();
     private Color borderColor;
     private bool buttonsAdded = false;
@@ -70,8 +70,8 @@ public class StartMenuScript : MonoBehaviour
             foreach (var entry in buttons)
                 entry.Button.clicked += entry.CoRoutine;
 
-        if (close != null)
-            close.clicked += Quit;
+        if (setting != null)
+            setting.clicked += Quit;
 
     }
 
@@ -85,8 +85,11 @@ public class StartMenuScript : MonoBehaviour
             foreach (var entry in buttons)
                 entry.Button.clicked -= entry.CoRoutine;
 
-        if (close != null)
-            close.clicked -= Quit;
+        if (setting != null)
+        {
+            Debug.LogWarning("Setting");
+            setting.clicked -= Quit;
+        }
 
     }
 
@@ -140,7 +143,7 @@ public class StartMenuScript : MonoBehaviour
             header = root.Q<VisualElement>("Header");
             background = root.Q<VisualElement>("Background");
             buttonContainer = root.Q<VisualElement>("ButtonContainer");
-            closeButtonContainer = root.Q<VisualElement>("CloseButtonContainer");
+            settingButtonContainer = root.Q<VisualElement>("SettingButtonContainer");
 
         }
 
@@ -209,11 +212,11 @@ public class StartMenuScript : MonoBehaviour
             if (closeButtonSprite != null)
             {
 
-                ChangeVisualElementSettings(closeButtonContainer, false);
+                ChangeVisualElementSettings(settingButtonContainer, false);
 
-                close = new Button();
-                ChangeButtonSettings(close, closeButtonSprite);
-                closeButtonContainer.Add(close);
+                setting = new Button();
+                ChangeButtonSettings(setting, closeButtonSprite);
+                settingButtonContainer.Add(setting);
 
             }
 

@@ -6,6 +6,8 @@ public class PlacementScript : MonoBehaviour
     private List<Collider2D> collisions = new List<Collider2D>();
     private List<GameObject> objects = new List<GameObject>();
 
+    [SerializeField, Tooltip("The time it takes to connect the eelgrass and nail")]
+    public float connectTimer = 2f;
     private float timer = 0f;
     public GameObject eelgrassWithNail;
 
@@ -51,7 +53,7 @@ public class PlacementScript : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > 3f)
+        if (timer > connectTimer)
         {
             while (objects.Count > 0)
             {

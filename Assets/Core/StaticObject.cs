@@ -100,10 +100,10 @@ public class StaticObject : MonoBehaviour, IClickable
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Hole"))
-        {
-            canPlant = false;
-        }
+        //if (collision.CompareTag("Hole"))
+        //{
+        //    canPlant = false;
+        //}
         //go = tmpGo;
     }
 

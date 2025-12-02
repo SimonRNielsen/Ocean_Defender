@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class QuizManager : MonoBehaviour
 {
@@ -10,20 +12,22 @@ public class QuizManager : MonoBehaviour
     public Transform questionParent;
     public QuizController quizController;
     
+    public float questionInterval = 1f;
 
-    int questionIndex = 0;
-    int correctCount = 0;
+    public GameObject factBoxPanel;
+    public TextMeshProUGUI factText;
+
+    private int questionIndex = 0;
+    private int correctCount = 0;
+
+    private bool showingResult = false;
     #endregion
 
     #region Methods
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        ShowQuestion();
-    }
 
-    void ShowQuestion()
+    private void ShowQuestion()
     {
+        Time.timeScale = 0f; //Game pauses when question from quiz is shown
         if (questionIndex >= quizData.questions.Length)
         {
             Debug.Log("Quiz Done!");
@@ -46,27 +50,47 @@ public class QuizManager : MonoBehaviour
         Debug.Log(correct ? "Correct!" : "Wrong!");
 
         StartCoroutine(HandleAnswer(correct));
-        //ShowQuestion();
     }
 
     public void ShowResult()
     {
-        GameObject panel = Instantiate(resultPrefab, questionParent);
-        var ui = panel.GetComponent<ResultPanelUI>();
-        ui.SetUp(correctCount, quizData.questions.Length, this);
 
-        StartCoroutine(CloseQuizAfterDelay());
+        ShowResultInFactBox(correctCount, quizData.questions.Length);
     }
 
+    public void ShowResultInFactBox(int score, int total)
+    {
+        showingResult = true;
+        factText.text = $"Du fik {score} ud af {total} rigtige!";
+        factBoxPanel.SetActive(true);
+
+        SetupFactBoxContinueButton(OnResultContinueClicked);
+
+        Time.timeScale = 0f;
+    }
+
+    private void OnResultContinueClicked()
+    {
+        factBoxPanel.SetActive(false);
+        Time.timeScale = 1f;
+
+        showingResult = false;
+
+        //Undload quizScene
+        quizController.QuizEnded();
+    }
     private IEnumerator CloseQuizAfterDelay()
     {
-        yield return new WaitForSecondsRealtime(2f); //Realtid - Timescale doesnt work on this
+        yield return new WaitForSecondsRealtime(2f); //Realtime - Timescale doesnt work on this
+
+        Time.timeScale = 1f; //Game continues after the quiz is done
+
         quizController.QuizEnded();
     }
     private IEnumerator HandleAnswer(bool correct)
     {
         //Wait for 2 sekunds
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSecondsRealtime(2f);
 
         if (correct)
         {
@@ -77,18 +101,6 @@ public class QuizManager : MonoBehaviour
         foreach (Transform child in questionParent)
         {
             Destroy(child.gameObject);
-        }
-
-        //Go to next question 
-        questionIndex++;
-
-        if (questionIndex >= quizData.questions.Length)
-        {
-            ShowResult();
-        }
-        else
-        {
-            ShowQuestion();
         }
 
     }
@@ -106,10 +118,47 @@ public class QuizManager : MonoBehaviour
         ShowQuestion();
     }
 
-    // Update is called once per frame
-    void Update()
+    public IEnumerator ProceedAfterFactBox()
     {
-        
+        //Start game again
+        Time.timeScale = 1f;
+
+        //Start timer once factabox closes
+        yield return new WaitForSecondsRealtime(questionInterval);
+
+        //Pause till next question
+        Time.timeScale = 0f;
+
+        questionIndex++;
+
+        if (questionIndex >= quizData.questions.Length)
+        {
+            ShowResult();
+        }
+        else
+        {
+            ShowQuestion();
+        }
+    }
+
+    public void ShowFactBox(string text)
+    {
+        factBoxPanel.SetActive(true);
+
+        if (factText != null)
+        {
+            factText.text = text;
+        }
+    }
+
+    public void SetupFactBoxContinueButton(UnityEngine.Events.UnityAction action)
+    {
+        Button continueBtn = factBoxPanel.GetComponentInChildren<Button>();
+        if (continueBtn != null)
+        {
+            continueBtn.onClick.RemoveAllListeners();
+            continueBtn.onClick.AddListener(action);
+        }
     }
     #endregion
 }

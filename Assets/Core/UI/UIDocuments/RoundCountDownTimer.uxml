@@ -1,4 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Core/UI/UIStyleSheets/RoundCountDownStyleSheet.uss?fileID=7433441132597879392&amp;guid=b61117f76f994f44798ffb81208c3e2e&amp;type=3#RoundCountDownStyleSheet" />
     <ui:VisualElement name="Top" style="flex-grow: 1; min-width: 100%; width: 100%; max-width: 100%; height: 33.3%; min-height: 33.3%; max-height: 33.3%; flex-direction: row;">
         <ui:VisualElement name="TopLeft" style="flex-grow: 1; width: 33.3%; min-width: 33.3%; max-width: 33.3%; height: 100%; min-height: 100%; max-height: 100%; align-items: flex-start; align-self: flex-start;" />
         <ui:VisualElement name="TopCentre" style="flex-grow: 1; width: 33.3%; min-width: 33.3%; max-width: 33.3%; height: 100%; min-height: 100%; max-height: 100%; align-items: center; align-self: center;" />
@@ -7,12 +8,12 @@
     <ui:VisualElement name="Middle" style="flex-grow: 1; width: 100%; min-width: 100%; max-width: 100%; height: 33.3%; min-height: 33.3%; max-height: 33.3%; flex-direction: row;">
         <ui:VisualElement name="MiddleLeft" style="flex-grow: 1; width: 33.3%; min-width: 33.3%; max-width: 33.3%; height: 100%; min-height: 100%; max-height: 100%; align-items: flex-start; align-self: flex-start; justify-content: center;" />
         <ui:VisualElement name="MiddleCentre" style="flex-grow: 1; width: 33.3%; min-width: 33.3%; max-width: 33.3%; height: 100%; min-height: 100%; max-height: 100%; align-items: center; justify-content: center; align-self: center; align-content: center;">
-            <ui:VisualElement name="RoundOver" style="flex-grow: 1; width: auto; height: auto; min-width: auto; min-height: auto; max-width: 100%; max-height: 100%; background-color: rgb(52, 164, 62);">
-                <ui:VisualElement style="flex-grow: 1;">
-                    <ui:Label text="Din score blev:&#10;Your score was:&#10;Ihre Punktzahl war:" name="ScoreText" style="-unity-text-align: upper-center; font-size: 18px;" />
-                    <ui:Label text="Label" name="ScoreLabel" style="-unity-text-align: upper-center;" />
+            <ui:VisualElement name="RoundOver" style="flex-grow: 1; width: 65%; height: auto; min-width: auto; min-height: auto; max-width: 100%; max-height: 100%; background-color: rgba(255, 255, 255, 0); background-image: url(&quot;project://database/Assets/Content/Sprites/Background/bubble.png?fileID=-9136834448258697486&amp;guid=4e9dab48786c5e944901a56972b38b05&amp;type=3#bubble_0&quot;); align-self: center;">
+                <ui:VisualElement style="flex-grow: 1; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Anton.ttf?fileID=12800000&amp;guid=997a43b767814dd0a7642ec9b78cba41&amp;type=3#Anton&quot;); font-size: 30px; align-self: auto; width: auto;">
+                    <ui:Label text="Din score blev:&#10;Your score was:&#10;Ihre Punktzahl war:" name="ScoreText" style="-unity-text-align: upper-center; font-size: 25px; margin-top: 35px;" />
+                    <ui:Label text="Label" name="ScoreLabel" style="-unity-text-align: upper-center; font-size: 25px; bottom: 5%; color: rgb(11, 149, 11);" />
                 </ui:VisualElement>
-                <ui:Button text="OK" name="OKButton" style="max-width: 50%; max-height: 30%; align-self: center; min-width: 50%; margin-bottom: 10px;" />
+                <ui:Button text="OK" name="OKButton" class="RoundCountDownButton" style="bottom: 5%;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="MiddleRight" style="flex-grow: 1; width: 33.3%; min-width: 33.3%; max-width: 33.3%; height: 100%; min-height: 100%; max-height: 100%; align-items: flex-end; align-self: flex-end; align-content: center; justify-content: center;" />

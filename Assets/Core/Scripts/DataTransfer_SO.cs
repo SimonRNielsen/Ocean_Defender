@@ -73,6 +73,8 @@ public class DataTransfer_SO : ScriptableObject
     /// </summary>
     public int RoundScore;
 
+    public List<AchievementDTO> EarnedAchievements;
+
 
     public float roundTimeRemaining;
 
@@ -99,6 +101,7 @@ public class DataTransfer_SO : ScriptableObject
         transmitScore = null;
         transmitScores = null;
 
+        EarnedAchievements = new List<AchievementDTO>();
         RoundScore = 0;
         resetEvent += ResetWhileRunning;
 
@@ -112,6 +115,7 @@ public class DataTransfer_SO : ScriptableObject
     {
 
         RoundScore = 0;
+        EarnedAchievements.Clear();
 
     }
 

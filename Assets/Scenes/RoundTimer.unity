@@ -366,7 +366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: roundTime
-      value: 60
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 7351945483921304732, guid: c98d4875b51eb2441a765a9d21979491, type: 3}
       propertyPath: barColor.a

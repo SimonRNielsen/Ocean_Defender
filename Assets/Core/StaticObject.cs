@@ -13,7 +13,7 @@ public class StaticObject : MonoBehaviour, IClickable
     //The GameObject of the collision
     private GameObject go;
     //Temp GameObject when there isn't no more collision
-    private GameObject tmpGo = new GameObject();
+    //private GameObject tmpGo = new GameObject();
 
     [SerializeField, Tooltip("The sprite for when the eelgrass is planted")]
     public Sprite plantedEelgrass;

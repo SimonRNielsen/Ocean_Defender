@@ -556,6 +556,21 @@ public class LoginUIScript : MonoBehaviour
         showOwn = !showOwn;
         WebManagerScript.ChatActive = !showOwn;
 
+        if (!showOwn && achievementScreen.enabledInHierarchy)
+        {
+
+            WebManagerScript.ShowAchievement = true;
+            WebManagerScript.Request = WebRequest.ShowAchievements;
+
+        }
+        else if (!showOwn && highscoreScreen.enabledInHierarchy)
+        {
+
+            WebManagerScript.ShowHighscore = true;
+            WebManagerScript.Request = WebRequest.ShowHighscores;
+
+        }
+
         if (showOwn)
         {
 

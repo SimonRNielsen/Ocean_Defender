@@ -40,11 +40,16 @@ public class ScoreCounterScript : MonoBehaviour
             achievement.transform.localScale = Vector3.one / 4;
         }
 
+    }
+
+    private void Update()
+    {
         quizScore = DataTransfer_SO.Instance.QuizScore;
         if (quizScore > 3)
         {
             achievementQuiz.SetActive(true);
         }
+        
     }
 
     /// <summary>

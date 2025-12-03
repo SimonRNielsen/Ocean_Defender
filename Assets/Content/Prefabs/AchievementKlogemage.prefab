@@ -60,9 +60,17 @@ PrefabInstance:
       propertyPath: id
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4720495744386002954, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
+      propertyPath: klogemaage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4849173009468229747, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
       propertyPath: m_Name
       value: AchievementKlogemage
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849173009468229747, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7663489181192434790, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
       propertyPath: m_Sprite

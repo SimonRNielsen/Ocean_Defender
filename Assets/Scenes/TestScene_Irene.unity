@@ -333,6 +333,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 925913911}
     - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
+      propertyPath: achievementQuiz
+      value: 
+      objectReference: {fileID: 1255477733}
+    - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
       propertyPath: achievementScore
       value: 1500
       objectReference: {fileID: 0}
@@ -596,6 +600,72 @@ PrefabInstance:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6533456261333350139, guid: ca192cfde529f1f4a85c64cc83ac35b6, type: 3}
   m_PrefabInstance: {fileID: 925913910}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1255477732
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 102795763209695566, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 102795763209695566, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 102795763209695566, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102795763209695566, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 102795763209695566, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102795763209695566, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102795763209695566, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102795763209695566, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102795763209695566, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 102795763209695566, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434372903241851578, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_Name
+      value: AchievementKlogemage
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434372903241851578, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+--- !u!1 &1255477733 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7434372903241851578, guid: 914d4e2299916dd4d84d93d6a6574913, type: 3}
+  m_PrefabInstance: {fileID: 1255477732}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1323371837 stripped
 MonoBehaviour:
@@ -2066,3 +2136,4 @@ SceneRoots:
   - {fileID: 1872079184}
   - {fileID: 1481037994}
   - {fileID: 1638299814}
+  - {fileID: 1255477732}

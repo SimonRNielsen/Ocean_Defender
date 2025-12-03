@@ -10,8 +10,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -123684870135785439, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: score
-      value: 20
+      value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: -123684870135785439, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
+      propertyPath: trashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5658ee8a3f51ac744a5159701b39df4b, type: 3}
     - target: {fileID: -123684870135785439, guid: 5f8c88f01c8b5324b815d3511964af0c, type: 3}
       propertyPath: scoreCounter
       value: 

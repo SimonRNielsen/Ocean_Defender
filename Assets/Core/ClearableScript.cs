@@ -11,6 +11,8 @@ public class ClearableScript : MonoBehaviour, IClickable
     private ScoreCounterScript scoreCounter; //The Scorecounter used to add a score when the objects is cleared.
     private Vector2 screenPosition;
     private Vector2 screenBorder;
+
+    [SerializeField, Tooltip("Recycle sound")] private AudioClip trashSound;
     #endregion
 
     #region Properties
@@ -96,6 +98,7 @@ public class ClearableScript : MonoBehaviour, IClickable
         if(scoreCounter != null)
         {
             scoreCounter.AddToScore(score);
+            DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(trashSound);
         }
         else
         {

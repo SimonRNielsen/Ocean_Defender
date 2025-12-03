@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-//using static SelectLanguage;
 
 [CreateAssetMenu(fileName = "DataTransfer_SO", menuName = "Scriptable Objects/DataTransfer_SO")]
 public class DataTransfer_SO : ScriptableObject
@@ -67,6 +65,7 @@ public class DataTransfer_SO : ScriptableObject
     /// </summary>
     public Action<List<AchievementDTO>> transmitOwnAchievements;
 
+    public Action<float> volumeChangedEvent;
     #endregion
     #region Fields
 
@@ -75,26 +74,12 @@ public class DataTransfer_SO : ScriptableObject
     /// </summary>
     public int RoundScore;
 
+    public int QuizScore;
+
     public List<AchievementDTO> EarnedAchievements;
 
 
     public float roundTimeRemaining;
-
-
-
-    //[Serializable]
-    //public class Entry
-    //{
-    //    public TextKey key;
-    //    [TextArea] public string danish;
-    //    [TextArea] public string english;
-    //    [TextArea] public string german;
-    //}
-
-    //public List<Entry> entries = new List<Entry>();
-
-    //private Dictionary<TextKey, Entry> dict;
-
 
     #endregion
     #region Methods
@@ -104,6 +89,7 @@ public class DataTransfer_SO : ScriptableObject
     /// </summary>
     private void OnEnable()
     {
+
         oneShotSoundEvent = null;
         loopingSoundEvent = null;
         playSoundEvent = null;
@@ -119,6 +105,8 @@ public class DataTransfer_SO : ScriptableObject
         resetEvent += ResetWhileRunning;
 
         roundTimeRemaining = 0;
+
+        QuizScore = 0;
     }
 
     /// <summary>
@@ -132,96 +120,6 @@ public class DataTransfer_SO : ScriptableObject
 
     }
 
-
-    #region SPROG
-    //[Serializable]
-    //public class LanguageStringArray
-    //{
-
-    //    [Tooltip("Name of the field or button")] public string tag;
-    //    [SerializeField, Tooltip("Danish version")] private string danish;
-    //    [SerializeField, Tooltip("English version")] private string english;
-    //    [SerializeField, Tooltip("German version")] private string german;
-
-
-    //    public string[] Strings
-    //    {
-
-    //        get
-    //        {
-
-    //            return new string[] { danish, english, german };
-
-    //        }
-
-    //    }
-    //}
-
-//    public void Init()
-//    {
-//        dict = new Dictionary<TextKey, Entry>();
-//        foreach (var entry in entries)
-//            dict[entry.key] = entry;
-//    }
-
-//    public string Get(TextKey key, Language lang)
-//    {
-//        if (dict == null)
-//            Init();
-
-//        if (!dict.TryGetValue(key, out var entry))
-//            return $"MISSING:{key}";
-
-//        return lang switch
-//        {
-//            Language.Danish => entry.danish,
-//            Language.English => entry.english,
-//            Language.German => entry.german,
-//            _ => "MISSING_LANG"
-//        };
-//    }
-
-//    public enum Language
-//    {
-//        Danish,
-//        English,
-//        German
-//    }
-//}
-//#endregion
-//#endregion
-
-
-
-//public class LanguageManager : MonoBehaviour
-//{
-//    public static LanguageManager Instance;
-//    public DataTransfer_SO data;
-//    public DataTransfer_SO.Language currentLanguage;
-
-//    public event Action OnLanguageChanged;
-
-//    private void Awake()
-//    {
-//        Instance = this;
-//        data.Init();
-//    }
-
-//    public string Get(TextKey key)
-//    {
-//        return data.Get(key, currentLanguage);
-//    }
-
-//    public void SetLanguage(DataTransfer_SO.Language lang)
-//    {
-//        currentLanguage = lang;
-
-//        // tell everybody to update
-//        OnLanguageChanged?.Invoke();
-//    }
-
+    #endregion
 
 }
-#endregion
-#endregion
-

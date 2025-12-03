@@ -14,6 +14,8 @@ public class QuestionPanelUI : MonoBehaviour
     private QuizManager quizManager;
 
     private bool savedPlayerChoice;
+    [SerializeField, Tooltip("Audioclip for correct answear")] private AudioClip correctAudio;
+    [SerializeField, Tooltip("Audioclip for wrong answear")] private AudioClip wrongAudio;
 
     #region Factbox
     public TextMeshProUGUI factText;
@@ -73,6 +75,15 @@ public class QuestionPanelUI : MonoBehaviour
         //save the players choise
         savedPlayerChoice = (index == currentQuestion.correctAnswerIndex);
 
+        if (savedPlayerChoice)
+        {
+            DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(correctAudio);
+        }
+        else
+        {
+            DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(wrongAudio);
+        }
+
         //Show the factbox with delay
         if (!string.IsNullOrEmpty(currentQuestion.factText))
         {
@@ -93,6 +104,7 @@ public class QuestionPanelUI : MonoBehaviour
 
             img.sprite = isCorrect ? correctSprite : wrongSprite;
             rt.localScale = (isCorrect || isChosen) ? new Vector3(1.05f, 1.05f, 1f) : new Vector3(0.9f, 0.9f, 1f);
+
         }
     }
 

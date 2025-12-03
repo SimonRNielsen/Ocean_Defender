@@ -313,6 +313,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: borderGreen
       value: 0
       objectReference: {fileID: 0}
@@ -331,7 +335,7 @@ PrefabInstance:
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: buttonClickSound
       value: 
-      objectReference: {fileID: 8300000, guid: 210fd9b0508166e4c9a13f8c048aa1c6, type: 3}
+      objectReference: {fileID: 8300000, guid: f30ab4187fa7b654d8f88283fb6c49aa, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: closeButtonSprite
       value: 

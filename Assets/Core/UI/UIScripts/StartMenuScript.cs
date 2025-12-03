@@ -16,13 +16,23 @@ public class StartMenuScript : MonoBehaviour
     [SerializeField, Range(0, 255)] private float borderRed = 0, borderGreen = 0, borderBlue = 0;
     [SerializeField, Range(0, 1)] private float borderOpacity = 1;
     [Space, SerializeField] private List<SceneSelection> scenes;
-    private VisualElement header, background, buttonContainer, closeButtonContainer;
-    private Button close;
+    private VisualElement header, background, buttonContainer, settingButtonContainer;
+    private Button settingButton;
     private List<(Button Button, Action CoRoutine)> buttons = new List<(Button Button, Action CoRoutine)>();
     private Color borderColor;
     private bool buttonsAdded = false;
     private static float buttonScale = 1f;
     private readonly string timerScene = "RoundTimer";
+
+    //Settings
+    private VisualElement settingBox;
+    private Slider volumenSlider;
+    private AudioSource audioSource;
+    private float volumenValue;
+    private Button dansk;
+    private Button engelsk;
+    private Button tysk;
+    private Button exitButton;
 
     /// <summary>
     /// Set to adjust scaling of buttons (before runtime)
@@ -48,7 +58,11 @@ public class StartMenuScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        if (volumenSlider != null)
+        {
+            float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+            volumenSlider.SetValueWithoutNotify(savedVolume);
+        }
     }
 
 
@@ -70,9 +84,19 @@ public class StartMenuScript : MonoBehaviour
             foreach (var entry in buttons)
                 entry.Button.clicked += entry.CoRoutine;
 
-        if (close != null)
-            close.clicked += Quit;
+        if (settingButton != null)
+            settingButton.clicked += StartSetting;
 
+        if (exitButton != null)
+        {
+            exitButton.clicked += CloseSetting;
+        }
+
+
+        if (volumenSlider != null)
+        {
+            volumenSlider.RegisterValueChangedCallback(OnVolumeChanged);
+        }
     }
 
     /// <summary>
@@ -85,9 +109,20 @@ public class StartMenuScript : MonoBehaviour
             foreach (var entry in buttons)
                 entry.Button.clicked -= entry.CoRoutine;
 
-        if (close != null)
-            close.clicked -= Quit;
+        if (settingButton != null)
+        {
+            settingButton.clicked -= StartSetting;
+        }
 
+        if (exitButton != null)
+        {
+            exitButton.clicked -= CloseSetting;
+        }
+
+        if (volumenSlider != null)
+        {
+            volumenSlider.UnregisterValueChangedCallback(OnVolumeChanged);
+        }
     }
 
     /// <summary>
@@ -140,8 +175,11 @@ public class StartMenuScript : MonoBehaviour
             header = root.Q<VisualElement>("Header");
             background = root.Q<VisualElement>("Background");
             buttonContainer = root.Q<VisualElement>("ButtonContainer");
-            closeButtonContainer = root.Q<VisualElement>("CloseButtonContainer");
-
+            settingButtonContainer = root.Q<VisualElement>("SettingButtonContainer");
+            settingBox = root.Q<VisualElement>("SettingBox");
+            volumenSlider = (Slider)root.Q<VisualElement>("VolumenSlider");
+            //volumenIcon = root.Q<VisualElement>("VolumIkon");
+            exitButton = (Button)root.Q<VisualElement>("ExitButton");
         }
 
     }
@@ -209,11 +247,11 @@ public class StartMenuScript : MonoBehaviour
             if (closeButtonSprite != null)
             {
 
-                ChangeVisualElementSettings(closeButtonContainer, false);
+                ChangeVisualElementSettings(settingButtonContainer, false);
 
-                close = new Button();
-                ChangeButtonSettings(close, closeButtonSprite);
-                closeButtonContainer.Add(close);
+                settingButton = new Button();
+                ChangeButtonSettings(settingButton, closeButtonSprite);
+                settingButtonContainer.Add(settingButton);
 
             }
 
@@ -295,6 +333,56 @@ public class StartMenuScript : MonoBehaviour
 
     }
 
+
+    private void StartSetting()
+    {
+        //Debug.LogWarning("Setting");
+        DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(buttonClickSound);
+
+        //Showing settingBox 
+        settingBox.SetEnabled(true);
+        settingBox.style.display = DisplayStyle.Flex;
+
+
+        //Shutting Visuelelements and setting button down
+        header.SetEnabled(false);
+        header.style.display = DisplayStyle.None;
+        buttonContainer.SetEnabled(false);
+        buttonContainer.style.display = DisplayStyle.None;
+        settingButton.SetEnabled(false);
+        settingButton.style.display = DisplayStyle.None;
+    }
+
+    private void CloseSetting()
+    {
+        //Debug.LogWarning("Setting off");
+        DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(buttonClickSound);
+
+        //Enable settingBox 
+        settingBox.SetEnabled(false);
+        settingBox.style.display = DisplayStyle.None;
+
+
+        //Unenable
+        header.SetEnabled(true);
+        header.style.display = DisplayStyle.Flex;
+        buttonContainer.SetEnabled(true);
+        buttonContainer.style.display = DisplayStyle.Flex;
+        settingButton.SetEnabled(true);
+        settingButton.style.display = DisplayStyle.Flex;
+    }
+
+    private void OnVolumeChanged(ChangeEvent<float> evt)
+    {
+        float volumenValue = evt.newValue;
+
+        //Sending vvolume to the audio souce
+        DataTransfer_SO.Instance.volumeChangedEvent?.Invoke(evt.newValue);
+
+        //Safe the volumen
+        PlayerPrefs.SetFloat("MasterVolume", volumenValue);
+        PlayerPrefs.Save();
+    }
 }
 
 

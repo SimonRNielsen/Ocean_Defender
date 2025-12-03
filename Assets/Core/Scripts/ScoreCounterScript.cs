@@ -13,6 +13,9 @@ public class ScoreCounterScript : MonoBehaviour
     [SerializeField, Tooltip("The amoungt of point to active the achievement")]
     public int achievementScore;
 
+    private int quizScore;
+    [SerializeField, Tooltip("The quiz achievement")]
+    public GameObject achievementQuiz;
     #endregion
 
     #region Methods
@@ -37,7 +40,16 @@ public class ScoreCounterScript : MonoBehaviour
             achievement.transform.localScale = Vector3.one / 4;
         }
 
+    }
 
+    private void Update()
+    {
+        quizScore = DataTransfer_SO.Instance.QuizScore;
+        if (quizScore > 3)
+        {
+            achievementQuiz.SetActive(true);
+        }
+        
     }
 
     /// <summary>

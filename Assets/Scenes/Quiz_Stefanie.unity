@@ -156,6 +156,9 @@ MonoBehaviour:
   questionInterval: 10
   factBoxPanel: {fileID: 1168441150}
   factText: {fileID: 797188702}
+  correctAudio: {fileID: 8300000, guid: 5b546109670a10b4192156943f9512a9, type: 3}
+  wrongAudio: {fileID: 8300000, guid: 1666e061de1fbc14989e6da05ce61a10, type: 3}
+  achievement: {fileID: 0}
 --- !u!4 &242451844
 Transform:
   m_ObjectHideFlags: 0
@@ -190,7 +193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &596851770
 AudioListener:
   m_ObjectHideFlags: 0

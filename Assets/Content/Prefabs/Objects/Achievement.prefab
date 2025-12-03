@@ -80,7 +80,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 8
   m_Sprite: {fileID: -3132873794551670915, guid: 1687f4bc09236d547b4f8c98bbb0d67b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -104,6 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dacaebc9d2087cd49ae984c480d678de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AchievementScript
+  fiskeVisker: 0
+  klogemaage: 0
+  id: 0
+  achievementSound: {fileID: 8300000, guid: 7f001b49c0037064abff9c4de4d2711b, type: 3}
 --- !u!58 &-4806348817402309457
 CircleCollider2D:
   m_ObjectHideFlags: 0

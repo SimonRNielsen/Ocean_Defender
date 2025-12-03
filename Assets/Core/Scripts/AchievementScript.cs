@@ -26,6 +26,7 @@ public class AchievementScript : MonoBehaviour, IClickable
 
     private float moveTimer = 0;
     [SerializeField] private Achievements id;
+    [SerializeField, Tooltip("Achievement sound")] private AudioClip achievementSound;
     #endregion
 
     #region Properties
@@ -38,7 +39,18 @@ public class AchievementScript : MonoBehaviour, IClickable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        transform.position = Vector3.zero;
+
+        if (klogemaage == true)
+        {
+            transform.position = new Vector3(5, 0, 0);
+        }
+        else
+        {
+            transform.position = Vector3.zero;
+        }
+
+        DataTransfer_SO.Instance.oneShotSoundEvent(achievementSound);
+
     }
 
     // Update is called once per frame
@@ -46,14 +58,19 @@ public class AchievementScript : MonoBehaviour, IClickable
     {
         timeLeft = DataTransfer_SO.Instance.roundTimeRemaining;
 
-        if (timeLeft <= 0)
+        if (timeLeft <= 1)
         {
             transform.position = new Vector3(5, 0, 0);
             transform.localScale = Vector3.one;
 
             if (fiskeVisker == true)
             {
-                transform.position = new Vector3(-5, 0, 0);
+                transform.position = new Vector3(-5, 2.6f, 0);
+            }
+
+            if (klogemaage == true)
+            {
+                transform.position = new Vector3(-5, -2.5f, 0);
             }
         }
 
@@ -87,9 +104,14 @@ public class AchievementScript : MonoBehaviour, IClickable
         transform.position = new Vector3(8, 2, 0);
         transform.localScale = Vector3.one / 4;
 
-        if (fiskeVisker == true) 
+        if (fiskeVisker == true)
         {
             transform.position = new Vector3(8, 0, 0);
+        }
+
+        if (klogemaage == true)
+        {
+            transform.position = new Vector3(8, -2, 0);
         }
     }
 }

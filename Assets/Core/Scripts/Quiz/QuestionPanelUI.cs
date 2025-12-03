@@ -2,18 +2,24 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class QuestionPanelUI : MonoBehaviour
 {
     #region Fields
     public TextMeshProUGUI questionText;
-    public TextMeshProUGUI factText;
-    public Image factBackgroundImage;
-    public Sprite factBackground;
     public Button[] answerButtons;
 
     private Question currentQuestion;
     private QuizManager quizManager;
+
+    private bool savedPlayerChoice;
+
+    #region Factbox
+    public TextMeshProUGUI factText;
+    public Button continueButton;
+    public Image continueButtonImage;
+    #endregion
 
     #region Button Image
     public Sprite normalSprite;
@@ -28,24 +34,29 @@ public class QuestionPanelUI : MonoBehaviour
         currentQuestion = q;
         quizManager = manager;
 
+        quizManager.factBoxPanel.SetActive(false);
+
         questionText.text = q.questionText;
 
+        SetupButtons(q);
+
+    }
+
+    private void SetupButtons(Question q)
+    {
         for (int i = 0; i < answerButtons.Length; i++)
         {
-            int index = i; //Capture index for button
-            answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = q.answers[i];
+            int index = i;
 
-            Image img = answerButtons[i].GetComponent<Image>();
-            img.sprite = normalSprite; //The Start Picture
+            answerButtons[i].interactable = true;
+            answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = q.answers[i];
+            answerButtons[i].GetComponent<Image>().sprite = normalSprite;
 
             answerButtons[i].onClick.RemoveAllListeners();
             answerButtons[i].onClick.AddListener(() => OnAnswerSelected(index));
 
-            //Rescale the buttons for next question
-            RectTransform rt = answerButtons[i].GetComponent<RectTransform>();
-            rt.localScale = Vector3.one;
+            answerButtons[i].GetComponent<RectTransform>().localScale = Vector3.one;
         }
-
     }
 
     void OnAnswerSelected(int index)
@@ -56,62 +67,70 @@ public class QuestionPanelUI : MonoBehaviour
             btn.interactable = false;
         }
 
-        //Change the sprite on all the buttons and scale them
-        for (int i = 0; i < answerButtons.Length; i++)
-        {
-            Image img = answerButtons[i].GetComponent<Image>();
-            RectTransform rt = answerButtons[i].GetComponent<RectTransform>();
+        //Update button graphics
+        UpdateButtonGraphics(index);
 
-            bool isCorrect = i == currentQuestion.correctAnswerIndex;
-            bool isPlayerChoice = i == index;
-
-            //Show graficly if correct or wrong
-            img.sprite = isCorrect ? correctSprite : wrongSprite;
-
-            //Scaling logic
-            if (isCorrect || isPlayerChoice) //If it is the correct answer or the player clicked it
-            {
-                rt.localScale = new Vector3(1.05f, 1.05f, 1f); //Scale op
-            }
-            else
-            {
-                //img.sprite = wrongSprite; //Wrong Button
-                rt.localScale = new Vector3(0.9f, 0.9f, 1f); //Scale down
-            }
-        }
+        //save the players choise
+        savedPlayerChoice = (index == currentQuestion.correctAnswerIndex);
 
         //Show the factbox with delay
         if (!string.IsNullOrEmpty(currentQuestion.factText))
         {
-            factText.text = currentQuestion.factText;
-
-            factBackgroundImage.sprite = factBackground;
-            StartCoroutine(ShowFactBoxWithDelay(1.0f));
+            StartCoroutine(ShowFactBoxWithDelay(2f));
 
         }
+    }
 
-        quizManager.SubmitAnswer(index == currentQuestion.correctAnswerIndex);
+    private void UpdateButtonGraphics(int index)
+    {
+        for (int i = 0; i < answerButtons.Length; i++)
+        {
+            bool isCorrect = i == currentQuestion.correctAnswerIndex;
+            bool isChosen = i == index;
+
+            Image img = answerButtons[i].GetComponent<Image>();
+            RectTransform rt = answerButtons[i].GetComponent<RectTransform>();
+
+            img.sprite = isCorrect ? correctSprite : wrongSprite;
+            rt.localScale = (isCorrect || isChosen) ? new Vector3(1.05f, 1.05f, 1f) : new Vector3(0.9f, 0.9f, 1f);
+        }
     }
 
     private IEnumerator ShowFactBoxWithDelay(float delay)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
 
-        factText.gameObject.SetActive(true);
-        factBackgroundImage.gameObject.SetActive(true);
+        //Hide question and answerbuttons
+        questionText.gameObject.SetActive(false);
+        foreach (var btn in answerButtons)
+        {
+            btn.gameObject.SetActive(false);
+        }
+
+        //Set the text into the factbox
+        quizManager.factText.text = currentQuestion.factText;
+
+        //Show the factbox
+        quizManager.factBoxPanel.SetActive(true);
+
+        //Handle the continue button via the QuizManager
+        quizManager.SetupFactBoxContinueButton(OnContinueClicked);
+
+        //Pause the game while factabox is aktive
+        Time.timeScale = 0f;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnContinueClicked()
     {
-        factText.gameObject.SetActive(false);
-        factBackgroundImage.gameObject.SetActive(false);
+        quizManager.factBoxPanel.SetActive(false);
+
+        //Game continues
+        Time.timeScale = 1f;
+
+        //Quiz system continues
+        quizManager.SubmitAnswer(savedPlayerChoice);
+        quizManager.StartCoroutine(quizManager.ProceedAfterFactBox());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     #endregion
 }

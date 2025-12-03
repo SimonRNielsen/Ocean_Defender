@@ -2956,6 +2956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BucketScript
   eelgrassNail: {fileID: 7141280535178679352, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
+  bucketSound: {fileID: 8300000, guid: 5658ee8a3f51ac744a5159701b39df4b, type: 3}
 --- !u!1001 &1728085691
 PrefabInstance:
   m_ObjectHideFlags: 0

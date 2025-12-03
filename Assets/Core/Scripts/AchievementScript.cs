@@ -26,6 +26,7 @@ public class AchievementScript : MonoBehaviour, IClickable
 
     private float moveTimer = 0;
     [SerializeField] private Achievements id;
+    [SerializeField, Tooltip("Achievement sound")] private AudioClip achievementSound;
     #endregion
 
     #region Properties
@@ -47,6 +48,9 @@ public class AchievementScript : MonoBehaviour, IClickable
         {
             transform.position = Vector3.zero;
         }
+
+        DataTransfer_SO.Instance.oneShotSoundEvent(achievementSound);
+
     }
 
     // Update is called once per frame

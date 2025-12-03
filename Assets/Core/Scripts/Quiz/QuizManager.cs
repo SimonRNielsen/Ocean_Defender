@@ -22,10 +22,10 @@ public class QuizManager : MonoBehaviour
 
     private bool showingResult = false;
 
-    [SerializeField, Tooltip("Audioclip for correct answear")] private AudioClip correctAudio;
-    [SerializeField, Tooltip("Audioclip for wrong answear")] private AudioClip wrongAudio;
+    //[SerializeField, Tooltip("Audioclip for correct answear")] private AudioClip correctAudio;
+    //[SerializeField, Tooltip("Audioclip for wrong answear")] private AudioClip wrongAudio;
 
-    [SerializeField, Tooltip("Achievement KlogeMåge")] private GameObject achievement;
+    //[SerializeField, Tooltip("Achievement KlogeMåge")] private GameObject achievement;
     #endregion
 
     #region Methods
@@ -71,11 +71,6 @@ public class QuizManager : MonoBehaviour
         factBoxPanel.SetActive(true);
 
         SetupFactBoxContinueButton(OnResultContinueClicked);
-
-        //if (score > 3)
-        //{
-        //    achievement.SetActive(true);
-        //}
 
         DataTransfer_SO.Instance.QuizScore = score;
 

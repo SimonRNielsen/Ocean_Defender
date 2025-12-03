@@ -5,6 +5,8 @@ public class BucketScript : MonoBehaviour, IClickable
     [SerializeField, Tooltip("The gameobject which is goind to be instantiate ")]
     public GameObject eelgrassNail;
 
+    [SerializeField, Tooltip("Bucket sound")] private AudioClip bucketSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,6 +25,8 @@ public class BucketScript : MonoBehaviour, IClickable
         //Instantiate a new eelgrassNail gameobject
         eelgrassNail.transform.position = Vector3.zero;
         Instantiate(eelgrassNail);
+
+        DataTransfer_SO.Instance.oneShotSoundEvent(bucketSound);
 
     }
 

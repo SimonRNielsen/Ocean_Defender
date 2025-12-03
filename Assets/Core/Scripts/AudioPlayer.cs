@@ -4,19 +4,27 @@ public class AudioPlayer : MonoBehaviour
 {
 
     private AudioSource audioSource;
-
+    
 
     private void Awake()
     {
 
         DontDestroyOnLoad(gameObject);
 
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.volume = 1f;
+
+        }
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        audioSource.volume = savedVolume;
     }
 
     // Update is called once per frame
@@ -29,8 +37,8 @@ public class AudioPlayer : MonoBehaviour
     private void OnEnable()
     {
 
-        if (audioSource == null)
-            audioSource = GetComponent<AudioSource>();
+        //if (audioSource == null)
+        //    audioSource = GetComponent<AudioSource>();
 
         if (audioSource != null)
         {
@@ -38,7 +46,9 @@ public class AudioPlayer : MonoBehaviour
             DataTransfer_SO.Instance.oneShotSoundEvent += PlayOneShotSound;
             DataTransfer_SO.Instance.loopingSoundEvent += PlayLoopingSound;
             DataTransfer_SO.Instance.playSoundEvent += Play;
+            DataTransfer_SO.Instance.volumeChangedEvent += OnVolumeChanged;
 
+            //audioSource.volume = 1f;
         }
 
     }
@@ -53,6 +63,7 @@ public class AudioPlayer : MonoBehaviour
             DataTransfer_SO.Instance.oneShotSoundEvent -= PlayOneShotSound;
             DataTransfer_SO.Instance.loopingSoundEvent -= PlayLoopingSound;
             DataTransfer_SO.Instance.playSoundEvent -= Play;
+            DataTransfer_SO.Instance.volumeChangedEvent -= OnVolumeChanged;
 
         }
 
@@ -117,6 +128,11 @@ public class AudioPlayer : MonoBehaviour
         audioSource.loop = false;
         audioSource.Play();
 
+    }
+
+    private void OnVolumeChanged(float value)
+    {
+        audioSource.volume = value;
     }
 
 }

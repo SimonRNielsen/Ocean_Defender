@@ -65,6 +65,7 @@ public class DataTransfer_SO : ScriptableObject
     /// </summary>
     public Action<List<AchievementDTO>> transmitOwnAchievements;
 
+    public Action<float> volumeChangedEvent;
     #endregion
     #region Fields
 
@@ -77,6 +78,7 @@ public class DataTransfer_SO : ScriptableObject
 
 
     public float roundTimeRemaining;
+
     #endregion
     #region Methods
 

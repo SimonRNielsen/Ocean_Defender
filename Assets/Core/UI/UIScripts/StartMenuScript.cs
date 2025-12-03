@@ -27,8 +27,8 @@ public class StartMenuScript : MonoBehaviour
     //Settings
     private VisualElement settingBox;
     private Slider volumenSlider;
-    [SerializeField] private AudioSource audioSource;
-    //private VisualElement volumenIcon;
+    private AudioSource audioSource;
+    private float volumenValue;
     private Button dansk;
     private Button engelsk;
     private Button tysk;
@@ -58,7 +58,11 @@ public class StartMenuScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        if (volumenSlider != null)
+        {
+            float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+            volumenSlider.SetValueWithoutNotify(savedVolume);
+        }
     }
 
 
@@ -87,6 +91,7 @@ public class StartMenuScript : MonoBehaviour
         {
             exitButton.clicked += CloseSetting;
         }
+
 
         if (volumenSlider != null)
         {
@@ -331,7 +336,8 @@ public class StartMenuScript : MonoBehaviour
 
     private void StartSetting()
     {
-        Debug.LogWarning("Setting");
+        //Debug.LogWarning("Setting");
+        DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(buttonClickSound);
 
         //Showing settingBox 
         settingBox.SetEnabled(true);
@@ -349,7 +355,8 @@ public class StartMenuScript : MonoBehaviour
 
     private void CloseSetting()
     {
-        Debug.LogWarning("Setting off");
+        //Debug.LogWarning("Setting off");
+        DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(buttonClickSound);
 
         //Enable settingBox 
         settingBox.SetEnabled(false);
@@ -367,10 +374,14 @@ public class StartMenuScript : MonoBehaviour
 
     private void OnVolumeChanged(ChangeEvent<float> evt)
     {
-        if (audioSource != null)
-        {
-            audioSource.volume = evt.newValue;
-        }
+        float volumenValue = evt.newValue;
+
+        //Sending vvolume to the audio souce
+        DataTransfer_SO.Instance.volumeChangedEvent?.Invoke(evt.newValue);
+
+        //Safe the volumen
+        PlayerPrefs.SetFloat("MasterVolume", volumenValue);
+        PlayerPrefs.Save();
     }
 }
 

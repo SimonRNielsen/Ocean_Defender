@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Default Local Group
+  m_GUID: 328a079f1d0ea654f9b23299a4dcaf73
+  m_SerializeEntries:
+  - m_GUID: 62405d3ffa60164448a25cc8465d4fc8
+    m_Address: Assets/Content/Sprites/Acievement/Achievements_bundtrawl.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8107b1b5b76b4854cb419b433d40054a
+    m_Address: Assets/Content/Sprites/Acievement/Achievements_aalegraas_LysDE.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 937b3ccb6a690454baf4542c22d02c8f
+    m_Address: Assets/Content/Sprites/Acievement/Achievements_affaldEN.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0adc092ea485984ba44b5e75aa6b58e
+    m_Address: Assets/Content/Sprites/Acievement/operationaffald.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de2a0c75892c42a4299ffd9ccf25c0be
+    m_Address: Assets/Content/Sprites/Acievement/Achievements_affaldDE.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Locale-de
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de335d1406b94d445a8387cda2e1c977
+    m_Address: Assets/Content/Sprites/Acievement/Achievements_aalegraas_LysEN.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec6eecec47d2f3a4fa1b9cff18e83c80
+    m_Address: Assets/Content/Sprites/Acievement/Achievements_aalegraas_Lys.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8216719097bf604296dba5b8aa72a9a
+    m_Address: Assets/Content/Sprites/Acievement/Achievements_affald.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Locale-da
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 36e5dc1fe85d1ae479f247b2f12e7a5c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: cfdd852d669125f4d82ab47c6f47927d, type: 2}
+    - {fileID: 11400000, guid: 33585a08e80e9654cac53eb9e922d7cc, type: 2}

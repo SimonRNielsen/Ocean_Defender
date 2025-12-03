@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97269afb30aa84742ae3f3342603618a, type: 3}
+  m_Name: Achievements_da
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.AssetTable
+  m_LocaleId:
+    m_Code: da
+  m_SharedData: {fileID: 11400000, guid: 0c6d0381281f40840a4227aeac050672, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 235078725632
+    m_Localized: f8216719097bf604296dba5b8aa72a9a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 88752041984
+    m_Localized: ec6eecec47d2f3a4fa1b9cff18e83c80
+    m_Metadata:
+      m_Items: []
+  - m_Id: 139729612800
+    m_Localized: 23969eccdfa5fa8419e9b2fb73837443
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11266469888
+    m_Localized: 936c9878ade02eb4bbba63c47e622a00
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: StartMenuSprites Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: StartMenuSprites
+  m_TableCollectionNameGuidString: 8e4ff65a4856cb94d870322cc5603262
+  m_Entries:
+  - m_Id: 468042952704
+    m_Key: MainMenu.FjernAffald
+    m_Metadata:
+      m_Items: []
+  - m_Id: 504063635456
+    m_Key: MainMenu.PlantAalegrass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 124771455512576
+    m_Key: test
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items:
+    - rid: 3775480015158509664
+  m_KeyGenerator:
+    rid: 3775480015158509663
+  references:
+    version: 2
+    RefIds:
+    - rid: 3775480015158509663
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1764761075058
+    - rid: 3775480015158509664
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 468042952704
+          m_TableCodes:
+          - da
+          - de
+          - en
+        - m_KeyId: 504063635456
+          m_TableCodes:
+          - da
+          - de
+          - en
+        - m_KeyId: 124771455512576
+          m_TableCodes:
+          - da
+          - en
+          - de
+        m_TypeString: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null

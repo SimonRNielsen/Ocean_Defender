@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97269afb30aa84742ae3f3342603618a, type: 3}
+  m_Name: StartMenuSprites_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.AssetTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 8e4ff65a4856cb94d870322cc5603262, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 468042952704
+    m_Localized: dcf37550c2614554a9732713f5caae46
+    m_Metadata:
+      m_Items: []
+  - m_Id: 504063635456
+    m_Localized: 6657ce8ef960da54aa8c1e9557ec57bf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 124771455512576
+    m_Localized: 7ac362d3835ada4408eb410375247d9e
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

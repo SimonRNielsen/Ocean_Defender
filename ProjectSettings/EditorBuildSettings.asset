@@ -36,5 +36,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Quiz_Stefanie.unity
     guid: 50c0b55b2d2f10740828feba50c61524
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 61b6747a4a5889e4d93a17164588b8b7, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 333099a009cf2f943ae161c09a4b29b4, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    com.unity.localization.settings: {fileID: 11400000, guid: 11587154a3dcc8f429e534547b38ea27, type: 2}
   m_UseUCBPForAssetBundles: 0

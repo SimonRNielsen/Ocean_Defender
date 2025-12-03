@@ -74,6 +74,8 @@ public class DataTransfer_SO : ScriptableObject
     /// </summary>
     public int RoundScore;
 
+    public int QuizScore;
+
     public List<AchievementDTO> EarnedAchievements;
 
 
@@ -104,6 +106,7 @@ public class DataTransfer_SO : ScriptableObject
 
         roundTimeRemaining = 0;
 
+        QuizScore = 0;
     }
 
     /// <summary>

@@ -764,6 +764,8 @@ MonoBehaviour:
   - {fileID: 5272132403136898075}
   - {fileID: 6786981876783861251}
   - {fileID: 6902964940005428218}
+  correctAudio: {fileID: 8300000, guid: 5b546109670a10b4192156943f9512a9, type: 3}
+  wrongAudio: {fileID: 8300000, guid: 1666e061de1fbc14989e6da05ce61a10, type: 3}
   factText: {fileID: 0}
   continueButton: {fileID: 0}
   continueButtonImage: {fileID: 0}

@@ -11,7 +11,7 @@ public class QuizManager : MonoBehaviour
     public GameObject resultPrefab;
     public Transform questionParent;
     public QuizController quizController;
-    
+
     public float questionInterval = 1f;
 
     public GameObject factBoxPanel;
@@ -21,6 +21,11 @@ public class QuizManager : MonoBehaviour
     private int correctCount = 0;
 
     private bool showingResult = false;
+
+    [SerializeField, Tooltip("Audioclip for correct answear")] private AudioClip correctAudio;
+    [SerializeField, Tooltip("Audioclip for wrong answear")] private AudioClip wrongAudio;
+
+    [SerializeField, Tooltip("Achievement KlogeMåge")] private GameObject achievement;
     #endregion
 
     #region Methods
@@ -50,6 +55,7 @@ public class QuizManager : MonoBehaviour
         Debug.Log(correct ? "Correct!" : "Wrong!");
 
         StartCoroutine(HandleAnswer(correct));
+
     }
 
     public void ShowResult()
@@ -65,6 +71,13 @@ public class QuizManager : MonoBehaviour
         factBoxPanel.SetActive(true);
 
         SetupFactBoxContinueButton(OnResultContinueClicked);
+
+        //if (score > 3)
+        //{
+        //    achievement.SetActive(true);
+        //}
+
+        DataTransfer_SO.Instance.QuizScore = score;
 
         Time.timeScale = 0f;
     }

@@ -775,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   quizSceneName: Quiz_Stefanie
-  quizInterval: 7
+  quizInterval: 20
   questionListToUse: {fileID: 11400000, guid: da4e5b860560c1e419a5068c9bed002e, type: 2}
 --- !u!4 &382807587
 Transform:

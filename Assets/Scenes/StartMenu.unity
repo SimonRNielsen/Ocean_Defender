@@ -292,11 +292,11 @@ PrefabInstance:
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[0].buttonPicture
       value: 
-      objectReference: {fileID: -1189158245976831236, guid: 1daf9255e2881bf4882ed0051c3c23bc, type: 3}
+      objectReference: {fileID: 21300000, guid: 2884b3abc94ac9a47b4fa07753897709, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[1].buttonPicture
       value: 
-      objectReference: {fileID: 2949857681622141484, guid: 715466e0743c613419720536e20aa79d, type: 3}
+      objectReference: {fileID: 21300000, guid: 2884b3abc94ac9a47b4fa07753897709, type: 3}
     - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: scenes.Array.data[2].buttonPicture
       value: 
@@ -309,6 +309,22 @@ PrefabInstance:
       propertyPath: scenes.Array.data[4].buttonPicture
       value: 
       objectReference: {fileID: -8237346014881870733, guid: 3529ff0a2c135dd419ed5375d21144eb, type: 3}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: trashButtonLocalized.m_TableEntryReference.m_KeyId
+      value: 452076442791936
+      objectReference: {fileID: 0}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: eelgrassButtonLocalized.m_TableEntryReference.m_KeyId
+      value: 452130712891392
+      objectReference: {fileID: 0}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: trashButtonLocalized.m_TableReference.m_TableCollectionName
+      value: GUID:80f74cfa8a527e142ae880bec1a2a55b
+      objectReference: {fileID: 0}
+    - target: {fileID: -1439329019912865312, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
+      propertyPath: eelgrassButtonLocalized.m_TableReference.m_TableCollectionName
+      value: GUID:80f74cfa8a527e142ae880bec1a2a55b
+      objectReference: {fileID: 0}
     - target: {fileID: 2073081635821118763, guid: 4ba1175bef4399a4dba623a620465918, type: 3}
       propertyPath: m_Name
       value: StartMenu

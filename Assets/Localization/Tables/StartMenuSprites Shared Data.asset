@@ -23,10 +23,6 @@ MonoBehaviour:
     m_Key: MainMenu.PlantAalegrass
     m_Metadata:
       m_Items: []
-  - m_Id: 124771455512576
-    m_Key: test
-    m_Metadata:
-      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 3775480015158509664
@@ -53,10 +49,5 @@ MonoBehaviour:
           - da
           - de
           - en
-        - m_KeyId: 124771455512576
-          m_TableCodes:
-          - da
-          - en
-          - de
         m_TypeString: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null

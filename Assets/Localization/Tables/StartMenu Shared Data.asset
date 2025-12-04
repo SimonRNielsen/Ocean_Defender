@@ -43,6 +43,14 @@ MonoBehaviour:
     m_Key: MainMenu.Username
     m_Metadata:
       m_Items: []
+  - m_Id: 452076442791936
+    m_Key: StartMenu.FjernSkraldKnap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 452130712891392
+    m_Key: StartMenu.PlantGrassKnap
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

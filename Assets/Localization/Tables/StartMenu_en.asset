@@ -46,6 +46,18 @@ MonoBehaviour:
     m_Localized: Username
     m_Metadata:
       m_Items: []
+  - m_Id: 452076442791936
+    m_Localized: 'REMOVE
+
+      trash'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 452130712891392
+    m_Localized: 'PLANT
+
+      eelgrass'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

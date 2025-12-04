@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Localization.Settings;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -25,6 +28,11 @@ public class StartMenuScript : MonoBehaviour
     private bool buttonsAdded = false;
     private static float buttonScale = 1f;
     private readonly string timerScene = "RoundTimer";
+
+    [SerializeField] private LocalizedString trashButtonLocalized;
+    [SerializeField] private LocalizedString eelgrassButtonLocalized;
+
+
 
     //Settings
     private VisualElement settingBox;
@@ -66,8 +74,8 @@ public class StartMenuScript : MonoBehaviour
             volumenSlider.SetValueWithoutNotify(savedVolume);
         }
 
-        string saved = PlayerPrefs.GetString("SelectedLocale", "da");
-        SetLanguage(saved);
+        //string saved = PlayerPrefs.GetString("SelectedLocale", "da");
+        //SetLanguage(saved);
 
     }
 
@@ -211,6 +219,8 @@ public class StartMenuScript : MonoBehaviour
             dansk = root.Q<Button>("Dansk");
             engelsk = root.Q<Button>("Engelsk");
             tysk = root.Q<Button>("Tysk");
+
+            
         }
 
     }
@@ -235,6 +245,25 @@ public class StartMenuScript : MonoBehaviour
                 button.style.backgroundImage = new StyleBackground(scene.ButtonPicture);
                 ChangeButtonSettings(button, scene.ButtonPicture);
 
+                // Lokaliser tekst –
+                if (scene.Name.Contains("Irene", StringComparison.OrdinalIgnoreCase))
+                {
+                    trashButtonLocalized.StringChanged += value => button.text = value;
+                    button.style.color = Color.white;
+                    button.style.unityFontStyleAndWeight = FontStyle.Bold;
+                    button.style.fontSize = 28;
+                    trashButtonLocalized.RefreshString();
+                }
+                else if (scene.Name.Contains("Rikke", StringComparison.OrdinalIgnoreCase))
+                {
+                    eelgrassButtonLocalized.StringChanged += value => button.text = value;
+                    button.style.color = Color.white;
+                    button.style.unityFontStyleAndWeight = FontStyle.Bold;
+                    button.style.fontSize = 28;
+                    eelgrassButtonLocalized.RefreshString();
+                }
+
+
                 buttons.Add((button, () => StartCoroutine(LoadMap(scene.Name))));
 
             }
@@ -245,7 +274,45 @@ public class StartMenuScript : MonoBehaviour
 
         return false;
 
+
     }
+
+    //private bool FillButtons()
+    //{
+    //    if (scenes != null && scenes.Count > 0)
+    //    {
+    //        foreach (SceneSelection scene in scenes)
+    //        {
+    //            if (string.IsNullOrWhiteSpace(scene.Name)) continue;
+
+    //            Button button = new Button();
+
+    //            // Hvis scenen er trash > brug localized sprite
+    //            if (scene.Name.Contains("Irene", StringComparison.OrdinalIgnoreCase))
+    //            {
+    //                SetLocalizedSprite(button, trashButtonLocalized);
+    //            }
+    //            // Hvis scenen er eelgrass > brug localized sprite
+    //            else if (scene.Name.Contains("Rikke", StringComparison.OrdinalIgnoreCase))
+    //            {
+    //                SetLocalizedSprite(button, eelgrassButtonLocalized);
+    //            }
+    //            else
+    //            {
+    //                // fallback til ikke-lokaliserede sprites
+    //                if (scene.ButtonPicture != null)
+    //                    ChangeButtonSettings(button, scene.ButtonPicture);
+    //            }
+
+    //            buttons.Add((button, () => StartCoroutine(LoadMap(scene.Name))));
+    //        }
+
+    //        return true;
+    //    }
+
+    //    return false;
+    //}
+
 
     /// <summary>
     /// Adds buttons to 1-2 visual elements, and adds close button at the bottom
@@ -350,6 +417,8 @@ public class StartMenuScript : MonoBehaviour
 
     }
 
+
+
     /// <summary>
     /// Program shutdown method
     /// </summary>
@@ -422,8 +491,58 @@ public class StartMenuScript : MonoBehaviour
 
         PlayerPrefs.SetString("SelectedLocale", localeCode);
         PlayerPrefs.Save();
+
+        // Reload localized button images
+        //foreach (var entry in buttons)
+        //{
+        //    if (entry.Button.name.Contains("fjernSkrald", StringComparison.OrdinalIgnoreCase))
+        //        SetLocalizedSprite(entry.Button, trashButtonLocalized);
+
+        //    if (entry.Button.name.Contains("plantAalegrass", StringComparison.OrdinalIgnoreCase))
+        //        SetLocalizedSprite(entry.Button, eelgrassButtonLocalized);
+        //}
+
     }
 
+    //private void SetLocalizedSprite(Button button, LocalizedSprite localizedSprite)
+    //{
+    //    localizedSprite.LoadAssetAsync().Completed += op =>
+    //    {
+    //        if (op.Result != null)
+    //        {
+    //            var sprite = op.Result;
+    //            button.style.backgroundImage = new StyleBackground(sprite);
+    //            button.style.width = sprite.rect.width * buttonScale;
+    //            button.style.height = sprite.rect.height * buttonScale;
+    //        }
+    //    };
+
+    //}
+
+    //private void SetLocalizedSprite(Button button, LocalizedSprite localizedSprite)
+    //{
+    //    if (localizedSprite == null)
+    //    {
+    //        Debug.LogError("LocalizedSprite is NULL on Start Menu!");
+    //        return;
+    //    }
+
+    //    localizedSprite.LoadAssetAsync().Completed += op =>
+    //    {
+    //        if (op.Status == AsyncOperationStatus.Succeeded && op.Result != null)
+    //        {
+    //            var sprite = op.Result;
+    //            button.style.backgroundImage = new StyleBackground(sprite);
+    //            button.style.width = sprite.rect.width * buttonScale;
+    //            button.style.height = sprite.rect.height * buttonScale;
+    //            button.style.backgroundColor = new Color(0, 0, 0, 0);
+    //        }
+    //        else
+    //        {
+    //            Debug.LogError($"Failed to load localized sprite: {localizedSprite.TableReference}/{localizedSprite.TableEntryReference}");
+    //        }
+    //    };
+    //}
 
 
 

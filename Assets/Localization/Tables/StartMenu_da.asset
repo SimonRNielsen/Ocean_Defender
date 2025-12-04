@@ -46,6 +46,16 @@ MonoBehaviour:
     m_Localized: Brugernavn
     m_Metadata:
       m_Items: []
+  - m_Id: 452076442791936
+    m_Localized: 'FJERN
+
+      skrald'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 452130712891392
+    m_Localized: "PLANT\n\xE5legr\xE6s"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

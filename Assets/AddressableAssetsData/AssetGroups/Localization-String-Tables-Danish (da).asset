@@ -20,24 +20,28 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-da
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 46142bfb24a7beb49a5bae5080ed1786
     m_Address: RoundTimer.TekstOgKnap_da
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-da
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a44f94e9b0d0b314d902f15d78901b61
     m_Address: FaktaboksPLANT_da
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-da
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d225325edd302784986edd3c70f7345d
     m_Address: FaktaboksFJERN_da
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-da
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d460c734aa82de84181b8c364c0e253a
     m_Address: StartMenu_da
@@ -51,6 +55,7 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-da
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 36e5dc1fe85d1ae479f247b2f12e7a5c, type: 2}

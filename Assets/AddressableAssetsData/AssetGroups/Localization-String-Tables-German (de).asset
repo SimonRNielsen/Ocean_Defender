@@ -20,6 +20,7 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-de
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2d89100f5c51e34499e9355090f6ed13
     m_Address: StartMenu_de
@@ -33,24 +34,28 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-de
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 68a1bc01142322f4cab63e7812028065
     m_Address: QuizFjern_de
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-de
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6f4b736ab828cc844addb6a8f730da4f
     m_Address: RoundTimer.TekstOgKnap_de
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-de
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c8df0a617fd4c434aa197c6cf59ca263
     m_Address: QuizPlant_de
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-de
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 36e5dc1fe85d1ae479f247b2f12e7a5c, type: 2}

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -63,6 +65,10 @@ public class StartMenuScript : MonoBehaviour
             float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
             volumenSlider.SetValueWithoutNotify(savedVolume);
         }
+
+        string saved = PlayerPrefs.GetString("SelectedLocale", "da");
+        SetLanguage(saved);
+
     }
 
 
@@ -97,6 +103,17 @@ public class StartMenuScript : MonoBehaviour
         {
             volumenSlider.RegisterValueChangedCallback(OnVolumeChanged);
         }
+
+        //Sprog
+        if (dansk != null)
+            dansk.clicked += () => SetLanguage("da");
+
+        if (engelsk != null)
+            engelsk.clicked += () => SetLanguage("en");
+
+        if (tysk != null)
+            tysk.clicked += () => SetLanguage("de");
+
     }
 
     /// <summary>
@@ -123,8 +140,19 @@ public class StartMenuScript : MonoBehaviour
         {
             volumenSlider.UnregisterValueChangedCallback(OnVolumeChanged);
         }
-    }
 
+        //Sprog
+        if (dansk != null)
+            dansk.clicked -= () => SetLanguage("da");
+
+        if (engelsk != null)
+            engelsk.clicked -= () => SetLanguage("en");
+
+        if (tysk != null)
+            tysk.clicked -= () => SetLanguage("de");
+
+
+    }
     /// <summary>
     /// Logic for loading sceneloading
     /// </summary>
@@ -180,6 +208,9 @@ public class StartMenuScript : MonoBehaviour
             volumenSlider = (Slider)root.Q<VisualElement>("VolumenSlider");
             //volumenIcon = root.Q<VisualElement>("VolumIkon");
             exitButton = (Button)root.Q<VisualElement>("ExitButton");
+            dansk = root.Q<Button>("Dansk");
+            engelsk = root.Q<Button>("Engelsk");
+            tysk = root.Q<Button>("Tysk");
         }
 
     }
@@ -383,6 +414,19 @@ public class StartMenuScript : MonoBehaviour
         PlayerPrefs.SetFloat("MasterVolume", volumenValue);
         PlayerPrefs.Save();
     }
+
+    private void SetLanguage(string localeCode)
+    {
+        var locale = LocalizationSettings.AvailableLocales.GetLocale(localeCode);
+        LocalizationSettings.SelectedLocale = locale;
+
+        PlayerPrefs.SetString("SelectedLocale", localeCode);
+        PlayerPrefs.Save();
+    }
+
+
+
+
 }
 
 
@@ -398,3 +442,7 @@ public class SceneSelection
     public Sprite ButtonPicture { get => buttonPicture; }
 
 }
+
+
+
+

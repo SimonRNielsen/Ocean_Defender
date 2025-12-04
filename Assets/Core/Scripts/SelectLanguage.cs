@@ -26,12 +26,12 @@
 //    // Update is called once per frame
 //    void Update()
 //    {
-        
+
 //    }
 
-  
 
-   
+
+
 //}
 
 
@@ -85,4 +85,15 @@
 ////        element.text = LanguageManager.Instance.Get(key);
 ////    }
 ////}
+using UnityEngine;
+using UnityEngine.Localization.Settings;
 
+public class SelectLanguage : MonoBehaviour
+{
+    public void SetLanguage(string localeCode)
+    {
+        // Fx "da", "en", "de"
+        var locale = LocalizationSettings.AvailableLocales.GetLocale(localeCode);
+        LocalizationSettings.SelectedLocale = locale;
+    }
+}

@@ -49,7 +49,7 @@ public class AchievementScript : MonoBehaviour, IClickable
             transform.position = Vector3.zero;
         }
 
-        DataTransfer_SO.Instance.oneShotSoundEvent(achievementSound);
+        DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(achievementSound);
 
     }
 

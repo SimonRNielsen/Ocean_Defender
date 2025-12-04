@@ -12,11 +12,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22414962fb4249d429ae410d8ffed2cb, type: 3}
   m_Name: Question_CleanOcean_4
   m_EditorClassIdentifier: Assembly-CSharp::Question
-  questionText: "Hvad tager l\xE6ngst tid om at nedrydes?"
+  questionText:
+    m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 42960222203904
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   answers:
-  - Cigaretskod
-  - Glas
-  - "Ispind af Tr\xE6"
-  - "D\xE5se"
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 42978467426304
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 43066539421696
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 43102874677248
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 43154208763904
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   correctAnswerIndex: 1
-  factText: "Glas har en nedbrydningstid p\xE5 1.000.000 \xE5r"
+  factText:
+    m_TableReference:
+      m_TableCollectionName: GUID:da20fd8d3d4d54f4fad29c83784ab792
+    m_TableEntryReference:
+      m_KeyId: 2333417713664
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

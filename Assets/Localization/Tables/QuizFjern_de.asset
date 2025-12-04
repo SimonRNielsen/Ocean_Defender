@@ -19,15 +19,15 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 4451901943808
-    m_Localized: 1.000 jahr
+    m_Localized: 1.000 jahre
     m_Metadata:
       m_Items: []
   - m_Id: 4437557424128
-    m_Localized: 100 jahr
+    m_Localized: 100 jahre
     m_Metadata:
       m_Items: []
   - m_Id: 4421484851200
-    m_Localized: 1 jahr
+    m_Localized: 1 jahre
     m_Metadata:
       m_Items: []
   - m_Id: 3978683789312
@@ -35,7 +35,67 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5111078760448
-    m_Localized: 1.000.000 jahr
+    m_Localized: 1.000.000 jahre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42245005291520
+    m_Localized: Wo wird kein Teflon verwendet?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42371488722944
+    m_Localized: Raumfahrt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42475293552640
+    m_Localized: Holz-Eisstiele
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42498886512640
+    m_Localized: Bratpfannen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42517354033152
+    m_Localized: "K\xFCnstliche Herzklappen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42707565719552
+    m_Localized: Wie lange dauert es, bis ein Zigarettenstummel verrottet?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42774250958848
+    m_Localized: 500 Jahre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42809646690304
+    m_Localized: 2 Jahre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42850725703680
+    m_Localized: 5 Jahre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42878089342976
+    m_Localized: 70 Jahre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42960222203904
+    m_Localized: "Was braucht am l\xE4ngsten zum Verrotten?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42978467426304
+    m_Localized: Zigarettenstummel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43066539421696
+    m_Localized: Glas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43102874677248
+    m_Localized: Holz-Eisstiel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43154208763904
+    m_Localized: Dose
     m_Metadata:
       m_Items: []
   references:

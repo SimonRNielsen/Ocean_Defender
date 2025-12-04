@@ -56,10 +56,18 @@ public class QuestionPanelUI : MonoBehaviour
 
             answerButtons[i].interactable = true;
             //answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = q.answers[i];
+            //////q.GetAnswerText(i, value =>
+            //////{
+            //////    answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = value;
+            //////});
+            var btn = answerButtons[i]; // lokal kopi sikrer mod async-fejl
+
             q.GetAnswerText(i, value =>
             {
-                answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = value;
+                if (btn != null) // sikrer mod UI der skjules
+                    btn.GetComponentInChildren<TextMeshProUGUI>().text = value;
             });
+
             answerButtons[i].GetComponent<Image>().sprite = normalSprite;
 
             answerButtons[i].onClick.RemoveAllListeners();

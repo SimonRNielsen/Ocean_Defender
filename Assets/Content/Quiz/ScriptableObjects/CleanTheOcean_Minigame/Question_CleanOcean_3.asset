@@ -12,12 +12,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22414962fb4249d429ae410d8ffed2cb, type: 3}
   m_Name: Question_CleanOcean_3
   m_EditorClassIdentifier: Assembly-CSharp::Question
-  questionText: Hvor lang tid er nedbrydningstiden for et cigaretskod?
+  questionText:
+    m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 42707565719552
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   answers:
-  - "500 \xE5r"
-  - "2 \xE5r"
-  - "5 \xE5r"
-  - "70 \xE5r"
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 42774250958848
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 42809646690304
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 42850725703680
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 42878089342976
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   correctAnswerIndex: 2
-  factText: "Det tager 5 \xE5r at nedryde i naturen, hvor de giftige kemikalier og
-    reststoffer lagres i skoddet og videre udledes i naturen og vandet"
+  factText:
+    m_TableReference:
+      m_TableCollectionName: GUID:8baaf4eeee137674484cde6138f2e036
+    m_TableEntryReference:
+      m_KeyId: 608946401280
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

@@ -38,6 +38,66 @@ MonoBehaviour:
     m_Localized: 1.000.000 year
     m_Metadata:
       m_Items: []
+  - m_Id: 42245005291520
+    m_Localized: Where is Teflon not used?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42371488722944
+    m_Localized: Space travel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42475293552640
+    m_Localized: Wooden ice cream sticks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42498886512640
+    m_Localized: Frying pans
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42517354033152
+    m_Localized: Artificial heart valves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42707565719552
+    m_Localized: How long does it take for a cigarette butt to decompose?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42774250958848
+    m_Localized: 500 years
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42809646690304
+    m_Localized: 2 years
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42850725703680
+    m_Localized: 5 years
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42878089342976
+    m_Localized: 70 years
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42960222203904
+    m_Localized: What takes the longest to decompose?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42978467426304
+    m_Localized: Cigarette butt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43066539421696
+    m_Localized: Glass
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43102874677248
+    m_Localized: Wooden ice cream stick
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43154208763904
+    m_Localized: Can
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

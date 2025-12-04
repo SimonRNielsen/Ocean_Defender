@@ -12,12 +12,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22414962fb4249d429ae410d8ffed2cb, type: 3}
   m_Name: Question_PlantEelgrass_2
   m_EditorClassIdentifier: Assembly-CSharp::Question
-  questionText: "Hvad plantes \xE5legr\xE6sset med?"
+  questionText:
+    m_TableReference:
+      m_TableCollectionName: GUID:ebcae180df265e04d811660ff6175874
+    m_TableEntryReference:
+      m_KeyId: 147258801172480
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   answers:
-  - Bambuspinde
-  - Ingen ting
-  - "S\xF8m"
-  - Sten
+  - m_TableReference:
+      m_TableCollectionName: GUID:ebcae180df265e04d811660ff6175874
+    m_TableEntryReference:
+      m_KeyId: 147298059857920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ebcae180df265e04d811660ff6175874
+    m_TableEntryReference:
+      m_KeyId: 147331849170944
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ebcae180df265e04d811660ff6175874
+    m_TableEntryReference:
+      m_KeyId: 147349775626240
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:ebcae180df265e04d811660ff6175874
+    m_TableEntryReference:
+      m_KeyId: 147367995682816
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   correctAnswerIndex: 2
-  factText: "Et omr\xE5de med mange \xE5legr\xE6s er \xE5legr\xE6ssenge, hvor der
-    bor mange dyr og er opv\xE6kstomr\xE5de for fiskeyngel"
+  factText:
+    m_TableReference:
+      m_TableCollectionName: GUID:da20fd8d3d4d54f4fad29c83784ab792
+    m_TableEntryReference:
+      m_KeyId: 2283144785920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

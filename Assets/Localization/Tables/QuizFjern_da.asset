@@ -38,6 +38,66 @@ MonoBehaviour:
     m_Localized: "1.000.000 \xE5r"
     m_Metadata:
       m_Items: []
+  - m_Id: 42245005291520
+    m_Localized: Hvor bruger man ikke teflon?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42371488722944
+    m_Localized: Rumfart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42475293552640
+    m_Localized: "Tr\xE6 ispinde"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42498886512640
+    m_Localized: Stegepander
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42707565719552
+    m_Localized: Hvor lang tid er nedbrydningstiden for et for et cigaretskod?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42960222203904
+    m_Localized: "Hvad tager l\xE6ngst tid om at nedbrydes?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42517354033152
+    m_Localized: Kunstige hjerteklapper
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42774250958848
+    m_Localized: "500 \xE5r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42809646690304
+    m_Localized: "2 \xE5r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42850725703680
+    m_Localized: "5 \xE5r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42878089342976
+    m_Localized: "70 \xE5r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42978467426304
+    m_Localized: Cigaretskod
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43066539421696
+    m_Localized: Glas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43102874677248
+    m_Localized: "Ispind af tr\xE6"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 43154208763904
+    m_Localized: "D\xE5se"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

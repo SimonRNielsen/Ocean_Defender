@@ -12,11 +12,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22414962fb4249d429ae410d8ffed2cb, type: 3}
   m_Name: Question_CleanOcean_1
   m_EditorClassIdentifier: Assembly-CSharp::Question
-  questionText: Hvor lang tid er nedbrydningstiden for en glasflaske?
+  questionText:
+    m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 3978683789312
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   answers:
-  - "1 \xE5r"
-  - "100 \xE5r"
-  - "1.000 \xE5r"
-  - "1.000.000 \xE5r"
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 4421484851200
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 4437557424128
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 4451901943808
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:3ac7445d02d7b2841a3a71732a72d461
+    m_TableEntryReference:
+      m_KeyId: 5111078760448
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   correctAnswerIndex: 3
-  factText: "Det tager 1 million \xE5r at nedbryde en glasflaske i naturen"
+  factText:
+    m_TableReference:
+      m_TableCollectionName: GUID:8baaf4eeee137674484cde6138f2e036
+    m_TableEntryReference:
+      m_KeyId: 59383525376
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

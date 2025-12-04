@@ -53,6 +53,10 @@ PrefabInstance:
       value: EelgrassNail
       objectReference: {fileID: 0}
     - target: {fileID: 930430788494925234, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930430788494925234, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
       propertyPath: m_TagString
       value: EelgrassNail
       objectReference: {fileID: 0}
@@ -66,11 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3014568933018773114, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -12.74
       objectReference: {fileID: 0}
     - target: {fileID: 3014568933018773114, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.39
       objectReference: {fileID: 0}
     - target: {fileID: 3014568933018773114, guid: 9a09fd9ee1879df44bfed70c863f14d1, type: 3}
       propertyPath: m_LocalPosition.z

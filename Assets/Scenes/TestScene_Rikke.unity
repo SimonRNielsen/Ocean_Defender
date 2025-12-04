@@ -638,6 +638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488b8bc155d4f884fb796ac869da33a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterPlantUIBinding
+  scoreCounter: {fileID: 1926049284}
   uiDocument: {fileID: 276196199}
   scoreLocalizedText:
     m_TableReference:
@@ -892,6 +893,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1441244148237255446, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
+      propertyPath: scoreCounter
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5054876520492576752, guid: 33a3fd68c411c9f4e83866120e06489a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.74

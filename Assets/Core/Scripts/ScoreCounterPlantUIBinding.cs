@@ -87,6 +87,56 @@
 
 
 
+//using UnityEngine;
+//using UnityEngine.Localization;
+//using UnityEngine.UIElements;
+
+//public class ScoreCounterPlantUIBinding : MonoBehaviour
+//{
+//    [SerializeField] private ScoreCounterScript scoreCounter;
+//    [SerializeField] private UIDocument uiDocument;
+//    [SerializeField] private LocalizedString scoreLocalizedText;
+
+//    private Label label;
+
+//    private void Awake()
+//    {
+//        var root = uiDocument.rootVisualElement;
+//        label = root.Q<Label>("ScoreLabel");
+//    }
+
+//    private void OnEnable()
+//    {
+//        if (scoreCounter != null)
+//            scoreCounter.ScoreChanged.AddListener(OnScoreChanged);
+//    }
+
+//    private void OnDisable()
+//    {
+//        if (scoreCounter != null)
+//            scoreCounter.ScoreChanged.RemoveListener(OnScoreChanged);
+//    }
+
+//    // --- Denne metode kaldes af ScoreCounter ---
+//    public void OnScoreChanged(int score, LocalizedString unit, int amount)
+//    {
+//        scoreLocalizedText.Arguments = new object[] { score };
+
+//        // Fjern tidligere binding for at undgå dobbelt subscriptions
+//        scoreLocalizedText.StringChanged -= UpdateLabel;
+//        scoreLocalizedText.StringChanged += UpdateLabel;
+
+//        scoreLocalizedText.RefreshString();
+//    }
+
+//    private void UpdateLabel(string value)
+//    {
+//        if (label != null)
+//            label.text = value;
+//    }
+//}
+
+
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.UIElements;
@@ -103,6 +153,9 @@ public class ScoreCounterPlantUIBinding : MonoBehaviour
     {
         var root = uiDocument.rootVisualElement;
         label = root.Q<Label>("ScoreLabel");
+
+        // ENGANG FOR ALLE
+        scoreLocalizedText.StringChanged += UpdateLabel;
     }
 
     private void OnEnable()
@@ -117,15 +170,9 @@ public class ScoreCounterPlantUIBinding : MonoBehaviour
             scoreCounter.ScoreChanged.RemoveListener(OnScoreChanged);
     }
 
-    // --- Denne metode kaldes af ScoreCounter ---
-    public void OnScoreChanged(int score, LocalizedString unit, int amount)
+    private void OnScoreChanged(int score, LocalizedString unit, int amount)
     {
         scoreLocalizedText.Arguments = new object[] { score };
-
-        // Fjern tidligere binding for at undgå dobbelt subscriptions
-        scoreLocalizedText.StringChanged -= UpdateLabel;
-        scoreLocalizedText.StringChanged += UpdateLabel;
-
         scoreLocalizedText.RefreshString();
     }
 

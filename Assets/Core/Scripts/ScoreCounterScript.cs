@@ -41,6 +41,8 @@ public class ScoreCounterScript : MonoBehaviour
             achievement.transform.localScale = Vector3.one / 4;
         }
 
+        
+
     }
 
     private void Update()

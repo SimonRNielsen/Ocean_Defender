@@ -7,7 +7,7 @@
                 </Bindings>
             </ui:Label>
         </ui:VisualElement>
-        <ui:VisualElement name="ScoreAmountLabelContainer" style="flex-grow: 1; justify-content: center; align-self: flex-end; min-width: 10%; min-height: 1%; max-width: 75%; max-height: 10%; align-items: center; padding-right: 0; bottom: 25%; right: 150px; font-size: 20px; align-content: center; transform-origin: right;">
+        <ui:VisualElement name="ScoreAmountLabelContainer" enabled="false" style="flex-grow: 1; justify-content: center; align-self: flex-end; min-width: 10%; min-height: 1%; max-width: 75%; max-height: 10%; align-items: center; padding-right: 0; bottom: 25%; right: 150px; font-size: 20px; align-content: center; transform-origin: right; display: none;">
             <ui:Label name="ScoreAmountLabel" enabled="false" enable-rich-text="true" text="+500" style="height: auto; width: auto; min-width: auto; min-height: auto; max-width: none; max-height: none; align-content: center; align-self: center; bottom: auto; border-left-color: rgb(13, 220, 13); border-right-color: rgb(13, 220, 13); border-top-color: rgb(13, 220, 13); border-bottom-color: rgb(13, 220, 13); color: rgb(28, 109, 118); -unity-font-style: bold; font-size: 25px; -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(255, 250, 250); padding-right: 0; justify-content: center; align-items: center; margin-right: 0; margin-top: 0; padding-top: 0; padding-bottom: 0; padding-left: 0; margin-bottom: 0; margin-left: 0;" />
         </ui:VisualElement>
     </ui:VisualElement>

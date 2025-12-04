@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+
+
 
 public class QuizManager : MonoBehaviour
 {
@@ -19,6 +23,10 @@ public class QuizManager : MonoBehaviour
 
     private int questionIndex = 0;
     private int correctCount = 0;
+
+    //Sprog
+    [SerializeField] private LocalizedString resultTextLocalized;
+
 
     //private bool showingResult = false;
 
@@ -66,10 +74,28 @@ public class QuizManager : MonoBehaviour
 
     public void ShowResultInFactBox(int score, int total)
     {
-        //showingResult = true;
-        factText.text = $"Du fik {score} ud af {total} rigtige!";
-        factBoxPanel.SetActive(true);
+        ////showingResult = true;
+        //factText.text = $"Du fik {score} ud af {total} rigtige!";
+        //factBoxPanel.SetActive(true);
 
+        //SetupFactBoxContinueButton(OnResultContinueClicked);
+
+        //DataTransfer_SO.Instance.QuizScore = score;
+
+        //Time.timeScale = 0f;
+
+        // Send named arguments til Smart String
+        resultTextLocalized.Arguments = new object[] {new { score = score, total = total }};
+
+        // Opdater UI når teksten ændres
+        resultTextLocalized.StringChanged += (value) =>
+        {
+            factText.text = value;
+        };
+
+        resultTextLocalized.RefreshString();
+
+        factBoxPanel.SetActive(true);
         SetupFactBoxContinueButton(OnResultContinueClicked);
 
         DataTransfer_SO.Instance.QuizScore = score;

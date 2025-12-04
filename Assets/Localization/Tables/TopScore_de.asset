@@ -16,16 +16,24 @@ MonoBehaviour:
     m_Code: de
   m_SharedData: {fileID: 11400000, guid: 44867ab52e9fb084488ab58d66e313d2, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 3775480046764425330
   m_TableData:
   - m_Id: 18229014528
     m_Localized: "Jahre M\xFCll entfernt"
     m_Metadata:
       m_Items: []
   - m_Id: 179638415360
-    m_Localized: Seegras gepflanzt
+    m_Localized: '{0} Seegras gepflanzt'
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 3775480046764425330
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 3775480046764425330
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 179638415360

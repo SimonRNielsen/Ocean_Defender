@@ -43,6 +43,13 @@ MonoBehaviour:
     - Locale-da
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac956dce84bc160488f6efc65badcf27
+    m_Address: QuizTextResultat_da
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-da
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d225325edd302784986edd3c70f7345d
     m_Address: FaktaboksFJERN_da
     m_ReadOnly: 1

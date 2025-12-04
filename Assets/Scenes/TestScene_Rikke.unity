@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
---- !u!114 &276196201
+--- !u!114 &276196200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -639,7 +639,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterPlantUIBinding
   uiDocument: {fileID: 276196199}
-  scoreLabelName: ScoreLabel
+  scoreLocalizedText:
+    m_TableReference:
+      m_TableCollectionName: GUID:44867ab52e9fb084488ab58d66e313d2
+    m_TableEntryReference:
+      m_KeyId: 179638415360
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!4 &301956105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 999363400182860392, guid: c0147a206da4f9044bd40c2b1f7bb069, type: 3}
@@ -1219,7 +1230,7 @@ PrefabInstance:
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 276196200}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1230,7 +1241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TrashCollectionScoreScript, Assembly-CSharp
+      value: ScoreCounterPlantUIBinding, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2897,13 +2908,15 @@ PrefabInstance:
       propertyPath: scoreLabelName
       value: ScoreLabel
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6903624203604821056, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
+    - {fileID: 9016143690929219865, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7962631051784532868, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 276196201}
+      addedObject: {fileID: 276196200}
   m_SourcePrefab: {fileID: 100100000, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
 --- !u!4 &1630043681 stripped
 Transform:

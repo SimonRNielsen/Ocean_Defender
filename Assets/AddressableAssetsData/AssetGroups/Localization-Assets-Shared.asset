@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 112cfa0f20993fe4aa8d34ed23278866
+    m_Address: Assets/Localization/Tables/Quiz.Korrekte Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1e248b1a16c58884386151bef036ba26
     m_Address: Assets/Localization/Tables/MainMenu.buttons Shared Data.asset
     m_ReadOnly: 1

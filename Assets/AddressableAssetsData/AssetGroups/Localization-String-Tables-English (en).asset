@@ -50,6 +50,13 @@ MonoBehaviour:
     - Locale-en
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1dc08fef53ce9243b05a552e759348e
+    m_Address: QuizTextResultat_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cd1948097db00a9458843a7f2345b001
     m_Address: TopScore_en
     m_ReadOnly: 1

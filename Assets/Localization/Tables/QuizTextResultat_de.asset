@@ -10,30 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: TopScore_en
+  m_Name: QuizTextResultat_de
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
   m_LocaleId:
-    m_Code: en
-  m_SharedData: {fileID: 11400000, guid: 44867ab52e9fb084488ab58d66e313d2, type: 2}
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: 112cfa0f20993fe4aa8d34ed23278866, type: 2}
   m_Metadata:
     m_Items:
-    - rid: 3775480046764425329
+    - rid: 3775480046764425323
   m_TableData:
-  - m_Id: 18229014528
-    m_Localized: years of trash removed
-    m_Metadata:
-      m_Items: []
-  - m_Id: 179638415360
-    m_Localized: '{0} eelgrass planted'
+  - m_Id: 5235060736
+    m_Localized: Du hast {score} von {total} richtig!
     m_Metadata:
       m_Items:
-      - rid: 3775480046764425329
+      - rid: 3775480046764425323
   references:
     version: 2
     RefIds:
-    - rid: 3775480046764425329
+    - rid: 3775480046764425323
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
         m_Entries: 
         m_SharedEntries:
-        - id: 179638415360
+        - id: 5235060736

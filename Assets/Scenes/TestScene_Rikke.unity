@@ -1138,7 +1138,7 @@ PrefabInstance:
       objectReference: {fileID: 1403757778}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: achievementScore
-      value: 8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.size
@@ -1509,7 +1509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1056222565
 AudioListener:
   m_ObjectHideFlags: 0

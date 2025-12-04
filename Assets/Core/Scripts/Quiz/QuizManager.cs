@@ -20,7 +20,7 @@ public class QuizManager : MonoBehaviour
     private int questionIndex = 0;
     private int correctCount = 0;
 
-    private bool showingResult = false;
+    //private bool showingResult = false;
 
     //[SerializeField, Tooltip("Audioclip for correct answear")] private AudioClip correctAudio;
     //[SerializeField, Tooltip("Audioclip for wrong answear")] private AudioClip wrongAudio;
@@ -66,7 +66,7 @@ public class QuizManager : MonoBehaviour
 
     public void ShowResultInFactBox(int score, int total)
     {
-        showingResult = true;
+        //showingResult = true;
         factText.text = $"Du fik {score} ud af {total} rigtige!";
         factBoxPanel.SetActive(true);
 
@@ -82,7 +82,7 @@ public class QuizManager : MonoBehaviour
         factBoxPanel.SetActive(false);
         Time.timeScale = 1f;
 
-        showingResult = false;
+        //showingResult = false;
 
         //Undload quizScene
         quizController.QuizEnded();

@@ -6,12 +6,12 @@ public class QuizController : MonoBehaviour
     #region Fields
     public QuizManager quizManager; //Reference to QuizManager prefab
 
-    private bool quizActive = false;
+    //private bool quizActive = false;
     #endregion
     #region Methods
     public void QuizEnded()
     {
-        quizActive = false;
+        //quizActive = false;
         quizManager.gameObject.SetActive(false);
     }
     #endregion

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: FaktaboksPLANT_de
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: da20fd8d3d4d54f4fad29c83784ab792, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 11807535104
+    m_Localized: "Seegras ist eine Bl\xFCtenpflanze, die auf dem Meeresboden vorkommt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2283144785920
+    m_Localized: "Ein Gebiet mit viel Seegras wird als Seegraswiese bezeichnet. Dort
+      leben viele Tiere, und es dient als Brutst\xE4tte f\xFCr Fischbrut."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2316581777408
+    m_Localized: "Ein Gebiet mit viel Seegras wird als Seegraswiese bezeichnet. Dort
+      leben viele Tiere, und es dient als Brutst\xE4tte f\xFCr Fischbrut."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2333417713664
+    m_Localized: Das Kattegat Centre leitet das Projekt, das von 2024 bis 2026 laufen
+      wird.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

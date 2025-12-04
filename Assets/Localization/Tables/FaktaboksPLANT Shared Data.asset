@@ -10,19 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Quiz Shared Data
+  m_Name: FaktaboksPLANT Shared Data
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
-  m_TableCollectionName: Quiz
-  m_TableCollectionNameGuidString: ebcae180df265e04d811660ff6175874
-  m_Entries: []
+  m_TableCollectionName: FaktaboksPLANT
+  m_TableCollectionNameGuidString: da20fd8d3d4d54f4fad29c83784ab792
+  m_Entries:
+  - m_Id: 11807535104
+    m_Key: Quiz.FaktaP1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2283144785920
+    m_Key: Quiz.FaktaP2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2316581777408
+    m_Key: Quiz.FaktaP3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2333417713664
+    m_Key: Quiz.FaktaP4
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 3775480015158509670
+    rid: 3775480027633942940
   references:
     version: 2
     RefIds:
-    - rid: 3775480015158509670
+    - rid: 3775480027633942940
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1764769798680
+        m_CustomEpoch: 1764806153160

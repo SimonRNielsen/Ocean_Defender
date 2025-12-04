@@ -10,47 +10,59 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: StartMenu Shared Data
+  m_Name: QuizPlant Shared Data
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
-  m_TableCollectionName: StartMenu
-  m_TableCollectionNameGuidString: 80f74cfa8a527e142ae880bec1a2a55b
+  m_TableCollectionName: QuizPlant
+  m_TableCollectionNameGuidString: ebcae180df265e04d811660ff6175874
   m_Entries:
-  - m_Id: 236563509248
-    m_Key: MainMenu.Logout
+  - m_Id: 146790058340352
+    m_Key: Quiz.SM1
     m_Metadata:
       m_Items: []
-  - m_Id: 269060976640
-    m_Key: MainMenu.SendScore
+  - m_Id: 146859536986112
+    m_Key: Quiz.SM1A
     m_Metadata:
       m_Items: []
-  - m_Id: 299230605312
-    m_Key: MainMenu.CreateUser
+  - m_Id: 146964365225984
+    m_Key: Quiz.SM1B
     m_Metadata:
       m_Items: []
-  - m_Id: 426041192448
-    m_Key: MainMenu.ViewScore
+  - m_Id: 147012943654912
+    m_Key: Quiz.SM1C
     m_Metadata:
       m_Items: []
-  - m_Id: 147062285447168
-    m_Key: MainMenu.MyScore
+  - m_Id: 147038138839040
+    m_Key: Quiz.SM1D
     m_Metadata:
       m_Items: []
-  - m_Id: 182622551060480
-    m_Key: MainMenu.NewUser
+  - m_Id: 147258801172480
+    m_Key: Quiz.SM2
     m_Metadata:
       m_Items: []
-  - m_Id: 182885571670016
-    m_Key: MainMenu.Username
+  - m_Id: 147298059857920
+    m_Key: Quiz.SM2A
+    m_Metadata:
+      m_Items: []
+  - m_Id: 147331849170944
+    m_Key: Quiz.SM2B
+    m_Metadata:
+      m_Items: []
+  - m_Id: 147349775626240
+    m_Key: Quiz.SM2C
+    m_Metadata:
+      m_Items: []
+  - m_Id: 147367995682816
+    m_Key: Quiz.SM2D
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 3775480015158509662
+    rid: 3775480015158509670
   references:
     version: 2
     RefIds:
-    - rid: 3775480015158509662
+    - rid: 3775480015158509670
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1764760374836
+        m_CustomEpoch: 1764769798680

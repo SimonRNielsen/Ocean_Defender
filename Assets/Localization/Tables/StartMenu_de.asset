@@ -38,6 +38,14 @@ MonoBehaviour:
     m_Localized: Meine Punktzahl/Global
     m_Metadata:
       m_Items: []
+  - m_Id: 182622551060480
+    m_Localized: Neuer Benutzer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 182885571670016
+    m_Localized: Benutzername
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

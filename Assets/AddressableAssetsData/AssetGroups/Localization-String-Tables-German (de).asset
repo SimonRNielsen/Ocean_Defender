@@ -15,12 +15,30 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-German (de)
   m_GUID: 2630dbe909641be4eaca328cba398941
   m_SerializeEntries:
+  - m_GUID: 24de5495e390438439123c6c137a05f3
+    m_Address: FaktaboksFJERN_de
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-de
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2d89100f5c51e34499e9355090f6ed13
     m_Address: StartMenu_de
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-de
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 37ea868d0f3cf9647a2e537e778b9205
+    m_Address: FaktaboksPLANT_de
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-de
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68a1bc01142322f4cab63e7812028065
+    m_Address: QuizFjern_de
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-de
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6f4b736ab828cc844addb6a8f730da4f
     m_Address: RoundTimer.TekstOgKnap_de
@@ -29,7 +47,7 @@ MonoBehaviour:
     - Locale-de
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c8df0a617fd4c434aa197c6cf59ca263
-    m_Address: Quiz_de
+    m_Address: QuizPlant_de
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-de

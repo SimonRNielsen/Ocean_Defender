@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: FaktaboksFJERN_de
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: 8baaf4eeee137674484cde6138f2e036, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 59383525376
+    m_Localized: "Kattegatcentret ist f\xFCr Projekte im Zeitraum 2024\u20132026
+      zust\xE4ndig"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 581100417024
+    m_Localized: "Der Eisstiel enth\xE4lt kein Teflon, sondern ein organisches Material
+      und zersetzt sich innerhalb von 10 Jahren."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 608946401280
+    m_Localized: "Der Abbau in der Natur dauert 5 Jahre. Dabei werden die giftigen
+      Chemikalien und R\xFCckst\xE4nde im Schlamm gespeichert und anschlie\xDFend
+      in die Natur und ins Wasser freigesetzt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 624293359616
+    m_Localized: Glas hat eine Zersetzungszeit von 1.000.000 Jahren.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

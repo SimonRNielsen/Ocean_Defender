@@ -10,40 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: StartMenu_da
+  m_Name: FaktaboksFJERN_en
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
   m_LocaleId:
-    m_Code: da
-  m_SharedData: {fileID: 11400000, guid: 80f74cfa8a527e142ae880bec1a2a55b, type: 2}
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 8baaf4eeee137674484cde6138f2e036, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 236563509248
-    m_Localized: Log ud
+  - m_Id: 59383525376
+    m_Localized: It takes 1 million years for a glass bottle to decompose in nature
     m_Metadata:
       m_Items: []
-  - m_Id: 269060976640
-    m_Localized: Send score
+  - m_Id: 581100417024
+    m_Localized: The popsicle stick does not contain Teflon, but an organic material
+      and will decompose in 10 years.
     m_Metadata:
       m_Items: []
-  - m_Id: 299230605312
-    m_Localized: Opret bruger
+  - m_Id: 608946401280
+    m_Localized: It takes 5 years to break down in nature, where the toxic chemicals
+      and residues are stored in the sludge and then discharged into nature and water.
     m_Metadata:
       m_Items: []
-  - m_Id: 426041192448
-    m_Localized: Se score
-    m_Metadata:
-      m_Items: []
-  - m_Id: 147062285447168
-    m_Localized: Min score/Global
-    m_Metadata:
-      m_Items: []
-  - m_Id: 182622551060480
-    m_Localized: Ny bruger
-    m_Metadata:
-      m_Items: []
-  - m_Id: 182885571670016
-    m_Localized: Brugernavn
+  - m_Id: 624293359616
+    m_Localized: Glass has a decomposition time of 1,000,000 years
     m_Metadata:
       m_Items: []
   references:

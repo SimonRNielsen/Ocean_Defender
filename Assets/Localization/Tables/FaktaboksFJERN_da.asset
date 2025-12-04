@@ -10,40 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: StartMenu_da
+  m_Name: FaktaboksFJERN_da
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
   m_LocaleId:
     m_Code: da
-  m_SharedData: {fileID: 11400000, guid: 80f74cfa8a527e142ae880bec1a2a55b, type: 2}
+  m_SharedData: {fileID: 11400000, guid: 8baaf4eeee137674484cde6138f2e036, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 236563509248
-    m_Localized: Log ud
+  - m_Id: 59383525376
+    m_Localized: "Det tager 1 million \xE5r at nedbryde en glasflaske i naturen"
     m_Metadata:
       m_Items: []
-  - m_Id: 269060976640
-    m_Localized: Send score
+  - m_Id: 581100417024
+    m_Localized: "Ispinden indeholder ikke teflon, men et organisk materiale og nedbrydes
+      p\xE5 10 \xE5r"
     m_Metadata:
       m_Items: []
-  - m_Id: 299230605312
-    m_Localized: Opret bruger
+  - m_Id: 608946401280
+    m_Localized: "Det tager 5 \xE5r at nedryde i naturen, hvor de giftige kemikalier
+      og reststoffer lagres i skoddet og videre udledes i naturen og vandet"
     m_Metadata:
       m_Items: []
-  - m_Id: 426041192448
-    m_Localized: Se score
-    m_Metadata:
-      m_Items: []
-  - m_Id: 147062285447168
-    m_Localized: Min score/Global
-    m_Metadata:
-      m_Items: []
-  - m_Id: 182622551060480
-    m_Localized: Ny bruger
-    m_Metadata:
-      m_Items: []
-  - m_Id: 182885571670016
-    m_Localized: Brugernavn
+  - m_Id: 624293359616
+    m_Localized: "Glas har en nedbrydningstid p\xE5 1.000.000 \xE5r"
     m_Metadata:
       m_Items: []
   references:

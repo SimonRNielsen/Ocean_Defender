@@ -22,14 +22,32 @@ MonoBehaviour:
     - Locale-en
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0577dc4a4abeef74e9579a8d112e7144
+    m_Address: FaktaboksFJERN_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f55566fec77b6f47adc04f024e66f38
+    m_Address: QuizFjern_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6c6998359d80cb0479b624c7e53a80fd
-    m_Address: Quiz_en
+    m_Address: QuizPlant_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8709d241eb1ef394e8632fb156af4c42
     m_Address: RoundTimer.TekstOgKnap_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc96821f9489dcd479e17be94c52ae77
+    m_Address: FaktaboksPLANT_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

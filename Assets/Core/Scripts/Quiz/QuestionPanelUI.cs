@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using UnityEngine.Localization;
+
 
 public class QuestionPanelUI : MonoBehaviour
 {
@@ -38,7 +40,9 @@ public class QuestionPanelUI : MonoBehaviour
 
         quizManager.factBoxPanel.SetActive(false);
 
-        questionText.text = q.questionText;
+        //questionText.text = q.questionText;
+        q.GetQuestionText(value => questionText.text = value);
+
 
         SetupButtons(q);
 
@@ -51,7 +55,11 @@ public class QuestionPanelUI : MonoBehaviour
             int index = i;
 
             answerButtons[i].interactable = true;
-            answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = q.answers[i];
+            //answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = q.answers[i];
+            q.GetAnswerText(i, value =>
+            {
+                answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = value;
+            });
             answerButtons[i].GetComponent<Image>().sprite = normalSprite;
 
             answerButtons[i].onClick.RemoveAllListeners();
@@ -85,11 +93,18 @@ public class QuestionPanelUI : MonoBehaviour
         }
 
         //Show the factbox with delay
-        if (!string.IsNullOrEmpty(currentQuestion.factText))
-        {
-            StartCoroutine(ShowFactBoxWithDelay(2f));
+        //if (!string.IsNullOrEmpty(currentQuestion.factText))
+        //{
+        //    StartCoroutine(ShowFactBoxWithDelay(2f));
 
-        }
+        //}
+        // Localized strings skal altid vises hvis de findes i tabellen
+        currentQuestion.GetFactText(value =>
+        {
+            if (!string.IsNullOrEmpty(value))
+                StartCoroutine(ShowFactBoxWithDelay(2f));
+        });
+
     }
 
     private void UpdateButtonGraphics(int index)
@@ -120,7 +135,12 @@ public class QuestionPanelUI : MonoBehaviour
         }
 
         //Set the text into the factbox
-        quizManager.factText.text = currentQuestion.factText;
+        //quizManager.factText.text = currentQuestion.factText;
+        currentQuestion.GetFactText(value =>
+        {
+            quizManager.factText.text = value;
+        });
+
 
         //Show the factbox
         quizManager.factBoxPanel.SetActive(true);

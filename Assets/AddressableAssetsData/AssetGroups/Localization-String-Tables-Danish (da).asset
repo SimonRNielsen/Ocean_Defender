@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: c6180841e8695ea48bbf459ecfb949a2
   m_SerializeEntries:
   - m_GUID: 168c1badd9925b046b2b89f88f586c34
-    m_Address: Quiz_da
+    m_Address: QuizPlant_da
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-da
@@ -27,12 +27,30 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-da
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a44f94e9b0d0b314d902f15d78901b61
+    m_Address: FaktaboksPLANT_da
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-da
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d225325edd302784986edd3c70f7345d
+    m_Address: FaktaboksFJERN_da
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-da
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d460c734aa82de84181b8c364c0e253a
     m_Address: StartMenu_da
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-da
     - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f43f1391ed4844546b8df7b4aded988b
+    m_Address: QuizFjern_da
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-da
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 36e5dc1fe85d1ae479f247b2f12e7a5c, type: 2}

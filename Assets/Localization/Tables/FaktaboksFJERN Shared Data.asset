@@ -10,47 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: StartMenu Shared Data
+  m_Name: FaktaboksFJERN Shared Data
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
-  m_TableCollectionName: StartMenu
-  m_TableCollectionNameGuidString: 80f74cfa8a527e142ae880bec1a2a55b
+  m_TableCollectionName: FaktaboksFJERN
+  m_TableCollectionNameGuidString: 8baaf4eeee137674484cde6138f2e036
   m_Entries:
-  - m_Id: 236563509248
-    m_Key: MainMenu.Logout
+  - m_Id: 59383525376
+    m_Key: Quiz.FaktaF1
     m_Metadata:
       m_Items: []
-  - m_Id: 269060976640
-    m_Key: MainMenu.SendScore
+  - m_Id: 581100417024
+    m_Key: Quiz.FaktaF2
     m_Metadata:
       m_Items: []
-  - m_Id: 299230605312
-    m_Key: MainMenu.CreateUser
+  - m_Id: 608946401280
+    m_Key: Quiz.FaktaF3
     m_Metadata:
       m_Items: []
-  - m_Id: 426041192448
-    m_Key: MainMenu.ViewScore
-    m_Metadata:
-      m_Items: []
-  - m_Id: 147062285447168
-    m_Key: MainMenu.MyScore
-    m_Metadata:
-      m_Items: []
-  - m_Id: 182622551060480
-    m_Key: MainMenu.NewUser
-    m_Metadata:
-      m_Items: []
-  - m_Id: 182885571670016
-    m_Key: MainMenu.Username
+  - m_Id: 624293359616
+    m_Key: Quiz.FaktaF4
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 3775480015158509662
+    rid: 3775480027633942942
   references:
     version: 2
     RefIds:
-    - rid: 3775480015158509662
+    - rid: 3775480027633942942
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1764760374836
+        m_CustomEpoch: 1764807205398

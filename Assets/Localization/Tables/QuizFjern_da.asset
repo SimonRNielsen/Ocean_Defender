@@ -10,40 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: StartMenu_da
+  m_Name: QuizFjern_da
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
   m_LocaleId:
     m_Code: da
-  m_SharedData: {fileID: 11400000, guid: 80f74cfa8a527e142ae880bec1a2a55b, type: 2}
+  m_SharedData: {fileID: 11400000, guid: 3ac7445d02d7b2841a3a71732a72d461, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 236563509248
-    m_Localized: Log ud
+  - m_Id: 3978683789312
+    m_Localized: Hvor lang tid er nedbrydningstiden for en glasflaske?
     m_Metadata:
       m_Items: []
-  - m_Id: 269060976640
-    m_Localized: Send score
+  - m_Id: 4421484851200
+    m_Localized: "1 \xE5r"
     m_Metadata:
       m_Items: []
-  - m_Id: 299230605312
-    m_Localized: Opret bruger
+  - m_Id: 4437557424128
+    m_Localized: "100 \xE5r"
     m_Metadata:
       m_Items: []
-  - m_Id: 426041192448
-    m_Localized: Se score
+  - m_Id: 4451901943808
+    m_Localized: "1.000 \xE5r"
     m_Metadata:
       m_Items: []
-  - m_Id: 147062285447168
-    m_Localized: Min score/Global
-    m_Metadata:
-      m_Items: []
-  - m_Id: 182622551060480
-    m_Localized: Ny bruger
-    m_Metadata:
-      m_Items: []
-  - m_Id: 182885571670016
-    m_Localized: Brugernavn
+  - m_Id: 5111078760448
+    m_Localized: "1.000.000 \xE5r"
     m_Metadata:
       m_Items: []
   references:

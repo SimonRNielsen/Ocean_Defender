@@ -36,9 +36,18 @@
         </ui:VisualElement>
         <ui:VisualElement name="CreateUserScreen" enabled="false" class="userScreen" style="justify-content: center; align-items: center; align-content: center; display: none;">
             <ui:Button text="X" name="CloseCreateUserButton" class="closeButton" />
-            <ui:Label text="Ny bruger" name="CreateUserLabel" style="font-size: 30px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Bangers.ttf?fileID=12800000&amp;guid=5dd49b3eacc540408c98eee0de38e0f1&amp;type=3#Bangers&quot;); top: 0; margin-top: 10px;" />
+            <ui:Label text="Ny bruger" name="CreateUserLabel" style="font-size: 30px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Bangers.ttf?fileID=12800000&amp;guid=5dd49b3eacc540408c98eee0de38e0f1&amp;type=3#Bangers&quot;); top: 0; margin-top: 10px;">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:80f74cfa8a527e142ae880bec1a2a55b" entry="Id(182622551060480)" />
+                </Bindings>
+            </ui:Label>
             <ui:TextField label="Email: " placeholder-text="email@mail.dk" name="CreateUserEmailTextField" hide-placeholder-on-focus="true" readonly="false" style="bottom: 0; top: 0; width: 70%; align-self: center; background-color: rgba(255, 255, 255, 0); background-image: none; white-space: nowrap; -unity-text-align: middle-center; font-size: 14px; margin-top: 2px;" />
-            <ui:TextField label="Brugernavn" placeholder-text="Brugernavn" name="CreateUserUserNameTextField" hide-placeholder-on-focus="true" readonly="false" style="bottom: 134px; top: 0; width: 70%; align-self: center; background-color: rgba(255, 255, 255, 0); background-image: none; white-space: nowrap; -unity-text-align: middle-center; font-size: 14px; margin-top: 2px;" />
+            <ui:TextField label="Brugernavn" placeholder-text="Brugernavn" name="CreateUserUserNameTextField" hide-placeholder-on-focus="true" readonly="false" style="bottom: 134px; top: 0; width: 70%; align-self: center; background-color: rgba(255, 255, 255, 0); background-image: none; white-space: nowrap; -unity-text-align: middle-center; font-size: 14px; margin-top: 2px;">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="label" table="GUID:80f74cfa8a527e142ae880bec1a2a55b" entry="Id(182885571670016)" />
+                    <UnityEngine.Localization.LocalizedString property="placeholderText" table="GUID:80f74cfa8a527e142ae880bec1a2a55b" entry="Id(182885571670016)" />
+                </Bindings>
+            </ui:TextField>
             <ui:TextField label="Password" name="CreateUserPasswordTextField" hide-placeholder-on-focus="true" readonly="false" password="true" placeholder-text="Password" max-length="-1" style="bottom: 0; top: auto; width: 70%; align-self: center; background-color: rgba(255, 255, 255, 0); background-image: none; white-space: nowrap; -unity-text-align: middle-center; font-size: 14px; margin-top: 2px;" />
             <ui:Button text="Opret bruger" name="SendCreateUserButton" class="button" style="top: 0; margin-top: 10px;">
                 <Bindings>

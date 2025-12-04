@@ -58,35 +58,48 @@ public class StaticObject : MonoBehaviour, IClickable
 
     public void OnPrimaryHold(Vector3 movement)
     {
-        //Can move the object while it's hold if plant is false and isn't planted
-        if (rbSprite.sprite != plantedEelgrass)
+        try
         {
-            rb.position += (Vector2)movement;
-            //rb.MovePosition(rb.position + (Vector2)movement);
+            //Can move the object while it's hold if plant is false and isn't planted
+            if (rbSprite.sprite != plantedEelgrass)
+            {
+                rb.position += (Vector2)movement;
+                //rb.MovePosition(rb.position + (Vector2)movement);
+            }
+
         }
+        catch { }
+
     }
 
     public void OnPrimaryRelease()
     {
-        //If the GameObject is going to be planted
-        if (canPlant == true && rbSprite.sprite != plantedEelgrass)
+
+        try
         {
-            //Change the spirte
-            rbSprite.sprite = plantedEelgrass;
+            //If the GameObject is going to be planted
+            if (canPlant == true && rbSprite.sprite != plantedEelgrass)
+            {
+                //Change the spirte
+                rbSprite.sprite = plantedEelgrass;
 
-            this.transform.localScale = Vector3.one * 0.15f;
-            //Get the of the sprite
-            spriteHeight = rbSprite.size.y * 0.15f;
+                this.transform.localScale = Vector3.one * 0.15f;
+                //Get the of the sprite
+                spriteHeight = rbSprite.size.y * 0.15f;
 
-            //Setting the position on top og the hole where it is planted
-            this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0.2f, (spriteHeight / 2) * 0.15f + .1f) + new Vector2(-1.42091f + 1.18f, 0.9648225f - 0.84f);
+                //Setting the position on top og the hole where it is planted
+                this.gameObject.transform.position = (Vector2)go.transform.position + new Vector2(0.2f, (spriteHeight / 2) * 0.15f + .1f) + new Vector2(-1.42091f + 1.18f, 0.9648225f - 0.84f);
 
-            //Changing the collision tag so there can't be planted another Eelgrass in the same Hole
-            go.tag = "Untagged";
+                //Changing the collision tag so there can't be planted another Eelgrass in the same Hole
+                go.tag = "Untagged";
 
-            //score++;
-            isPlanted();
+                score++;
+                isPlanted();
+            }
+
         }
+        catch {}
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -100,20 +113,10 @@ public class StaticObject : MonoBehaviour, IClickable
     }
 
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //if (collision.CompareTag("Hole"))
-        //{
-        //    canPlant = false;
-        //}
-        //go = tmpGo;
-    }
-
     private void isPlanted()
     {
         //Sending the score to the UI
-        //scoreCounter.AddToScore(score);
-        scoreCounter.AddToScore(1);
+        scoreCounter.AddToScore(score);
     }
 
 

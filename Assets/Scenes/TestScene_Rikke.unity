@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   quizSceneName: Quiz_Stefanie
-  quizInterval: 7
+  quizInterval: 20
   questionListToUse: {fileID: 11400000, guid: da4e5b860560c1e419a5068c9bed002e, type: 2}
 --- !u!4 &382807587
 Transform:
@@ -1209,13 +1209,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1403757778}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
+      propertyPath: achievementScore
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 9016143690929219865, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
+      objectReference: {fileID: 141994283}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1226,7 +1230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ScoreCounterUIBinding, Assembly-CSharp
+      value: TrashCollectionScoreScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1581,7 +1585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1056222565
 AudioListener:
   m_ObjectHideFlags: 0

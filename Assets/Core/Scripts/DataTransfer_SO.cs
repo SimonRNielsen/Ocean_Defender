@@ -115,6 +115,7 @@ public class DataTransfer_SO : ScriptableObject
     private void ResetWhileRunning()
     {
 
+        QuizScore = 0;
         RoundScore = 0;
         EarnedAchievements.Clear();
 

@@ -273,6 +273,7 @@ public class RoundCountDownTimerScript : MonoBehaviour
             centre.visible = true;
 
             DataTransfer_SO.Instance.getScore?.Invoke();
+            DataTransfer_SO.Instance.QuizScore = 0;
             FindAchievementsEarned();
             RoundOver = true;
             Time.timeScale = 0f;

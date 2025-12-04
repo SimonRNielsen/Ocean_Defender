@@ -177,6 +177,8 @@ public class RaycastScript : MonoBehaviour
     /// </summary>
     private void OnHoldingPrimaryAction()
     {
+        try
+        {
 
         if (disableOnHold) return;
 
@@ -199,6 +201,9 @@ public class RaycastScript : MonoBehaviour
             selectedObject = target;
 
         }
+
+        }
+        catch { }
 
     }
 

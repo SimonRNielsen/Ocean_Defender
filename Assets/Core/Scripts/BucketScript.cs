@@ -26,7 +26,7 @@ public class BucketScript : MonoBehaviour, IClickable
         eelgrassNail.transform.position = Vector3.zero;
         Instantiate(eelgrassNail);
 
-        DataTransfer_SO.Instance.oneShotSoundEvent(bucketSound);
+        DataTransfer_SO.Instance.oneShotSoundEvent?.Invoke(bucketSound);
 
     }
 

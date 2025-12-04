@@ -30,6 +30,11 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44867ab52e9fb084488ab58d66e313d2
+    m_Address: Assets/Localization/Tables/TopScore Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 80f74cfa8a527e142ae880bec1a2a55b
     m_Address: Assets/Localization/Tables/StartMenu Shared Data.asset
     m_ReadOnly: 1

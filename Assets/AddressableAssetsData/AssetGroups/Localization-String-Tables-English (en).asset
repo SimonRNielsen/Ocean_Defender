@@ -50,6 +50,13 @@ MonoBehaviour:
     - Locale-en
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd1948097db00a9458843a7f2345b001
+    m_Address: TopScore_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc96821f9489dcd479e17be94c52ae77
     m_Address: FaktaboksPLANT_en
     m_ReadOnly: 1

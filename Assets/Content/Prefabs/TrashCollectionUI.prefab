@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4153346072306273387}
   - component: {fileID: 6946357685976485710}
   - component: {fileID: 3987938854103971030}
+  - component: {fileID: -7671497091934791281}
   m_Layer: 5
   m_Name: TrashCollectionUI
   m_TagString: Untagged
@@ -68,4 +69,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d52ab98cb162994bade00fa5493c177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrashCollectionScoreScript
-  defaultLabelText: "0 \xE5rs affald fjernet"
+--- !u!114 &-7671497091934791281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438654701154812690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f949ac5c32248499777a073a5013e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterUIBinding
+  scoreCounter: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
+  uiDocument: {fileID: 6946357685976485710}
+  scoreLabelName: ScoreLabel

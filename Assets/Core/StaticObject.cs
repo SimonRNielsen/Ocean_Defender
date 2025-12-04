@@ -21,9 +21,10 @@ public class StaticObject : MonoBehaviour, IClickable
     private SpriteRenderer rbSprite;
     private float spriteHeight;
 
-    private ScoreCounterScript scoreCounter; //The Scorecounter used to add a score when the objects is cleared.
+    //private ScoreCounterScript scoreCounter; //The Scorecounter used to add a score when the objects is cleared.
     [SerializeField, Tooltip("The score awarded when clearing the clearable object")] private int score = 0;
 
+    [SerializeField] private ScoreCounterScript scoreCounter;
 
     #endregion
 
@@ -41,7 +42,8 @@ public class StaticObject : MonoBehaviour, IClickable
         rbSprite = GetComponent<SpriteRenderer>();
 
 
-        scoreCounter = FindAnyObjectByType<ScoreCounterScript>();
+        //scoreCounter = FindAnyObjectByType<ScoreCounterScript>();
+
     }
 
     // Update is called once per frame
@@ -82,7 +84,7 @@ public class StaticObject : MonoBehaviour, IClickable
             //Changing the collision tag so there can't be planted another Eelgrass in the same Hole
             go.tag = "Untagged";
 
-            score++;
+            //score++;
             isPlanted();
         }
     }
@@ -110,7 +112,8 @@ public class StaticObject : MonoBehaviour, IClickable
     private void isPlanted()
     {
         //Sending the score to the UI
-        scoreCounter.AddToScore(score);
+        //scoreCounter.AddToScore(score);
+        scoreCounter.AddToScore(1);
     }
 
 

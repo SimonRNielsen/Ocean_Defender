@@ -29,6 +29,13 @@ MonoBehaviour:
     - Locale-da
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9af2c428c5504d747b58874fcb1a27e8
+    m_Address: TopScore_da
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-da
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a44f94e9b0d0b314d902f15d78901b61
     m_Address: FaktaboksPLANT_da
     m_ReadOnly: 1

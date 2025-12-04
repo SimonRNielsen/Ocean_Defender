@@ -57,7 +57,10 @@ public class PlacementScript : MonoBehaviour
         {
             while (objects.Count > 0)
             {
-                objects[objects.Count - 1].gameObject.SetActive(false);
+                //objects[objects.Count - 1].gameObject.SetActive(false);
+                GameObject obj = objects[objects.Count - 1];
+                objects.RemoveAt(objects.Count - 1);
+                obj.SetActive(false);
             }
 
             SpawnConnetedEelgrass();

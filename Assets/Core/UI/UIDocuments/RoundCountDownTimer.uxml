@@ -10,7 +10,11 @@
         <ui:VisualElement name="MiddleCentre" style="flex-grow: 1; width: 33.3%; min-width: 33.3%; max-width: 33.3%; height: 100%; min-height: 100%; max-height: 100%; align-items: center; justify-content: center; align-self: center; align-content: center;">
             <ui:VisualElement name="RoundOver" style="flex-grow: 1; width: 65%; height: auto; min-width: auto; min-height: auto; max-width: 100%; max-height: 100%; background-color: rgba(255, 255, 255, 0); background-image: url(&quot;project://database/Assets/Content/Sprites/Background/bubble.png?fileID=-9136834448258697486&amp;guid=4e9dab48786c5e944901a56972b38b05&amp;type=3#bubble_0&quot;); align-self: center;">
                 <ui:VisualElement style="flex-grow: 1; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Anton.ttf?fileID=12800000&amp;guid=997a43b767814dd0a7642ec9b78cba41&amp;type=3#Anton&quot;); font-size: 30px; align-self: auto; width: auto;">
-                    <ui:Label text="Din score blev:&#10;Your score was:&#10;Ihre Punktzahl war:" name="ScoreText" style="-unity-text-align: upper-center; font-size: 25px; margin-top: 35px;" />
+                    <ui:Label text="Din score blev:&#10;Your score was:&#10;Ihre Punktzahl war:" name="ScoreText" style="-unity-text-align: upper-center; font-size: 25px; margin-top: 35px;">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:a16e5663962f8e84f837113728b6d8b0" entry="Id(21643177984)" />
+                        </Bindings>
+                    </ui:Label>
                     <ui:Label text="Label" name="ScoreLabel" style="-unity-text-align: upper-center; font-size: 25px; bottom: 5%; color: rgb(11, 149, 11);" />
                 </ui:VisualElement>
                 <ui:Button text="OK" name="OKButton" class="RoundCountDownButton" style="bottom: 5%;" />

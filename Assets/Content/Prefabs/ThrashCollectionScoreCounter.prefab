@@ -56,6 +56,42 @@ PrefabInstance:
       propertyPath: scoreUnit
       value: "\xE5rs affald fjernet"
       objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: scoreUnit.m_TableEntryReference.m_KeyId
+      value: 18229014528
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: scoreUnit.m_TableReference.m_TableCollectionName
+      value: GUID:44867ab52e9fb084488ab58d66e313d2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3987938854103971030, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnScoreChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TrashCollectionScoreScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

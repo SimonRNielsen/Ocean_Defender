@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Localization;
 
 public class ScoreCounterScript : MonoBehaviour
 {
     #region Fields
     [SerializeField, Tooltip("The current score")] private int score;
-    [SerializeField, Tooltip("The name of the unit the score is counted in")] string scoreUnit;
-    public UnityEvent<int, string, int> ScoreChanged;
+    [SerializeField, Tooltip("The name of the unit the score is counted in")] LocalizedString scoreUnit;
+    public UnityEvent<int, LocalizedString, int> ScoreChanged;
 
     [SerializeField, Tooltip("The achievement for the level")]
     public GameObject achievement;

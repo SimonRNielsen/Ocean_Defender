@@ -36,6 +36,13 @@ MonoBehaviour:
     - Locale-de
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 49371c02f5154a547a3a16db7d51f2b9
+    m_Address: TopScore_de
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-de
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 68a1bc01142322f4cab63e7812028065
     m_Address: QuizFjern_de
     m_ReadOnly: 1

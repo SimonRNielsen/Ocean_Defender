@@ -3,7 +3,7 @@
         <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: auto; height: auto; min-width: 25%; min-height: 10%; max-width: 75%; max-height: 10%; top: 2%; align-self: center; background-color: rgba(2, 104, 115, 0.79); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; justify-content: center; padding-left: 2%; padding-right: 2%; flex-wrap: wrap; align-content: center;">
             <ui:Label name="ScoreLabel" style="-unity-text-align: middle-left; background-color: rgba(32, 32, 32, 0); -unity-paragraph-spacing: -1px; -unity-background-image-tint-color: rgb(56, 56, 56); top: auto; align-self: center; font-size: 25px; color: rgb(255, 228, 225); -unity-text-outline-width: initial; -unity-text-outline-color: rgb(255, 228, 225); -unity-font-style: bold; left: auto; right: auto; padding-left: initial; padding-right: initial; margin-left: 4px; position: relative;">
                 <Bindings>
-                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:44867ab52e9fb084488ab58d66e313d2" entry="Id(18229014528)" />
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:44867ab52e9fb084488ab58d66e313d2" entry="Id(179638415360)" />
                 </Bindings>
             </ui:Label>
         </ui:VisualElement>

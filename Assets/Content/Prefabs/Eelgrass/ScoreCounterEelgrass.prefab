@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1685827080681527244, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.36809
       objectReference: {fileID: 0}
     - target: {fileID: 1685827080681527244, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.95345
       objectReference: {fileID: 0}
     - target: {fileID: 1685827080681527244, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -50,7 +50,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3384056692924333951, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
       propertyPath: m_Name
-      value: ScoreCounter
+      value: ScoreCounterEelgrass
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: scoreUnit
+      value: "\xE5legr\xE6s plantet"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: achievementScore
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: scoreUnit.m_TableEntryReference.m_KeyId
+      value: 179638415360
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: scoreUnit.m_TableReference.m_TableCollectionName
+      value: GUID:44867ab52e9fb084488ab58d66e313d2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnScoreChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TrashCollectionScoreScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5944849265448085376, guid: ea3194fe4fbc7e94fb45b4aa37593ae1, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

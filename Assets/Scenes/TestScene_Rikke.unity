@@ -119,6 +119,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &1079315
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1636747697375151538, guid: 9012d666f687bc14199e392e97d45879, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636747697375151538, guid: 9012d666f687bc14199e392e97d45879, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636747697375151538, guid: 9012d666f687bc14199e392e97d45879, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636747697375151538, guid: 9012d666f687bc14199e392e97d45879, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636747697375151538, guid: 9012d666f687bc14199e392e97d45879, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636747697375151538, guid: 9012d666f687bc14199e392e97d45879, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636747697375151538, guid: 9012d666f687bc14199e392e97d45879, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636747697375151538, guid: 9012d666f687bc14199e392e97d45879, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636747697375151538, guid: 9012d666f687bc14199e392e97d45879, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1636747697375151538, guid: 9012d666f687bc14199e392e97d45879, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561715127927180303, guid: 9012d666f687bc14199e392e97d45879, type: 3}
+      propertyPath: m_Name
+      value: tangnaal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9012d666f687bc14199e392e97d45879, type: 3}
 --- !u!4 &9776963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 999363400182860392, guid: c0147a206da4f9044bd40c2b1f7bb069, type: 3}
@@ -372,17 +429,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 999363400182860392, guid: c0147a206da4f9044bd40c2b1f7bb069, type: 3}
   m_PrefabInstance: {fileID: 1152678700}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &141994283 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6903624203604821056, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
-  m_PrefabInstance: {fileID: 1620693919}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d52ab98cb162994bade00fa5493c177, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrashCollectionScoreScript
 --- !u!4 &178726358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 999363400182860392, guid: c0147a206da4f9044bd40c2b1f7bb069, type: 3}
@@ -564,6 +610,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 999363400182860392, guid: c0147a206da4f9044bd40c2b1f7bb069, type: 3}
   m_PrefabInstance: {fileID: 340389434}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &276196196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7962631051784532868, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
+  m_PrefabInstance: {fileID: 1620693919}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &276196199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 644282355608010712, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
+  m_PrefabInstance: {fileID: 1620693919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276196196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+--- !u!114 &276196201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276196196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488b8bc155d4f884fb796ac869da33a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterPlantUIBinding
+  uiDocument: {fileID: 276196199}
+  scoreLabelName: ScoreLabel
 --- !u!4 &301956105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 999363400182860392, guid: c0147a206da4f9044bd40c2b1f7bb069, type: 3}
@@ -1125,10 +1201,6 @@ PrefabInstance:
       value: ScoreCounterEelgrass
       objectReference: {fileID: 0}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
-      propertyPath: scoreUnit
-      value: "\xE5legr\xE6s plantet"
-      objectReference: {fileID: 0}
-    - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: achievement
       value: 
       objectReference: {fileID: 989355753}
@@ -1137,17 +1209,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1403757778}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
-      propertyPath: achievementScore
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 141994283}
+      objectReference: {fileID: 9016143690929219865, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1158,7 +1226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TrashCollectionScoreScript, Assembly-CSharp
+      value: ScoreCounterUIBinding, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1340,6 +1408,10 @@ PrefabInstance:
     - target: {fileID: 9073673468495710131, guid: a537d8929cd19e94d8877ee574ecf303, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073673468495710131, guid: a537d8929cd19e94d8877ee574ecf303, type: 3}
+      propertyPath: scoreCounter
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2802,6 +2874,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6903624203604821056, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6903624203604821056, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
       propertyPath: defaultLabelText
       value: "0 \xE5legr\xE6s plantet"
       objectReference: {fileID: 0}
@@ -2809,10 +2885,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: EelgrassCollectionUI
       objectReference: {fileID: 0}
+    - target: {fileID: 9016143690929219865, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9016143690929219865, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
+      propertyPath: scoreLabelName
+      value: ScoreLabel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7962631051784532868, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 276196201}
   m_SourcePrefab: {fileID: 100100000, guid: f04f48d2d24a6134db7653a9bb0c2e57, type: 3}
 --- !u!4 &1630043681 stripped
 Transform:
@@ -3029,6 +3116,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5720216280938488641, guid: a0c13a243e3298a4ab0bf220a2871032, type: 3}
+      propertyPath: scoreCounter
+      value: 
+      objectReference: {fileID: 1926049284}
+    - target: {fileID: 5720216280938488641, guid: a0c13a243e3298a4ab0bf220a2871032, type: 3}
+      propertyPath: plantedEelgrass
+      value: 
+      objectReference: {fileID: -8936284935534249086, guid: e581148594b58fe4189c311fcd23b83e, type: 3}
     - target: {fileID: 8279002556359425639, guid: a0c13a243e3298a4ab0bf220a2871032, type: 3}
       propertyPath: m_Size.x
       value: 7.7030134
@@ -3629,6 +3724,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 999363400182860392, guid: c0147a206da4f9044bd40c2b1f7bb069, type: 3}
   m_PrefabInstance: {fileID: 1368527782}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1926049284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5700637864786327070, guid: 2460c5b5b1bad3740a7e4d49c623d291, type: 3}
+  m_PrefabInstance: {fileID: 678361043}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734a9c9759b672e4ebea033f635f33ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterScript
 --- !u!4 &1941846618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 999363400182860392, guid: c0147a206da4f9044bd40c2b1f7bb069, type: 3}
@@ -3646,6 +3752,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 564653157149530657, guid: ce1a82026e56caf48b1b36c4d07b1c3a, type: 3}
+      propertyPath: scoreCounter
+      value: 
+      objectReference: {fileID: 1926049284}
     - target: {fileID: 4202047149591447303, guid: ce1a82026e56caf48b1b36c4d07b1c3a, type: 3}
       propertyPath: m_Size.x
       value: 4.1508465
@@ -3843,6 +3953,10 @@ PrefabInstance:
     - target: {fileID: 4069271934415205487, guid: a0c13a243e3298a4ab0bf220a2871032, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069271934415205487, guid: a0c13a243e3298a4ab0bf220a2871032, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8279002556359425639, guid: a0c13a243e3298a4ab0bf220a2871032, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -4379,3 +4493,4 @@ SceneRoots:
   - {fileID: 1118291965}
   - {fileID: 382807587}
   - {fileID: 1403757777}
+  - {fileID: 1079315}

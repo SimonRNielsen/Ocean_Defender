@@ -195,6 +195,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+--- !u!114 &411236284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3987938854103971030, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+  m_PrefabInstance: {fileID: 411236283}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d52ab98cb162994bade00fa5493c177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrashCollectionScoreScript
+--- !u!114 &411236285 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -7671497091934791281, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
+  m_PrefabInstance: {fileID: 411236283}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f949ac5c32248499777a073a5013e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterUIBinding
 --- !u!1 &489965048
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -348,9 +370,17 @@ PrefabInstance:
     - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1352113610}
+      objectReference: {fileID: 411236284}
+    - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 411236285}
     - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
@@ -358,11 +388,23 @@ PrefabInstance:
       value: OnScoreChanged
       objectReference: {fileID: 0}
     - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnScoreChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TrashCollectionScoreScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: ScoreCounterUIBinding, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
       propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767690245440870894, guid: 08b437b710b9e2c4f9628f4e3802c693, type: 3}
+      propertyPath: ScoreChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -754,17 +796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87989d329fea8741963e4e6ec14181a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectPool
---- !u!114 &1352113610 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -7671497091934791281, guid: a5087da206b23a34cb0a40dd91ebd755, type: 3}
-  m_PrefabInstance: {fileID: 411236283}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f949ac5c32248499777a073a5013e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterUIBinding
 --- !u!1001 &1481037994
 PrefabInstance:
   m_ObjectHideFlags: 0

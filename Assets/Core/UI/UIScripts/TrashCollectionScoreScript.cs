@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.Localization;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UIElements;
 
 public class TrashCollectionScoreScript : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class TrashCollectionScoreScript : MonoBehaviour
         scoreAmountLabel = root.Q<Label>("ScoreAmountLabel");
         //scoreLabel.text = defaultLabelText;
         scoreAmountLabel.text = "";
+        scoreAmountLabel.style.display = DisplayStyle.None;
+
     }
 
 
@@ -36,9 +39,11 @@ public class TrashCollectionScoreScript : MonoBehaviour
     public IEnumerator ShowScoreAmount(int amount)
     {
         scoreAmountLabel.text = ("+" + amount);
-        scoreAmountLabel.SetEnabled(true);
+        //scoreAmountLabel.SetEnabled(true);
+        scoreAmountLabel.style.display = DisplayStyle.Flex;
         yield return new WaitForSeconds(1f);
-        scoreAmountLabel.SetEnabled(false);
+        //scoreAmountLabel.SetEnabled(false);
+        scoreAmountLabel.style.display = DisplayStyle.None;
         scoreAmountLabel.text = "";
     }
 

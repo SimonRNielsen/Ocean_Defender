@@ -73,9 +73,21 @@ PrefabInstance:
       value: TrashAchievement
       objectReference: {fileID: 0}
     - target: {fileID: 7663489181192434790, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
+      propertyPath: m_Size.x
+      value: 4.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663489181192434790, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
+      propertyPath: m_Size.y
+      value: 4.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663489181192434790, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -3047807121591678487, guid: f8216719097bf604296dba5b8aa72a9a, type: 3}
+      objectReference: {fileID: 21300000, guid: f8216719097bf604296dba5b8aa72a9a, type: 3}
+    - target: {fileID: 7663489181192434790, guid: 4b5e2d8398dfae84da9aff6ee0d1e288, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
